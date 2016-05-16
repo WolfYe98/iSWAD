@@ -15,6 +15,7 @@
 		62BA86861CEA579F00538FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */; };
 		62BA86911CEA579F00538FE0 /* iSWADTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86901CEA579F00538FE0 /* iSWADTests.swift */; };
 		62BA869C1CEA579F00538FE0 /* iSWADUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */; };
+		62BA86AA1CEA584E00538FE0 /* SyedAbsarClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86A91CEA584E00538FE0 /* SyedAbsarClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		62BA86971CEA579F00538FE0 /* iSWADUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSWADUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSWADUITests.swift; sourceTree = "<group>"; };
 		62BA869D1CEA579F00538FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62BA86A91CEA584E00538FE0 /* SyedAbsarClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyedAbsarClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				62BA86791CEA579E00538FE0 /* AppDelegate.swift */,
 				62BA867B1CEA579E00538FE0 /* MasterViewController.swift */,
+				62BA86A91CEA584E00538FE0 /* SyedAbsarClient.swift */,
 				62BA867D1CEA579E00538FE0 /* DetailViewController.swift */,
 				62BA867F1CEA579E00538FE0 /* Main.storyboard */,
 				62BA86821CEA579F00538FE0 /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62BA867E1CEA579E00538FE0 /* DetailViewController.swift in Sources */,
+				62BA86AA1CEA584E00538FE0 /* SyedAbsarClient.swift in Sources */,
 				62BA867C1CEA579E00538FE0 /* MasterViewController.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,
 			);
