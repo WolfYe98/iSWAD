@@ -10,7 +10,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
  
 import Foundation
-
+import SWXMLHash
 /* Soap Client Generated from WSDL: https://swad.ugr.es/ws/swad.wsdl powered by http://www.wsdl2swift.com */
 
 public class SyedAbsarClient {
@@ -419,7 +419,7 @@ private func makeSoapConnection(soapLocation: String, soapAction: String, soapMe
             let currentResp = aClass.newInstance()
             currentResp.xmlResponseString = "\(datastring)"
             completionHandler(currentResp, error)
-            return
+            //return
 
 			//TODO: Code in progress for response parsing and mapping
 			/*
@@ -427,7 +427,7 @@ private func makeSoapConnection(soapLocation: String, soapAction: String, soapMe
             
             let  coreElementKey = className
             
-            let aClass = NSClassFromString(className) as! SyedAbsarObjectBase.Type
+            //let aClass = NSClassFromString(className) as! SyedAbsarObjectBase.Type
             
             let obj = aClass
             

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CryptoSwift
 
 class MasterViewController: UITableViewController {
 
@@ -19,12 +20,13 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(loginToServer))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertNewObject(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        loginToServer()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -92,13 +94,37 @@ class MasterViewController: UITableViewController {
     func loginToServer() -> Bool {
         let client = SyedAbsarClient()
         let request = LoginByUserPasswordKey()
+        let user = Student()
+        user.userID = "26045090"
         request.cpAppKey = "itorres"
         request.cpUserID = "26045090"
-        request.cpUserPassword = "userpassword"
-        client.opLoginByUserPasswordKey(request) { (output, error: NSError?) in
-            print(output?.xmlResponseString)
+        request.cpUserPassword = "hwH1tBXxAE0ffClyQJRwTw-gDnR-fQlRsIj_SfpXM1CQZftvbN8o4fUTccWK1nDUf0dQPmQkhnWPVa-Qsk9mVw"
+        var password = "pass"
+        password = encryptPassword(password);
+        print("Password encryption")
+        print("pass1")
+        print(password)
+        print("pass2")
+        print(request.cpUserPassword);
+        print("End pass")
+        request.cpUserPassword = password
+        client.opLoginByUserPasswordKey(request) { (response: LoginByUserPasswordKeyOutput?, error: NSError?) in
+            self.title = "Raul"
+            print("hola")
+            print(response!.xmlResponseString)
+            
         }
         return true;
+    }
+    
+    func encryptPassword(password: String) -> String {
+        let bytesFromPassword = [UInt8](password.utf8);
+        var encryptedPassword = bytesFromPassword.sha512().toBase64()!;
+        encryptedPassword = String(encryptedPassword.characters.map {$0 == "+" ? "-" : $0})
+        encryptedPassword = String(encryptedPassword.characters.map {$0 == "/" ? "_" : $0})
+        encryptedPassword = String(encryptedPassword.characters.map {$0 == "=" ? " " : $0})
+        return encryptedPassword;
+        
     }
 
 
