@@ -50,7 +50,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row] as! String
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -72,8 +72,8 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row] as! String
+        cell.textLabel!.text = object
         return cell
     }
 
@@ -98,34 +98,29 @@ class MasterViewController: UITableViewController {
         user.userID = "26045090"
         request.cpAppKey = "itorres"
         request.cpUserID = "26045090"
-        request.cpUserPassword = "hwH1tBXxAE0ffClyQJRwTw-gDnR-fQlRsIj_SfpXM1CQZftvbN8o4fUTccWK1nDUf0dQPmQkhnWPVa-Qsk9mVw"
-        var password = "pass"
+        var password = "jesusa11"
         password = encryptPassword(password);
-        print("Password encryption")
-        print("pass1")
-        print(password)
-        print("pass2")
-        print(request.cpUserPassword);
-        print("End pass")
         request.cpUserPassword = password
+        print("Start Login")
         client.opLoginByUserPasswordKey(request) { (response: LoginByUserPasswordKeyOutput?, error: NSError?) in
-            self.title = "Raul"
-            print("hola")
-            print(response!.xmlResponseString)
+            let requestCourses = GetCourses()
+            requestCourses.cpWsKey = response!.cpWsKey!
+            print("Start get Courses")
+            client.opGetCourses(requestCourses){ (response2: GetCoursesOutput?, error) in
+                print(response2?.cpCoursesArray)
+                //print(response2?.xmlResponseString)
+            }
+            
+            self.title = " \(response!.cpUserFirstname!) \(response!.cpUserSurname1!) \(response!.cpUserSurname2!)"
+            
+            self.objects.insert(response!.cpUserSurname1!, atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             
         }
         return true;
     }
     
-    func encryptPassword(password: String) -> String {
-        let bytesFromPassword = [UInt8](password.utf8);
-        var encryptedPassword = bytesFromPassword.sha512().toBase64()!;
-        encryptedPassword = String(encryptedPassword.characters.map {$0 == "+" ? "-" : $0})
-        encryptedPassword = String(encryptedPassword.characters.map {$0 == "/" ? "_" : $0})
-        encryptedPassword = String(encryptedPassword.characters.map {$0 == "=" ? " " : $0})
-        return encryptedPassword;
-        
-    }
 
 
 }

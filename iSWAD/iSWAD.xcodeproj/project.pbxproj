@@ -18,6 +18,7 @@
 		62BA86AA1CEA584E00538FE0 /* SyedAbsarClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86A91CEA584E00538FE0 /* SyedAbsarClient.swift */; };
 		62E2DBF01CEC967D00A6885B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E2DBEF1CEC967D00A6885B /* Student.swift */; };
 		62E2DBF21CECA2D500A6885B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62E2DBF11CECA2D500A6885B /* Podfile */; };
+		62E348B51CF23624004BD63D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E348B41CF23624004BD63D /* Utils.swift */; };
 		FF1A5B3C1D776973E5EED816 /* Pods_iSWAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62EDA2F36E2FEAC7ED97D7E /* Pods_iSWAD.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		62BA86A91CEA584E00538FE0 /* SyedAbsarClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyedAbsarClient.swift; sourceTree = "<group>"; };
 		62E2DBEF1CEC967D00A6885B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		62E2DBF11CECA2D500A6885B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		62E348B41CF23624004BD63D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B92A0B5735E663134D08702 /* Pods-iSWAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.debug.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.debug.xcconfig"; sourceTree = "<group>"; };
 		A62EDA2F36E2FEAC7ED97D7E /* Pods_iSWAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSWAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */,
 				62BA86871CEA579F00538FE0 /* Info.plist */,
 				62E2DBF11CECA2D500A6885B /* Podfile */,
+				62E348B41CF23624004BD63D /* Utils.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				62BA867C1CEA579E00538FE0 /* MasterViewController.swift in Sources */,
 				62E2DBF01CEC967D00A6885B /* Student.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,
+				62E348B51CF23624004BD63D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
