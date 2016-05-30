@@ -453,6 +453,7 @@
             }
             let body =  xml["Envelope"]["Body"]
             
+            
             if (error == nil) {
                 for key in obj.cpKeys()  {
                     
@@ -460,12 +461,12 @@
                     let val = body[coreElementKey][key2].element?.text
                     print(key)
                     print(body[coreElementKey][key2])
-                    print(inst.valueForKey("cp"+key)?.principalClass);
                     if(body[coreElementKey][key2]["item"].element != nil) {
                         print("Habemus array")
-                        print(body[coreElementKey][key2]["item"])
+                        print(body[coreElementKey][key2]["item"]["courseCode"])
                     }
-                    inst.setValue(val, forKey: "cp"+key)
+                    inst.setValue(val, forKeyPath: "cp"+key)
+                    print(inst.valueForKeyPath("cp"+key).dynamicType);
                 }
             }
             
@@ -511,9 +512,11 @@
  @objc(CoursesArray)
  public class CoursesArray : SyedAbsarObjectBase {
     
-    
+    required public init() {
+        cpItem = []
+    }
     /// Item
-    var cpItem: String?
+    var cpItem: [Course]
     
     override static func cpKeys() -> Array<String> {
         return ["Item"]
@@ -553,9 +556,12 @@
  @objc(GroupTypesArray)
  public class GroupTypesArray : SyedAbsarObjectBase {
     
+    required public init() {
+        cpItem = []
+    }
     
     /// Item
-    var cpItem: String?
+    var cpItem: [GroupType]
     
     override static func cpKeys() -> Array<String> {
         return ["Item"]
@@ -606,10 +612,12 @@
   */
  @objc(GroupsArray)
  public class GroupsArray : SyedAbsarObjectBase {
-    
+    required public init() {
+        cpItem = []
+    }
     
     /// Item
-    var cpItem: String?
+    var cpItem: [Group]
     
     override static func cpKeys() -> Array<String> {
         return ["Item"]
@@ -672,10 +680,12 @@
   */
  @objc(NotificationsArray)
  public class NotificationsArray : SyedAbsarObjectBase {
-    
+    required public init() {
+        cpItem = []
+    }
     
     /// Item
-    var cpItem: String?
+    var cpItem: [Notification]
     
     override static func cpKeys() -> Array<String> {
         return ["Item"]
@@ -705,10 +715,12 @@
   */
  @objc(TagsArray)
  public class TagsArray : SyedAbsarObjectBase {
-    
+    required public init() {
+        cpItem = []
+    }
     
     /// Item
-    var cpItem: String?
+    var cpItem: [Tag]
     
     override static func cpKeys() -> Array<String> {
         return ["Item"]
