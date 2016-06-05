@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Student {
+class Student: NSObject  {
     var userName: String;
     var password: String;
     var userID: String;
     var userFirstName: String;
     var userSurname1: String;
     var userSurname2: String;
-    init(){
+    override init(){
         userID = ""
         userName = ""
         password = ""
