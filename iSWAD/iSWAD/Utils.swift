@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWXMLHash
 
 
 
@@ -18,4 +19,11 @@ func encryptPassword(password: String) -> String {
     encryptedPassword = String(encryptedPassword.characters.map {$0 == "=" ? " " : $0})
     return encryptedPassword;
     
+}
+
+
+func toString(xml: XMLIndexer, id: String) -> String {
+	print("To String")
+	print(xml[id].element?.text)
+	return (xml[id].element?.text)!
 }

@@ -18,28 +18,28 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertNewObject(_:)))
-        self.navigationItem.rightBarButtonItem = addButton
+		//let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertNewObject(_:)))
+		//self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        loginToServer()
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        super.viewWillAppear(animated)
+		self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+		super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+	
     func insertNewObject(sender: AnyObject) {
         objects.insert(NSDate(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -92,53 +92,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    func loginToServer() -> Bool {
-        let client = SyedAbsarClient()
-        let request = LoginByUserPasswordKey()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("26045090", forKey: "userIDKey")
-        defaults.setObject("itorres", forKey: "appKey")
-        defaults.setObject("jesusa11", forKey: "userPasswordKey")
-        request.cpAppKey = defaults.stringForKey("appKey")
-        request.cpUserID = defaults.stringForKey("userIDKey")
-        request.cpUserPassword = encryptPassword(defaults.stringForKey("userPasswordKey")!)
-        print("Start Login")
-        client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in //FUNCIONA!!! TODO: CAMBIAR TODAS LAS FUNCIONES
-			let loginData = response!["loginByUserPasswordKeyOutput"];
-            print(loginData)
-            let requestCourses = GetCourses()
-            requestCourses.cpWsKey = loginData["wsKey"].element?.text;
-            print("Start get Courses")
-            client.opGetCourses(requestCourses){ (error, response2: XMLIndexer?) in
-                print(response2)
-				print(response2!["getCoursesOutput"]["numCourses"].element?.text)
-				let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
-				print(coursesArray)
-				for item in coursesArray{
-					let courseName = item["courseFullName"].element?.text
-					self.objects.insert(courseName!, atIndex: 0)
-					let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-					self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-				}
-				
-            }
-            
-			self.title = " \(self.toString(loginData, id: "userFirstname"))"// \(loginData["userFirstname"].element?.text) \(self.toString(loginData["userLastname"]))"
-            
-			//self.objects.insert(response!.cpUserSurname1!, atIndex: 0)
-            //let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            //self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            
-        }
-        return true;
-    }
-	
-	func toString(xml: XMLIndexer, id: String) -> String {
-		print("To String")
-		print(xml[id].element?.text)
-		return (xml[id].element?.text)!
-	}
-    
+       
 
 
 }
