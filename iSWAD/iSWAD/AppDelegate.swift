@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
 		splitViewController.delegate = self
 		let defaults = NSUserDefaults.standardUserDefaults()
-		if (defaults.stringForKey("userIDKey") != nil) {
+		if (defaults.stringForKey(Constants.userIDKey) == nil) {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
 			let vc = storyboard.instantiateViewControllerWithIdentifier("Login")
 			self.window?.makeKeyAndVisible()

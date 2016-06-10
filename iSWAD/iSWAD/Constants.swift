@@ -13,4 +13,5 @@ struct Constants {
 	static let userPassworKey = "userPasswordKey"
 	static let appKey = "itorres"
 	static let logged = "loggedStatus"
+	static let wsKey = "wsKey"
 }

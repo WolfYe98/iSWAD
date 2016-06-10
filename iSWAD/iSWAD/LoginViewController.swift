@@ -59,26 +59,7 @@ class LoginViewController: UIViewController {
 			print(loginData)
 			defaults.setBool(true, forKey: Constants.logged)
 			
-			defaults.setObject(loginData["wsKey"].element?.text, forKey: "wsKey")
-			
-			
-			/*
-			print("Start get Courses")
-			//let requestCourses = GetCourses()
-			client.opGetCourses(requestCourses){ (error, response2: XMLIndexer?) in
-			print(response2)
-			print(response2!["getCoursesOutput"]["numCourses"].element?.text)
-			let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
-			print(coursesArray)
-			for item in coursesArray{
-			let courseName = item["courseFullName"].element?.text
-			self.objects.insert(courseName!, atIndex: 0)
-			let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-			self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-			}
-			}
-			*/
-			
+			defaults.setObject(loginData["wsKey"].element?.text, forKey: Constants.wsKey)
 			
 		}
 	}
