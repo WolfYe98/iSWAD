@@ -44,23 +44,22 @@ class LoginViewController: UIViewController {
 		}
 		
 	}
-	
-	
-	func loginToServer() -> Void {
-		let client = SyedAbsarClient()
-		let request = LoginByUserPasswordKey()
-		let defaults = NSUserDefaults.standardUserDefaults()
-		request.cpAppKey = Constants.appKey
-		request.cpUserID = defaults.stringForKey(Constants.userIDKey)
-		request.cpUserPassword = encryptPassword(defaults.stringForKey(Constants.userPassworKey)!)
-		print("Start Login")
-		client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in //FUNCIONA!!! TODO: CAMBIAR TODAS LAS FUNCIONES
-			let loginData = response!["loginByUserPasswordKeyOutput"]
-			print(loginData)
-			defaults.setBool(true, forKey: Constants.logged)
-			
-			defaults.setObject(loginData["wsKey"].element?.text, forKey: Constants.wsKey)
-			
-		}
+}
+
+func loginToServer() -> Void {
+	print("Start Login")
+	let client = SyedAbsarClient()
+	let request = LoginByUserPasswordKey()
+	let defaults = NSUserDefaults.standardUserDefaults()
+	request.cpAppKey = Constants.appKey
+	request.cpUserID = defaults.stringForKey(Constants.userIDKey)
+	request.cpUserPassword = encryptPassword(defaults.stringForKey(Constants.userPassworKey)!)
+	client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in //FUNCIONA!!! TODO: CAMBIAR TODAS LAS FUNCIONES
+		let loginData = response!["loginByUserPasswordKeyOutput"]
+		print(loginData)
+		defaults.setBool(true, forKey: Constants.logged)
+		
+		defaults.setObject(loginData["wsKey"].element?.text, forKey: Constants.wsKey)
+		
 	}
 }

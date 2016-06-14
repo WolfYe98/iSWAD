@@ -28,7 +28,7 @@ class MasterViewController: UITableViewController {
 			let controllers = split.viewControllers
 			self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
 		}
-		getCourses()
+		loginToServer()
 		
 	}
 	
@@ -92,27 +92,6 @@ class MasterViewController: UITableViewController {
 			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 		} else if editingStyle == .Insert {
 			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-		}
-	}
-	
-	func getCourses() -> Void {
-		print("Start get Courses")
-		
-		let client = SyedAbsarClient()
-		let defaults = NSUserDefaults.standardUserDefaults()
-		let requestCourses = GetCourses()
-		requestCourses.cpWsKey = defaults.stringForKey(Constants.wsKey)
-		client.opGetCourses(requestCourses){ (error, response2: XMLIndexer?) in
-			print(response2)
-			print(response2!["getCoursesOutput"]["numCourses"].element?.text)
-			let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
-			print(coursesArray)
-			for item in coursesArray{
-				let courseName = item["courseFullName"].element?.text
-				self.objects.insert(courseName!, atIndex: 0)
-				let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-				self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-			}
 		}
 	}
 	

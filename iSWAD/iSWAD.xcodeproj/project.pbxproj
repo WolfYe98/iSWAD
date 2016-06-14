@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */; };
 		6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6284EB311D04BD84009AE243 /* LoginViewController.swift */; };
 		62B067541D081B29001F8C8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B067531D081B29001F8C8C /* Constants.swift */; };
 		62B067571D0856BD001F8C8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B067551D0856BD001F8C8C /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		08F6D23A4C7A825B79C31856 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
+		62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMasterViewController.swift; sourceTree = "<group>"; };
 		6284EB311D04BD84009AE243 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62B067531D081B29001F8C8C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62B067561D0856BD001F8C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				62BA86791CEA579E00538FE0 /* AppDelegate.swift */,
 				6284EB311D04BD84009AE243 /* LoginViewController.swift */,
 				62BA867B1CEA579E00538FE0 /* MasterViewController.swift */,
+				62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */,
 				62E2DBEF1CEC967D00A6885B /* Student.swift */,
 				62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */,
 				62BA867D1CEA579E00538FE0 /* DetailViewController.swift */,
@@ -358,6 +361,7 @@
 				62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */,
 				62BA867C1CEA579E00538FE0 /* MasterViewController.swift in Sources */,
 				62E2DBF01CEC967D00A6885B /* Student.swift in Sources */,
+				62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,
 				62E348B51CF23624004BD63D /* Utils.swift in Sources */,
 				62B067541D081B29001F8C8C /* Constants.swift in Sources */,
