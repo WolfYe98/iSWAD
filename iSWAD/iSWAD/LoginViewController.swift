@@ -32,15 +32,21 @@ class LoginViewController: UIViewController {
 		defaults.setObject(userID.text, forKey: Constants.userIDKey)
 		defaults.setObject(userPassword.text, forKey: Constants.userPassworKey)
 		loginToServer()
+		sleep(1)
 		if defaults.boolForKey(Constants.logged) {
-			let alertController = UIAlertController(title: "iSWAD", message:
-				"Login Correct!", preferredStyle: UIAlertControllerStyle.Alert)
-			alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			let vc = storyboard.instantiateViewControllerWithIdentifier("SplitView") as! UISplitViewController
+			let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
+			navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
+			let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+			appDelegate.window!.rootViewController = vc
 			
-			self.presentViewController(alertController, animated: true, completion: {
-				
-				self.performSegueWithIdentifier("backToSplit", sender: nil)
-			})
+		} else {
+			
+			let alertController = UIAlertController(title: "iSWAD", message:
+				"Login Incorrect!", preferredStyle: UIAlertControllerStyle.Alert)
+			alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+			self.presentViewController(alertController, animated: true, completion: {})
 		}
 		
 	}
@@ -55,11 +61,21 @@ func loginToServer() -> Void {
 	request.cpUserID = defaults.stringForKey(Constants.userIDKey)
 	request.cpUserPassword = encryptPassword(defaults.stringForKey(Constants.userPassworKey)!)
 	client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in //FUNCIONA!!! TODO: CAMBIAR TODAS LAS FUNCIONES
+		print(error)
 		let loginData = response!["loginByUserPasswordKeyOutput"]
 		print(loginData)
-		defaults.setBool(true, forKey: Constants.logged)
+		if error == nil {
+			print("Correct login")
+			defaults.setBool(true, forKey: Constants.logged)
+		} else {
+			print("Bad login")
+			defaults.setBool(false, forKey: Constants.logged)
+		}
 		
-		defaults.setObject(loginData["wsKey"].element?.text, forKey: Constants.wsKey)
+		defaults.setObject(loginData[Constants.userFirstnameKey].element?.text, forKey: Constants.userFirstnameKey)
+		print("Login data")
+		print(loginData[Constants.wsKey])
+		defaults.setObject(loginData[Constants.wsKey].element?.text, forKey: Constants.wsKey)
 		
 	}
 }

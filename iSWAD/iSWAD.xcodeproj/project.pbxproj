@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */; };
+		62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE31D15846000114063 /* NotificationsMasterViewController.swift */; };
+		62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */; };
 		6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6284EB311D04BD84009AE243 /* LoginViewController.swift */; };
 		62B067541D081B29001F8C8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B067531D081B29001F8C8C /* Constants.swift */; };
 		62B067571D0856BD001F8C8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B067551D0856BD001F8C8C /* Main.storyboard */; };
 		62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86791CEA579E00538FE0 /* AppDelegate.swift */; };
-		62BA867C1CEA579E00538FE0 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA867B1CEA579E00538FE0 /* MasterViewController.swift */; };
-		62BA867E1CEA579E00538FE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA867D1CEA579E00538FE0 /* DetailViewController.swift */; };
+		62BA867E1CEA579E00538FE0 /* CoursesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA867D1CEA579E00538FE0 /* CoursesDetailViewController.swift */; };
 		62BA86831CEA579F00538FE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62BA86821CEA579F00538FE0 /* Assets.xcassets */; };
 		62BA86861CEA579F00538FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */; };
 		62BA86911CEA579F00538FE0 /* iSWADTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86901CEA579F00538FE0 /* iSWADTests.swift */; };
 		62BA869C1CEA579F00538FE0 /* iSWADUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */; };
 		62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */; };
-		62E2DBF01CEC967D00A6885B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E2DBEF1CEC967D00A6885B /* Student.swift */; };
 		62E2DBF21CECA2D500A6885B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62E2DBF11CECA2D500A6885B /* Podfile */; };
 		62E348B51CF23624004BD63D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E348B41CF23624004BD63D /* Utils.swift */; };
 		FF1A5B3C1D776973E5EED816 /* Pods_iSWAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62EDA2F36E2FEAC7ED97D7E /* Pods_iSWAD.framework */; };
@@ -45,13 +45,14 @@
 /* Begin PBXFileReference section */
 		08F6D23A4C7A825B79C31856 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
 		62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMasterViewController.swift; sourceTree = "<group>"; };
+		62295CE31D15846000114063 /* NotificationsMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsMasterViewController.swift; sourceTree = "<group>"; };
+		62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDetailViewController.swift; sourceTree = "<group>"; };
 		6284EB311D04BD84009AE243 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62B067531D081B29001F8C8C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62B067561D0856BD001F8C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62BA86761CEA579E00538FE0 /* iSWAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSWAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62BA86791CEA579E00538FE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62BA867B1CEA579E00538FE0 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		62BA867D1CEA579E00538FE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		62BA867D1CEA579E00538FE0 /* CoursesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesDetailViewController.swift; sourceTree = "<group>"; };
 		62BA86821CEA579F00538FE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62BA86851CEA579F00538FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BA86871CEA579F00538FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSWADUITests.swift; sourceTree = "<group>"; };
 		62BA869D1CEA579F00538FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoapConnectionInterface.swift; sourceTree = "<group>"; };
-		62E2DBEF1CEC967D00A6885B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		62E2DBF11CECA2D500A6885B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62E348B41CF23624004BD63D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B92A0B5735E663134D08702 /* Pods-iSWAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.debug.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,18 +122,18 @@
 			children = (
 				62BA86791CEA579E00538FE0 /* AppDelegate.swift */,
 				6284EB311D04BD84009AE243 /* LoginViewController.swift */,
-				62BA867B1CEA579E00538FE0 /* MasterViewController.swift */,
 				62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */,
-				62E2DBEF1CEC967D00A6885B /* Student.swift */,
-				62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */,
-				62BA867D1CEA579E00538FE0 /* DetailViewController.swift */,
+				62BA867D1CEA579E00538FE0 /* CoursesDetailViewController.swift */,
+				62295CE31D15846000114063 /* NotificationsMasterViewController.swift */,
+				62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */,
 				62BA86821CEA579F00538FE0 /* Assets.xcassets */,
 				62B067551D0856BD001F8C8C /* Main.storyboard */,
-				62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */,
 				62BA86871CEA579F00538FE0 /* Info.plist */,
-				62E2DBF11CECA2D500A6885B /* Podfile */,
+				62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */,
 				62E348B41CF23624004BD63D /* Utils.swift */,
 				62B067531D081B29001F8C8C /* Constants.swift */,
+				62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */,
+				62E2DBF11CECA2D500A6885B /* Podfile */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -357,14 +357,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */,
-				62BA867E1CEA579E00538FE0 /* DetailViewController.swift in Sources */,
+				62BA867E1CEA579E00538FE0 /* CoursesDetailViewController.swift in Sources */,
 				62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */,
-				62BA867C1CEA579E00538FE0 /* MasterViewController.swift in Sources */,
-				62E2DBF01CEC967D00A6885B /* Student.swift in Sources */,
+				62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */,
 				62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,
 				62E348B51CF23624004BD63D /* Utils.swift in Sources */,
 				62B067541D081B29001F8C8C /* Constants.swift in Sources */,
+				62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ugr.iSWAD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -527,6 +528,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ugr.iSWAD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

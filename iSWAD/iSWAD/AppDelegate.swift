@@ -15,19 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	let defaults = NSUserDefaults.standardUserDefaults()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		
+		let defaults = NSUserDefaults.standardUserDefaults()
+		if (defaults.stringForKey(Constants.wsKey) == nil) {
+			self.window?.rootViewController?.performSegueWithIdentifier("showLogin", sender: self)
+		} else {
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			let vc = storyboard.instantiateViewControllerWithIdentifier("SplitView") as! UISplitViewController
+			let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
+			navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
+			
+			self.window?.rootViewController = vc
+			
+		}
 
-        // Override point for customization after application launch.
+        /* Override point for customization after application launch.
 		let splitViewController = self.window!.rootViewController as! UISplitViewController
 		let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-		splitViewController.delegate = self
-		let defaults = NSUserDefaults.standardUserDefaults()
-		if (defaults.stringForKey(Constants.userIDKey) == nil) {
-			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			let vc = storyboard.instantiateViewControllerWithIdentifier("Login")
-			self.window?.makeKeyAndVisible()
-			self.window?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-		}
+		splitViewController.delegate = self*/
 		return true
     }
 
@@ -59,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
 		
 		guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-		guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
+		guard let topAsDetailController = secondaryAsNavController.topViewController as? CoursesDetailViewController else { return false }
 		if topAsDetailController.detailItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
 		    return true

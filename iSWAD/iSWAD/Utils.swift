@@ -8,6 +8,7 @@
 
 import Foundation
 import SWXMLHash
+import CryptoSwift
 
 
 

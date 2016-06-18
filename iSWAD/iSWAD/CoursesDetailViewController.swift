@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CoursesDetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
@@ -23,8 +23,8 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-               label.text = detail.description
+            if self.detailDescriptionLabel != nil {
+               self.title = detail.description
             }
         }
     }
@@ -40,6 +40,15 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+	@IBAction func onTouchNotifications(sender: AnyObject) {
+		print("Touch on Notif")
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewControllerWithIdentifier("NotificationsView") as! UISplitViewController
+		let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
+		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
+		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+		appDelegate.window!.rootViewController = vc
+	}
 
 }
 
