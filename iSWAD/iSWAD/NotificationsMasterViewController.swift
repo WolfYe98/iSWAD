@@ -12,6 +12,7 @@ import SWXMLHash
 class notification {
 	var id = String()
 	var content = String()
+	var type = String()
 }
 
 class NotificationsMasterViewController: UITableViewController {
@@ -35,7 +36,7 @@ class NotificationsMasterViewController: UITableViewController {
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cellNotifications", forIndexPath: indexPath) as UITableViewCell
-		cell.textLabel?.text = notificationsList[indexPath.row].id
+		cell.textLabel?.text = notificationsList[indexPath.row].type
 		return cell
 	}
 	
@@ -64,10 +65,20 @@ class NotificationsMasterViewController: UITableViewController {
 		client.opGetNotifications(requestNotifications){ (error, response: XMLIndexer?) in
 			//print(response)
 			let notificationsArray = response!["getNotificationsOutput"]["notificationsArray"].children
-			//print(notificationsArray)
+			print(notificationsArray)
 			for item in notificationsArray{
 				let noti = notification()
 				noti.id = (item["notifCode"].element?.text)!
+				switch (item["eventType"].element?.text)! {
+				case Constants.notificationType.enrollmentStudent.rawValue:
+					noti.type = "Estudiante"
+				case Constants.notificationType.enrollmentTeacher.rawValue:
+					noti.type = "Professor"
+				case Constants.notificationType.message.rawValue:
+					noti.type = "Mensaje"
+				default:
+					noti.type = "Desconocido"
+				}
 				noti.content = (item["content"].element?.text)!
 				self.notificationsList.append(noti)
 			}

@@ -18,4 +18,10 @@ struct Constants {
 	static let userSurname1Key = "userSurname1"
 	static let userSurname2Key = "userSurname2"
 	
+	enum notificationType : String {
+		case message = "message"
+		case enrollmentTeacher = "enrollmentTeacher"
+		case enrollmentStudent = "enrollmentStudent"
+	}
+	
 }
