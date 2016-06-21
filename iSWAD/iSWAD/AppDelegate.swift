@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			self.window?.rootViewController?.performSegueWithIdentifier("showLogin", sender: self)
 		} else {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			let vc = storyboard.instantiateViewControllerWithIdentifier("SplitView") as! UISplitViewController
+			let vc = storyboard.instantiateViewControllerWithIdentifier("CoursesView") as! UISplitViewController
 			let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
 			navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 			

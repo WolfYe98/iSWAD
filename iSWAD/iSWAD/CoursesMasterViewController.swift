@@ -36,6 +36,7 @@ class CoursesMasterViewController: UITableViewController {
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showDetail" {
+			self.splitViewController?.toggleMasterView()
 			if let indexPath = self.tableView.indexPathForSelectedRow {
 				let object = coursesList[indexPath.row]
 				let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CoursesDetailViewController

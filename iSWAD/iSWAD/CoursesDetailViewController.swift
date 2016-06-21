@@ -44,6 +44,9 @@ class CoursesDetailViewController: UIViewController {
 		print("Touch on Notif")
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let vc = storyboard.instantiateViewControllerWithIdentifier("NotificationsView") as! UISplitViewController
+		vc.minimumPrimaryColumnWidth = 0
+		vc.maximumPrimaryColumnWidth = 600
+		vc.preferredPrimaryColumnWidthFraction = 0.6
 		let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
