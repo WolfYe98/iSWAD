@@ -10,26 +10,49 @@ import UIKit
 
 class NotificationsDetailViewController: UIViewController {
 	
-	@IBOutlet weak var notificationsContent: UILabel!
+	@IBOutlet var notificationsContent: UITextView!
+	
+	@IBOutlet var personImage: UIImageView!
+	
+	@IBOutlet var from: UILabel!
+	
+	@IBOutlet var subject: UILabel!
+	
+	@IBOutlet var summary: UILabel!
+	
+	@IBOutlet var date: UILabel!
 	
 	var detailItem: AnyObject? {
-		didSet {
+		didSet(detailItem) {
 			// Update the view.
 			self.configureView()
 		}
 	}
-	
 
 	func configureView() {
 		// Update the user interface for the detail item.
 		if let detail = self.detailItem {
 			if self.notificationsContent != nil {
+				
 				var not = notification()
 				not = detail as! notification
 				self.notificationsContent.text = not.content.html2String
-				// Swift
-				self.notificationsContent.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
-				self.notificationsContent.numberOfLines = 0
+				self.notificationsContent.font = UIFont(name: "Helvetica", size: 20)
+				self.from.text = not.from
+				self.subject.text = not.location
+				self.date.text = not.date
+				self.summary.text = not.summary
+				let url = NSURL(string: not.userPhoto)
+				
+				dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+					let data = NSData(contentsOfURL: url!) 
+					dispatch_async(dispatch_get_main_queue(), {
+						self.personImage.image = UIImage(data: data!)
+					});
+				}
+
+				self.title = not.type
+
 			}
 		}
 	}

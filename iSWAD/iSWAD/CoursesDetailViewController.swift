@@ -51,6 +51,19 @@ class CoursesDetailViewController: UIViewController {
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
 		appDelegate.window!.rootViewController = vc
+		
+		let rightNavController = vc.viewControllers.last as! UINavigationController
+		let detailViewController = rightNavController.topViewController as! NotificationsDetailViewController
+		let leftNavController = vc.viewControllers.first as! UINavigationController
+		let masterViewController = leftNavController.topViewController as! NotificationsMasterViewController
+		masterViewController.getNotifications()
+		
+		sleep(1)
+
+		let firstNot = masterViewController.notificationsList.first
+		detailViewController.detailItem = firstNot
+		detailViewController.configureView()
+		
 	}
 
 }

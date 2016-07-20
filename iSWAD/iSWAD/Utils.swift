@@ -53,3 +53,33 @@ extension UISplitViewController {
 		UIApplication.sharedApplication().sendAction(barButtonItem.action, to: barButtonItem.target, from: nil, forEvent: nil)
 	}
 }
+
+func setServerURL(){
+	let defaults = NSUserDefaults.standardUserDefaults()
+	//defaults.setObject("https://swad.ugr.es/", forKey: Constants.serverURLKey)
+	defaults.setObject("https://openswad.org/", forKey: Constants.serverURLKey)
+}
+func getServerURL() -> String {
+	
+	let defaults = NSUserDefaults.standardUserDefaults()
+	return defaults.stringForKey(Constants.serverURLKey)!
+}
+
+
+
+func resizeImage(image:UIImage, toTheSize size:CGSize)->UIImage{
+	
+	
+	let scale = CGFloat(max(size.width/image.size.width,
+		size.height/image.size.height))
+	let width:CGFloat  = image.size.width * scale
+	let height:CGFloat = image.size.height * scale;
+	
+	let rr:CGRect = CGRectMake( 0, 0, width, height);
+	
+	UIGraphicsBeginImageContextWithOptions(size, false, 0);
+	image.drawInRect(rr)
+	let newImage = UIGraphicsGetImageFromCurrentImageContext()
+	UIGraphicsEndImageContext();
+	return newImage
+}

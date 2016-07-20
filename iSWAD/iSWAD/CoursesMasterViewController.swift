@@ -15,7 +15,7 @@ class CoursesMasterViewController: UITableViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.title = NSUserDefaults.standardUserDefaults().stringForKey(Constants.userFirstnameKey)
+		self.title = "Asignaturas"
 		self.tableView.dataSource = self;
 		getCourses()
 	}

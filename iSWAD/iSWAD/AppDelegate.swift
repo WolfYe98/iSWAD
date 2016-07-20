@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	let defaults = NSUserDefaults.standardUserDefaults()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		//setServerURL()
 		
 		let defaults = NSUserDefaults.standardUserDefaults()
 		if (defaults.stringForKey(Constants.wsKey) == nil) {
@@ -26,6 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 			
 			self.window?.rootViewController = vc
+			
+			let rightNavController = vc.viewControllers.last as! UINavigationController
+			let detailViewController = rightNavController.topViewController as! CoursesDetailViewController
+			let leftNavController = vc.viewControllers.first as! UINavigationController
+			let masterViewController = leftNavController.topViewController as! CoursesMasterViewController
+			masterViewController.getCourses()
+			sleep(1)
+			let firstCourse = masterViewController.coursesList.first
+			detailViewController.detailItem = firstCourse
+			detailViewController.configureView()
 			
 		}
 

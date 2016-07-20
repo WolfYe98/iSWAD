@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62264B811D217CE7008ADA24 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62264B801D217CE7008ADA24 /* LoadingOverlay.swift */; };
 		62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */; };
 		62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE31D15846000114063 /* NotificationsMasterViewController.swift */; };
 		62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		08F6D23A4C7A825B79C31856 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
+		62264B801D217CE7008ADA24 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE31D15846000114063 /* NotificationsMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDetailViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				62B067531D081B29001F8C8C /* Constants.swift */,
 				62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */,
 				62E2DBF11CECA2D500A6885B /* Podfile */,
+				62264B801D217CE7008ADA24 /* LoadingOverlay.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -244,6 +247,11 @@
 				TargetAttributes = {
 					62BA86751CEA579E00538FE0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					62BA868B1CEA579F00538FE0 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -359,6 +367,7 @@
 				6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */,
 				62BA867E1CEA579E00538FE0 /* CoursesDetailViewController.swift in Sources */,
 				62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */,
+				62264B811D217CE7008ADA24 /* LoadingOverlay.swift in Sources */,
 				62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */,
 				62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,

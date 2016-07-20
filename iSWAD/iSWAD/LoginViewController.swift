@@ -10,27 +10,63 @@ import Foundation
 import UIKit
 import SWXMLHash
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
 	
 	
 	let defaults = NSUserDefaults.standardUserDefaults()
 	
 	@IBOutlet weak var userID: UITextField!
 	
+	@IBOutlet var serverPicker: UIPickerView!
+	
+	@IBOutlet var customServer: UITextField!
+	
+	let pickerData = ["https://swad.ugr.es/", "https://openswad.org/", "Otro..."]
 	
 	@IBOutlet weak var userPassword: UITextField!
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		serverPicker.dataSource = self
+		serverPicker.delegate = self
 		userID.text = defaults.stringForKey(Constants.userIDKey);
 		userPassword.text = defaults.stringForKey(Constants.userPassworKey)
+		defaults.setObject(pickerData[0], forKey: Constants.serverURLKey)
+	}
+	
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+		return 1
+	}
+ 
+	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return pickerData.count;
+	}
+	
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		return pickerData[row]
+	}
+	
+	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		if pickerData[row] == "Otro..." {
+			customServer.hidden = false
+		} else {
+			customServer.hidden = true
+			print(pickerData[row])
+			defaults.setObject(pickerData[row], forKey: Constants.serverURLKey)
+		}
 	}
 	
 	
 	@IBAction func onTouchLogin(sender: AnyObject) {
 		defaults.setObject(userID.text, forKey: Constants.userIDKey)
 		defaults.setObject(userPassword.text, forKey: Constants.userPassworKey)
+		var serverString = pickerData[serverPicker.selectedRowInComponent(0)]
+		if serverString == "Otro..." {
+			serverString = customServer.text!
+		}
+		print(serverString)
+		defaults.setObject(serverString, forKey: Constants.serverURLKey)
 		loginToServer()
 		sleep(1)
 		if defaults.boolForKey(Constants.logged) {
