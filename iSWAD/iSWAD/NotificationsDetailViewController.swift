@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWXMLHash
 
 class NotificationsDetailViewController: UIViewController {
 	
@@ -52,6 +53,15 @@ class NotificationsDetailViewController: UIViewController {
 				}
 
 				self.title = not.type
+				
+				let client = SyedAbsarClient()
+				let defaults = NSUserDefaults.standardUserDefaults()
+				let requestReadNotification = MarkNotificationsAsRead()
+				requestReadNotification.cpWsKey = defaults.stringForKey(Constants.wsKey)
+				requestReadNotification.cpNotifications = not.id
+				client.opMarkNotificationsAsRead(requestReadNotification){(error, response2: XMLIndexer?) in
+					print(response2)
+				}
 
 			}
 		}
