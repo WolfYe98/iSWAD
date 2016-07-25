@@ -94,7 +94,7 @@ class NotificationsMasterViewController: UITableViewController {
 		requestNotifications.cpWsKey = defaults.stringForKey(Constants.wsKey)
 		requestNotifications.cpBeginTime = 0
 		client.opGetNotifications(requestNotifications){ (error, response: XMLIndexer?) in
-			//print(response)
+			print(response)
 			let notificationsArray = response!["getNotificationsOutput"]["notificationsArray"].children
 			print(notificationsArray)
 			for item in notificationsArray{

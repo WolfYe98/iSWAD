@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		//setServerURL()
 		
 		let defaults = NSUserDefaults.standardUserDefaults()
-		if (defaults.stringForKey(Constants.wsKey) == nil) {
+		if (defaults.stringForKey(Constants.wsKey) == nil || defaults.stringForKey(Constants.wsKey) == "") {
 			self.window?.rootViewController?.performSegueWithIdentifier("showLogin", sender: self)
 		} else {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)

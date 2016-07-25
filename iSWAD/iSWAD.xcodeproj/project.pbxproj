@@ -11,6 +11,7 @@
 		62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */; };
 		62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE31D15846000114063 /* NotificationsMasterViewController.swift */; };
 		62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */; };
+		622D68201D4611C100047FB8 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622D681F1D4611C100047FB8 /* ConfigurationViewController.swift */; };
 		6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6284EB311D04BD84009AE243 /* LoginViewController.swift */; };
 		62B067541D081B29001F8C8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B067531D081B29001F8C8C /* Constants.swift */; };
 		62B067571D0856BD001F8C8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B067551D0856BD001F8C8C /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE31D15846000114063 /* NotificationsMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDetailViewController.swift; sourceTree = "<group>"; };
+		622D681F1D4611C100047FB8 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		6284EB311D04BD84009AE243 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62B067531D081B29001F8C8C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62B067561D0856BD001F8C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				62BA867D1CEA579E00538FE0 /* CoursesDetailViewController.swift */,
 				62295CE31D15846000114063 /* NotificationsMasterViewController.swift */,
 				62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */,
+				622D681F1D4611C100047FB8 /* ConfigurationViewController.swift */,
 				62BA86821CEA579F00538FE0 /* Assets.xcassets */,
 				62B067551D0856BD001F8C8C /* Main.storyboard */,
 				62BA86871CEA579F00538FE0 /* Info.plist */,
@@ -366,6 +369,7 @@
 			files = (
 				6284EB321D04BD84009AE243 /* LoginViewController.swift in Sources */,
 				62BA867E1CEA579E00538FE0 /* CoursesDetailViewController.swift in Sources */,
+				622D68201D4611C100047FB8 /* ConfigurationViewController.swift in Sources */,
 				62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */,
 				62264B811D217CE7008ADA24 /* LoadingOverlay.swift in Sources */,
 				62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */,
