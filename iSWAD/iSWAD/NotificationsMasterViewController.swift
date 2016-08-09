@@ -21,10 +21,10 @@ class notification {
 	var icono = String()
 	var userPhoto = String()
 	var unread = Bool()
+	var eventCode = String()
 }
 
 class cellNotification: UITableViewCell{
-	//@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var from: UILabel!
 	@IBOutlet weak var type: UILabel!
 	@IBOutlet weak var subject: UILabel!
@@ -100,6 +100,7 @@ class NotificationsMasterViewController: UITableViewController {
 			for item in notificationsArray{
 				let noti = notification()
 				noti.id = (item["notifCode"].element?.text)!
+				noti.eventCode = (item["eventCode"].element?.text)!
 				switch (item["eventType"].element?.text)! {
 				case Constants.notificationType.enrollmentStudent.rawValue:
 					noti.type = "Inscripción"
@@ -192,8 +193,6 @@ class NotificationsMasterViewController: UITableViewController {
 					noti.unread = false
 				}
 				
-				//print(noti.userPhoto)
-				//noti.type = (item["eventType"].element?.text)!
 				let timeInterval = Double((item["eventTime"].element?.text)!)
 
 				let date = NSDate(timeIntervalSince1970: timeInterval!)

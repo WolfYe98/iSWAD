@@ -369,8 +369,9 @@ public class SyedAbsarClient {
 	*/
 	public func opSendMessage(sendMessage : SendMessage , completionHandler: (NSError?, XMLIndexer?) -> Void) {
 		
-		let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:sendMessage><wsKey>%@</wsKey><messageCode>0</messageCode><to>%@</to><subject>%@</subject><body>%@</body></ns1:sendMessage></SOAP-ENV:Body></SOAP-ENV:Envelope>",sendMessage.cpWsKey!,sendMessage.cpMessageCode,sendMessage.cpTo!,sendMessage.cpSubject!,sendMessage.cpBody!)
 		
+		let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:sendMessage><wsKey>%@</wsKey><messageCode>%@</messageCode><to>%@</to><subject>%@</subject><body>%@</body></ns1:sendMessage></SOAP-ENV:Body></SOAP-ENV:Envelope>",sendMessage.cpWsKey!,sendMessage.cpMessageCode!,sendMessage.cpTo!,sendMessage.cpSubject!,sendMessage.cpBody!)
+		print(soapMessage)
 		self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"SendMessageOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
 	}
 	
@@ -1983,7 +1984,7 @@ public class SendMessage : SyedAbsarObjectBase {
 	var cpWsKey: String?
 	
 	/// Message Code
-	var cpMessageCode: Int = 0
+	var cpMessageCode: String?
 	
 	/// To
 	var cpTo: String?

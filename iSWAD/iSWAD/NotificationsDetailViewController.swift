@@ -23,15 +23,15 @@ class NotificationsDetailViewController: UIViewController {
 	
 	@IBOutlet var date: UILabel!
 	
+	@IBOutlet var toolbar: UIToolbar!
+	
 	var detailItem: AnyObject? {
 		didSet(detailItem) {
-			// Update the view.
 			self.configureView()
 		}
 	}
 
 	func configureView() {
-		// Update the user interface for the detail item.
 		if let detail = self.detailItem {
 			if self.notificationsContent != nil {
 				
@@ -54,6 +54,13 @@ class NotificationsDetailViewController: UIViewController {
 
 				self.title = not.type
 				
+				if not.type == "Mensaje" {
+					let answerButton = UIBarButtonItem(title: "Responder", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NotificationsDetailViewController.onTouchAnswer(_:)))
+					let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil);
+					toolbar.items = [flexibleSpace, flexibleSpace, answerButton]
+				}
+				
+				
 				let client = SyedAbsarClient()
 				let defaults = NSUserDefaults.standardUserDefaults()
 				let requestReadNotification = MarkNotificationsAsRead()
@@ -67,15 +74,24 @@ class NotificationsDetailViewController: UIViewController {
 		}
 	}
 	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		
+		let destinationVC = segue.destinationViewController as! MessagesViewController
+		destinationVC.contentFromNotification = detailItem
+	}
+
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
 		self.configureView()
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	}
+	
+	@IBAction func onTouchAnswer(sender: AnyObject){
+		performSegueWithIdentifier("showAnswer", sender: nil)
 	}
 	
 	@IBAction func onTouchSubjects(sender: AnyObject) {

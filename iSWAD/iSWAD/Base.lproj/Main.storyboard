@@ -78,10 +78,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="subjectDetailTable" destination="fWk-QI-Y7n" id="TWe-9b-v0O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2437" y="399"/>
+            <point key="canvasLocation" x="2469" y="399"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PLH-id-sif">
@@ -400,6 +403,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lIE-qk-DK0">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -424,11 +431,102 @@
                         <outlet property="personImage" destination="q2z-pt-VJA" id="2OT-YS-eIp"/>
                         <outlet property="subject" destination="gq4-8r-6cw" id="Rwt-EN-4rb"/>
                         <outlet property="summary" destination="baq-qa-lS4" id="axu-8k-q6r"/>
+                        <outlet property="toolbar" destination="lIE-qk-DK0" id="5SP-dz-gcz"/>
+                        <segue destination="q6A-Yr-jq2" kind="show" identifier="showAnswer" id="J6K-Dx-zGC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ra0-fH-YB1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5622" y="875"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="Dtl-nh-Fya">
+            <objects>
+                <viewController title="Message View Controller" id="q6A-Yr-jq2" customClass="MessagesViewController" customModule="iSWAD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q0h-Po-VPg"/>
+                        <viewControllerLayoutGuide type="bottom" id="rzi-pb-exu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yzb-EA-DTo">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BSV-L9-QaA" userLabel="To">
+                                <rect key="frame" x="87" y="87" width="629" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA6-yT-XTR">
+                                <rect key="frame" x="50" y="129" width="29" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destinatarios adicionales separados por comas" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FwQ-3W-wvH" userLabel="Carbon Copy">
+                                <rect key="frame" x="87" y="125" width="629" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Asunto:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inr-uX-kWa">
+                                <rect key="frame" x="20" y="163" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6vP-JQ-TC3" userLabel="Subject">
+                                <rect key="frame" x="87" y="159" width="629" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mensaje:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtR-0F-KZU">
+                                <rect key="frame" x="10" y="199" width="69" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Para:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUL-s5-n9h">
+                                <rect key="frame" x="40" y="91" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZq-Eq-GHw">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Pch-3V-pca"/>
+                                    <barButtonItem style="plain" id="5gW-7k-bqL">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Cpa-gF-85k">
+                                            <rect key="frame" x="706" y="7" width="42" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Enviar"/>
+                                            <connections>
+                                                <action selector="onTouchSend:" destination="q6A-Yr-jq2" eventType="touchUpInside" id="OKw-Eb-Cku"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUt-42-KC4" userLabel="Body">
+                                <rect key="frame" x="87" y="197" width="629" height="721"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="body" destination="YUt-42-KC4" id="bdt-Ot-Cgg"/>
+                        <outlet property="carbonCopy" destination="FwQ-3W-wvH" id="oK6-mV-TwC"/>
+                        <outlet property="subject" destination="6vP-JQ-TC3" id="8tm-rT-kUb"/>
+                        <outlet property="to" destination="BSV-L9-QaA" id="xRV-gj-10Z"/>
+                        <segue destination="sPk-6h-svK" kind="show" identifier="returnToNotifications" id="vy8-Bg-zca"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RBN-RY-8dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5622" y="2182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pxd-wp-H6c">
@@ -536,6 +634,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="ziV-mN-thY"/>
         <segue reference="Tll-UG-LXB"/>
-        <segue reference="RBs-u0-kdE"/>
+        <segue reference="vy8-Bg-zca"/>
     </inferredMetricsTieBreakers>
 </document>

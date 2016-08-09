@@ -17,7 +17,9 @@ class CoursesMasterViewController: UITableViewController {
 		super.viewDidLoad()
 		self.title = "Asignaturas"
 		self.tableView.dataSource = self;
-		getCourses()
+		if self.coursesList.isEmpty {
+			getCourses()
+		}
 	}
 	//MARK: Table View Data Source and Delegate
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
