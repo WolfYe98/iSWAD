@@ -11,6 +11,8 @@ import SWXMLHash
 
 class NotificationsDetailViewController: UIViewController {
 	
+	@IBOutlet var subjectsButton: UIButton!
+	
 	@IBOutlet var notificationsContent: UITextView!
 	
 	@IBOutlet var personImage: UIImageView!
@@ -86,6 +88,15 @@ class NotificationsDetailViewController: UIViewController {
 		self.configureView()
 	}
 	
+	override func loadView() {
+		super.loadView()
+		
+		self.subjectsButton.titleLabel?.font = UIFont.fontAwesomeOfSize(25)
+		self.subjectsButton.setTitle(String.fontAwesomeIconWithName(.FolderOpen), forState: .Normal)
+		self.subjectsButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+		self.subjectsButton.setTitleColor(UIColor.blueColor(), forState: .Highlighted)
+	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
@@ -104,6 +115,7 @@ class NotificationsDetailViewController: UIViewController {
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
 		appDelegate.window!.rootViewController = vc
+		//self.navigationController?.pushViewController(vc, animated: true)
 	}
 }
 
