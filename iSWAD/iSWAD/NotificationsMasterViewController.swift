@@ -9,6 +9,7 @@
 import UIKit
 import SWXMLHash
 import FontAwesome_swift
+import SwiftSpinner
 
 class notification {
 	var id = String()
@@ -42,15 +43,28 @@ class NotificationsMasterViewController: UITableViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		getNotifications()
+		
 		self.title = "Notificaciones"
 	}
+	
 	//MARK: Table View Data Source and Delegate
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
+	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return notificationsList.count
 	}
+	
+	/*!
+	Setup of the table view for the notifications
+	
+	- parameter tableView:	<#tableView description#>
+	- parameter indexPath:	<#indexPath description#>
+	
+	- returns: <#return value description#>
+	*/
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cellNotifications", forIndexPath: indexPath) as! cellNotification
 		cell.type.text = notificationsList[indexPath.row].type
@@ -68,6 +82,15 @@ class NotificationsMasterViewController: UITableViewController {
  		return cell
 	}
 	
+	override func viewDidAppear(animated: Bool) {
+		let firstNot = self.notificationsList.first
+		let navVC: UINavigationController =  self.splitViewController!.viewControllers[1] as! UINavigationController
+		
+		
+		let detailViewController = navVC.topViewController as! NotificationsDetailViewController
+		detailViewController.detailItem = firstNot
+		detailViewController.configureView()
+	}
 
 	
 	// MARK: - Segues
@@ -209,7 +232,7 @@ class NotificationsMasterViewController: UITableViewController {
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.tableView.reloadData()
 			})
-			print(self.notificationsList)			
+			
 		}
 	}
 }

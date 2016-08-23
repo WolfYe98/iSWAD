@@ -113,6 +113,7 @@
                         <outlet property="configButton" destination="2Nj-a4-KVg" id="mST-xg-jw8"/>
                         <outlet property="notifiButton" destination="iR8-kK-jEG" id="m84-1o-o6p"/>
                         <segue destination="9fF-vH-vQ6" kind="show" identifier="information" id="CO5-LB-bN5"/>
+                        <segue destination="j1D-yk-FEN" kind="show" identifier="showNotifications" id="679-18-aBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -406,7 +407,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c36-nd-i7f">
                                 <rect key="frame" x="20" y="300" width="728" height="704"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -665,8 +665,8 @@
         <image name="iSWAD" width="2304" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vy8-Bg-zca"/>
-        <segue reference="ziV-mN-thY"/>
+        <segue reference="ICZ-Pr-RUa"/>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="vy8-Bg-zca"/>
     </inferredMetricsTieBreakers>
 </document>

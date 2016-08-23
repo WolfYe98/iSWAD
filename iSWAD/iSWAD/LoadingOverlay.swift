@@ -1,72 +1,42 @@
+
 import UIKit
 
-class ProgressHUD: UIVisualEffectView {
+public class LoadingOverlay{
 	
-	var text: String? {
-		didSet {
-			label.text = text
+	var overlayView : UIView!
+	var activityIndicator : UIActivityIndicatorView!
+	
+	class var shared: LoadingOverlay {
+		struct Static {
+			static let instance: LoadingOverlay = LoadingOverlay()
 		}
-	}
-	let activityIndictor: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-	let label: UILabel = UILabel()
-	let blurEffect = UIBlurEffect(style: .Light)
-	let vibrancyView: UIVisualEffectView
-	
-	init(text: String) {
-		self.text = text
-		self.vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: blurEffect))
-		super.init(effect: blurEffect)
-		self.setup()
+		return Static.instance
 	}
 	
-	required init(coder aDecoder: NSCoder) {
-		self.text = ""
-		self.vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: blurEffect))
-		super.init(coder: aDecoder)!
-		self.setup()
+	init(){
+		self.overlayView = UIView()
+		self.activityIndicator = UIActivityIndicatorView()
 		
-	}
-	
-	func setup() {
-		contentView.addSubview(vibrancyView)
-		vibrancyView.contentView.addSubview(activityIndictor)
-		vibrancyView.contentView.addSubview(label)
-		activityIndictor.startAnimating()
-	}
-	
-	override func didMoveToSuperview() {
-		super.didMoveToSuperview()
+		overlayView.frame = CGRectMake(0, 0, 80, 80)
+		overlayView.backgroundColor = UIColor(white: 0, alpha: 0.7)
+		overlayView.clipsToBounds = true
+		overlayView.layer.cornerRadius = 10
+		overlayView.layer.zPosition = 1
 		
-		if let superview = self.superview {
-			
-			let width = superview.frame.size.width / 2.3
-			let height: CGFloat = 50.0
-			self.frame = CGRectMake(superview.frame.size.width / 2 - width / 2,
-			                        superview.frame.height / 2 - height / 2,
-			                        width,
-			                        height)
-			vibrancyView.frame = self.bounds
-			
-			let activityIndicatorSize: CGFloat = 40
-			activityIndictor.frame = CGRectMake(5, height / 2 - activityIndicatorSize / 2,
-			                                    activityIndicatorSize,
-			                                    activityIndicatorSize)
-			
-			layer.cornerRadius = 8.0
-			layer.masksToBounds = true
-			label.text = text
-			label.textAlignment = NSTextAlignment.Center
-			label.frame = CGRectMake(activityIndicatorSize + 5, 0, width - activityIndicatorSize - 15, height)
-			label.textColor = UIColor.grayColor()
-			label.font = UIFont.boldSystemFontOfSize(16)
-		}
+		activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+		activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+		overlayView.addSubview(activityIndicator)
 	}
 	
-	func show() {
-		self.hidden = false
+	public func showOverlay(view: UIView) {
+		overlayView.center = view.center
+		view.addSubview(overlayView)
+		activityIndicator.startAnimating()
 	}
 	
-	func hide() {
-		self.hidden = true
+	public func hideOverlayView() {
+		activityIndicator.stopAnimating()
+		overlayView.removeFromSuperview()
 	}
 }

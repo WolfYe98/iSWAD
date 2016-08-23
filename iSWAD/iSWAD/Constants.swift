@@ -11,7 +11,7 @@ import Foundation
 struct Constants {
 	static let userIDKey = "userID"
 	static let userPassworKey = "userPassword"
-	static let appKey = "iTorres"
+	static let appKey = "itorres"
 	static let logged = "loggedStatus"
 	static let wsKey = "wsKey"
 	static let userFirstnameKey = "userFirstname"

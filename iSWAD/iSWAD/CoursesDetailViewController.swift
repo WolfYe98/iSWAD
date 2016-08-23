@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class cellOption: UITableViewCell{
 	
@@ -29,7 +30,8 @@ class CoursesDetailViewController: UITableViewController {
 	
 	
 	var sectionTitles:[String] = ["Asignatura", "Evaluación", "Usuarios"]
-
+	
+	/// Class for string the options for each subject
 	class Option: AnyObject {
 		var name: String = ""
 		var segue: String = ""
@@ -45,7 +47,7 @@ class CoursesDetailViewController: UITableViewController {
 	var optionsForSubject = [[Option]]()
 	
     var detailItem: AnyObject? {
-        didSet {
+        didSet(detailItem) {
             // Update the view.
             self.configureView()
         }
@@ -53,10 +55,10 @@ class CoursesDetailViewController: UITableViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
+        if let detail = self.detailItem as? CoursesMasterViewController.Course {
 			print("Detail")
 			print(detail)
-			self.title = detail as? String
+			self.title = detail.name
         }
     }
 	
@@ -138,26 +140,52 @@ class CoursesDetailViewController: UITableViewController {
 		vc.minimumPrimaryColumnWidth = 0
 		vc.maximumPrimaryColumnWidth = 600
 		vc.preferredPrimaryColumnWidthFraction = 0.6
+		vc.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryOverlay
 		let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
-		appDelegate.window!.rootViewController = vc
 		
 		let rightNavController = vc.viewControllers.last as! UINavigationController
 		let detailViewController = rightNavController.topViewController as! NotificationsDetailViewController
 		let leftNavController = vc.viewControllers.first as! UINavigationController
 		let masterViewController = leftNavController.topViewController as! NotificationsMasterViewController
-		if masterViewController.notificationsList.isEmpty {
-			
-			masterViewController.getNotifications()
-			
-			sleep(1)
-			
-			let firstNot = masterViewController.notificationsList.first
-			detailViewController.detailItem = firstNot
-			detailViewController.configureView()
-		}
 		
+		//SwiftSpinner.show("Connecting to satellite...")
+		
+		//masterViewController.getNotifications()
+		//sleep(1)
+		
+		//let firstNot = masterViewController.notificationsList.first
+		//detailViewController.detailItem = firstNot
+		//detailViewController.configureView()
+		
+		
+		appDelegate.window!.rootViewController = vc
+		
+		//SwiftSpinner.hide()
+		
+	}
+	
+	/*!
+	Function that get the information given a course and the type of information you want
+	
+	- parameter courseCode:	code that identifies the course
+	- parameter infoType:		type of information that you want from the course
+	
+	- returns: <#return value description#>
+	*/
+	
+	func getCourseInfo(courseCode: Int, infoType: String) -> String {
+		let client = SyedAbsarClient()
+		let defaults = NSUserDefaults.standardUserDefaults()
+		let requestInfo = GetCourseInfo()
+		requestInfo.cpWsKey = defaults.stringForKey(Constants.wsKey)
+		requestInfo.cpCourseCode = 1
+		var responseForReturn = ""
+		client.opGetCourseInfo(requestInfo){ (error, response) in
+			responseForReturn = "Hola"
+		}
+		return responseForReturn
 	}
 
 }

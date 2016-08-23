@@ -8,6 +8,7 @@
 
 import UIKit
 import SWXMLHash
+import SwiftSpinner
 
 class NotificationsDetailViewController: UIViewController {
 	
@@ -87,6 +88,12 @@ class NotificationsDetailViewController: UIViewController {
 		super.viewDidLoad()
 		self.configureView()
 	}
+	
+	override func viewDidAppear(animated: Bool) {
+		
+		
+	}
+	
 	
 	override func loadView() {
 		super.loadView()

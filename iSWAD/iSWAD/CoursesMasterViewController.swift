@@ -11,7 +11,7 @@ import SWXMLHash
 
 class CoursesMasterViewController: UITableViewController {
  
-	var coursesList:[String] = []
+	var coursesList:[Course] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,6 +21,12 @@ class CoursesMasterViewController: UITableViewController {
 			getCourses()
 		}
 	}
+	
+	class  Course: AnyObject {
+		var name: String = ""
+		var code: Int = 0
+	}
+	
 	//MARK: Table View Data Source and Delegate
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
@@ -30,12 +36,17 @@ class CoursesMasterViewController: UITableViewController {
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-		cell.textLabel?.text = coursesList[indexPath.row]
+		cell.textLabel?.text = coursesList[indexPath.row].name
 		return cell
 	}
 	
 	// MARK: - Segues
+	/*!
+	Segue for navigate to the details of the course
 	
+	- parameter segue:	<#segue description#>
+	- parameter sender:	<#sender description#>
+	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showDetail" {
 			self.splitViewController?.toggleMasterView()
@@ -49,6 +60,10 @@ class CoursesMasterViewController: UITableViewController {
 		}
 	}
 	
+	
+	/*!
+	Function that loads all the courses for the logged student
+	*/
 	func getCourses() -> Void {
 		print("Start get Courses")
 		
@@ -63,8 +78,10 @@ class CoursesMasterViewController: UITableViewController {
 			let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
 			print(coursesArray)
 			for item in coursesArray{
-				let courseName = item["courseFullName"].element?.text
-				self.coursesList.append(courseName!)
+				let course = Course()
+				course.name = (item["courseFullName"].element?.text)!
+				course.code = Int((item["courseCode"].element?.text)!)!
+				self.coursesList.append(course)
 			}
 			// We have to send the reloadData to the UIThread otherwise won't be instant
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
