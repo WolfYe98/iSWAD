@@ -43,11 +43,14 @@ class NotificationsMasterViewController: UITableViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		getNotifications()
 		
-		self.title = "Notificaciones"
 	}
 	
+	override func loadView() {
+		super.loadView()
+		self.title = "Notificaciones"
+		getNotifications()
+	}
 	//MARK: Table View Data Source and Delegate
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1

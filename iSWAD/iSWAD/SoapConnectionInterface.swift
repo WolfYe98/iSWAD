@@ -89,7 +89,8 @@ public class SyedAbsarClient {
 	*/
 	public func opGetCourseInfo(getCourseInfo : GetCourseInfo , completionHandler: (NSError?, XMLIndexer?) -> Void) {
 		
-		let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getCourseInfo><wsKey>%@</wsKey><courseCode>0</courseCode><infoType>%@</infoType></ns1:getCourseInfo></SOAP-ENV:Body></SOAP-ENV:Envelope>",getCourseInfo.cpWsKey!,getCourseInfo.cpCourseCode,getCourseInfo.cpInfoType!)
+		let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getCourseInfo><wsKey>%@</wsKey><courseCode>%d</courseCode><infoType>%@</infoType></ns1:getCourseInfo></SOAP-ENV:Body></SOAP-ENV:Envelope>",getCourseInfo.cpWsKey!,getCourseInfo.cpCourseCode,getCourseInfo.cpInfoType!)
+		//let soapMessage = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getCourseInfo><wsKey>\(getCourseInfo.cpWsKey)</wsKey><courseCode>%@</courseCode><infoType>%@</infoType></ns1:getCourseInfo></SOAP-ENV:Body></SOAP-ENV:Envelope>",getCourseInfo.cpWsKey!,getCourseInfo.cpCourseCode,getCourseInfo.cpInfoType!)
 		
 		self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetCourseInfoOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
 	}

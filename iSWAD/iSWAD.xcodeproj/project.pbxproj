@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		62264B811D217CE7008ADA24 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62264B801D217CE7008ADA24 /* LoadingOverlay.swift */; };
 		62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */; };
 		62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE31D15846000114063 /* NotificationsMasterViewController.swift */; };
 		62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */; };
@@ -23,6 +22,7 @@
 		62BA86911CEA579F00538FE0 /* iSWADTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86901CEA579F00538FE0 /* iSWADTests.swift */; };
 		62BA869C1CEA579F00538FE0 /* iSWADUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */; };
 		62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */; };
+		62BC9E321D70BB7200C66811 /* InfoCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BC9E311D70BB7200C66811 /* InfoCourse.swift */; };
 		62E2DBF21CECA2D500A6885B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62E2DBF11CECA2D500A6885B /* Podfile */; };
 		62E348B51CF23624004BD63D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E348B41CF23624004BD63D /* Utils.swift */; };
 		FF1A5B3C1D776973E5EED816 /* Pods_iSWAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62EDA2F36E2FEAC7ED97D7E /* Pods_iSWAD.framework */; };
@@ -47,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		08F6D23A4C7A825B79C31856 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
-		62264B801D217CE7008ADA24 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		62295CE11D0F07F800114063 /* CoursesMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE31D15846000114063 /* NotificationsMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsMasterViewController.swift; sourceTree = "<group>"; };
 		62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDetailViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		62BA869B1CEA579F00538FE0 /* iSWADUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSWADUITests.swift; sourceTree = "<group>"; };
 		62BA869D1CEA579F00538FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62BA86A91CEA584E00538FE0 /* SoapConnectionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoapConnectionInterface.swift; sourceTree = "<group>"; };
+		62BC9E311D70BB7200C66811 /* InfoCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCourse.swift; sourceTree = "<group>"; };
 		62E2DBF11CECA2D500A6885B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62E348B41CF23624004BD63D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7B92A0B5735E663134D08702 /* Pods-iSWAD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.debug.xcconfig"; path = "iSWAD/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +134,7 @@
 				62295CE71D1590F700114063 /* NotificationsDetailViewController.swift */,
 				622D681F1D4611C100047FB8 /* ConfigurationViewController.swift */,
 				622D68211D48B12B00047FB8 /* MessagesViewController.swift */,
+				62BC9E311D70BB7200C66811 /* InfoCourse.swift */,
 				62B067551D0856BD001F8C8C /* Main.storyboard */,
 				62BA86821CEA579F00538FE0 /* Assets.xcassets */,
 				62BA86871CEA579F00538FE0 /* Info.plist */,
@@ -142,7 +143,6 @@
 				62B067531D081B29001F8C8C /* Constants.swift */,
 				62BA86841CEA579F00538FE0 /* LaunchScreen.storyboard */,
 				62E2DBF11CECA2D500A6885B /* Podfile */,
-				62264B801D217CE7008ADA24 /* LoadingOverlay.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -374,13 +374,13 @@
 				62BA867E1CEA579E00538FE0 /* CoursesDetailViewController.swift in Sources */,
 				622D68201D4611C100047FB8 /* ConfigurationViewController.swift in Sources */,
 				62BA86AA1CEA584E00538FE0 /* SoapConnectionInterface.swift in Sources */,
-				62264B811D217CE7008ADA24 /* LoadingOverlay.swift in Sources */,
 				62295CE81D1590F700114063 /* NotificationsDetailViewController.swift in Sources */,
 				622D68221D48B12B00047FB8 /* MessagesViewController.swift in Sources */,
 				62295CE21D0F07F800114063 /* CoursesMasterViewController.swift in Sources */,
 				62BA867A1CEA579E00538FE0 /* AppDelegate.swift in Sources */,
 				62E348B51CF23624004BD63D /* Utils.swift in Sources */,
 				62B067541D081B29001F8C8C /* Constants.swift in Sources */,
+				62BC9E321D70BB7200C66811 /* InfoCourse.swift in Sources */,
 				62295CE41D15846000114063 /* NotificationsMasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

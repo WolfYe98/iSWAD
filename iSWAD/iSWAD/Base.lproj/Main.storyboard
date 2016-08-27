@@ -7,20 +7,29 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Info View Controller-->
         <scene sceneID="mMU-xC-Qqe">
             <objects>
-                <viewController id="9fF-vH-vQ6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zNs-OB-2iX"/>
-                        <viewControllerLayoutGuide type="bottom" id="3Se-Qa-uhi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a6y-yZ-UvU">
+                <viewController id="9fF-vH-vQ6" customClass="InfoViewController" customModule="iSWAD" customModuleProvider="target" sceneMemberID="viewController">
+                    <textView key="view" clipsSubviews="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" id="GFq-LV-P77" userLabel="InformationView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <attributedString key="attributedText">
+                            <fragment content="Info View">
+                                <attributes>
+                                    <font key="NSFont" size="22" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" link="YES" calendarEvent="YES"/>
+                    </textView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="informationText" destination="GFq-LV-P77" id="f4Q-Dv-YTl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GIs-Sy-c2l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,8 +121,14 @@
                     <connections>
                         <outlet property="configButton" destination="2Nj-a4-KVg" id="mST-xg-jw8"/>
                         <outlet property="notifiButton" destination="iR8-kK-jEG" id="m84-1o-o6p"/>
-                        <segue destination="9fF-vH-vQ6" kind="show" identifier="information" id="CO5-LB-bN5"/>
-                        <segue destination="j1D-yk-FEN" kind="show" identifier="showNotifications" id="679-18-aBw"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="introduction" id="CO5-LB-bN5"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="guide" id="egM-4X-8Nv"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="lectures" id="3NS-NB-PlK"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="practicals" id="m7u-ik-VzJ"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="bibliography" id="7so-Qg-jWt"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="FAQ" id="hLo-AX-Tze"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="links" id="Mfr-cx-imq"/>
+                        <segue destination="9fF-vH-vQ6" kind="show" identifier="assessment" id="Oyf-bD-QrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -667,6 +682,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ICZ-Pr-RUa"/>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="CO5-LB-bN5"/>
         <segue reference="vy8-Bg-zca"/>
     </inferredMetricsTieBreakers>
 </document>
