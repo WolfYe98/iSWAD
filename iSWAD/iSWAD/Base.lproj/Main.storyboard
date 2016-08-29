@@ -111,7 +111,7 @@
                             </barButtonItem>
                             <barButtonItem title="Config" id="2Nj-a4-KVg">
                                 <connections>
-                                    <segue destination="YA6-8L-fqg" kind="show" id="PRv-FH-fN7"/>
+                                    <segue destination="YA6-8L-fqg" kind="show" identifier="configuration" id="PRv-FH-fN7"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

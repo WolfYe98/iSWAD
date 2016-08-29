@@ -150,6 +150,8 @@ class CoursesDetailViewController: UITableViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
 		
 		switch segue.identifier!{
+		case "configuration":
+			break
 		case "introduction":
 			
 			let destinationVC = segue.destinationViewController as! InfoViewController
