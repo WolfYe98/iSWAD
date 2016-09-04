@@ -8,7 +8,6 @@
 
 import UIKit
 import SWXMLHash
-import SwiftSpinner
 
 class NotificationsDetailViewController: UIViewController {
 	
@@ -122,7 +121,6 @@ class NotificationsDetailViewController: UIViewController {
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
 		appDelegate.window!.rootViewController = vc
-		//self.navigationController?.pushViewController(vc, animated: true)
 	}
 }
 

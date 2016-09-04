@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwiftSpinner
-
 class cellOption: UITableViewCell{
 	
 	@IBOutlet var option: UILabel!
@@ -226,26 +224,7 @@ class CoursesDetailViewController: UITableViewController {
 		let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
 		navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
 		let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
-		
-		let rightNavController = vc.viewControllers.last as! UINavigationController
-		let detailViewController = rightNavController.topViewController as! NotificationsDetailViewController
-		let leftNavController = vc.viewControllers.first as! UINavigationController
-		let masterViewController = leftNavController.topViewController as! NotificationsMasterViewController
-		
-		//SwiftSpinner.show("Connecting to satellite...")
-		
-		//masterViewController.getNotifications()
-		//sleep(1)
-		
-		//let firstNot = masterViewController.notificationsList.first
-		//detailViewController.detailItem = firstNot
-		//detailViewController.configureView()
-		
-		
 		appDelegate.window!.rootViewController = vc
-		
-		//SwiftSpinner.hide()
-		
 	}
 	
 	/*!
@@ -254,7 +233,6 @@ class CoursesDetailViewController: UITableViewController {
 	- parameter courseCode:	code that identifies the course
 	- parameter infoType:		type of information that you want from the course
 	
-	- returns: <#return value description#>
 	*/
 	
 	func getCourseInfo(courseCode: Int, infoType: String) -> Void {

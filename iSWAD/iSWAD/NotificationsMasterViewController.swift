@@ -9,7 +9,6 @@
 import UIKit
 import SWXMLHash
 import FontAwesome_swift
-import SwiftSpinner
 
 class notification {
 	var id = String()
@@ -61,12 +60,7 @@ class NotificationsMasterViewController: UITableViewController {
 	}
 	
 	/*!
-	Setup of the table view for the notifications
-	
-	- parameter tableView:	<#tableView description#>
-	- parameter indexPath:	<#indexPath description#>
-	
-	- returns: <#return value description#>
+		Setup of the table view for the notifications
 	*/
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cellNotifications", forIndexPath: indexPath) as! cellNotification

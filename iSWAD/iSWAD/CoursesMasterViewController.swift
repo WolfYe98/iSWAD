@@ -42,10 +42,7 @@ class CoursesMasterViewController: UITableViewController {
 	
 	// MARK: - Segues
 	/*!
-	Segue for navigate to the details of the course
-	
-	- parameter segue:	<#segue description#>
-	- parameter sender:	<#sender description#>
+		Segue for navigate to the details of the course
 	*/
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showDetail" {
@@ -62,7 +59,7 @@ class CoursesMasterViewController: UITableViewController {
 	
 	
 	/*!
-	Function that loads all the courses for the logged student
+		Function that loads all the courses for the logged student
 	*/
 	func getCourses() -> Void {
 		print("Start get Courses")
