@@ -70,7 +70,7 @@ class MessagesViewController: UIViewController{
 		requestMessage.cpSubject = subject.text
 		requestMessage.cpMessageCode = messageCode
 		requestMessage.cpWsKey = defaults.stringForKey(Constants.wsKey)
-		requestMessage.cpTo = "" +  carbonCopy.text! //Carbon Copy send is NOT tested!!!
+		requestMessage.cpTo = "" +  carbonCopy.text! 
 		clientMessage.opSendMessage(requestMessage){ (error: NSError?, response: XMLIndexer?) in
 			print(response)
 			let numUsers = response!["sendMessageOutput"]["numUsers"].element?.text

@@ -96,7 +96,7 @@ func loginToServer() -> Void {
 	request.cpAppKey = Constants.appKey
 	request.cpUserID = defaults.stringForKey(Constants.userIDKey)
 	request.cpUserPassword = encryptPassword(defaults.stringForKey(Constants.userPassworKey)!)
-	client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in //FUNCIONA!!! TODO: CAMBIAR TODAS LAS FUNCIONES
+	client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in 
 		print(error)
 		let loginData = response!["loginByUserPasswordKeyOutput"]
 		print(loginData)
