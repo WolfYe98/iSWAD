@@ -12,15 +12,40 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
-
+	let defaults = NSUserDefaults.standardUserDefaults()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        splitViewController.delegate = self
-        return true
+		//setServerURL()
+		
+		let defaults = NSUserDefaults.standardUserDefaults()
+		if (defaults.stringForKey(Constants.wsKey) == nil || defaults.stringForKey(Constants.wsKey) == "") {
+			self.window?.rootViewController?.performSegueWithIdentifier("showLogin", sender: self)
+		} else {
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			let vc = storyboard.instantiateViewControllerWithIdentifier("CoursesView") as! UISplitViewController
+			let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
+			navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem()
+			
+			self.window?.rootViewController = vc
+			
+			let rightNavController = vc.viewControllers.last as! UINavigationController
+			let detailViewController = rightNavController.topViewController as! CoursesDetailViewController
+			let leftNavController = vc.viewControllers.first as! UINavigationController
+			let masterViewController = leftNavController.topViewController as! CoursesMasterViewController
+			masterViewController.getCourses()
+			sleep(1)
+			let firstCourse = masterViewController.coursesList.first
+			detailViewController.detailItem = firstCourse
+			detailViewController.configureView()
+			
+		}
+
+        /* Override point for customization after application launch.
+		let splitViewController = self.window!.rootViewController as! UISplitViewController
+		let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+		navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+		splitViewController.delegate = self*/
+		return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -43,18 +68,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		defaults.setBool(false, forKey: Constants.logged)
     }
 
     // MARK: - Split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        if topAsDetailController.detailItem == nil {
+		
+		guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+		guard let topAsDetailController = secondaryAsNavController.topViewController as? CoursesDetailViewController else { return false }
+		if topAsDetailController.detailItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-            return true
-        }
-        return false
+		    return true
+		}
+		return false
     }
 
 }
