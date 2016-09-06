@@ -119,8 +119,13 @@ class NotificationsMasterViewController: UITableViewController {
 			print(notificationsArray)
 			for item in notificationsArray{
 				let noti = notification()
+				
 				noti.id = (item["notifCode"].element?.text)!
 				noti.eventCode = (item["eventCode"].element?.text)!
+				noti.summary = (item["summary"].element?.text)!
+				noti.location = (item["location"].element?.text)!
+				noti.userPhoto = (item["userPhoto"].element?.text)!
+				
 				switch (item["eventType"].element?.text)! {
 				case Constants.notificationType.enrollmentStudent.rawValue:
 					noti.type = "Inscripción"
@@ -130,6 +135,7 @@ class NotificationsMasterViewController: UITableViewController {
 					noti.type = "Inscripción"
 					noti.content = "Has sido ingresado como profesor en la asignatura "+(item["location"].element?.text)!
 					noti.icono = "fa-graduation-cap"
+					noti.summary = "Profesor"
 				case Constants.notificationType.message.rawValue:
 					noti.type = "Mensaje"
 					noti.content = (item["content"].element?.text)!
@@ -203,10 +209,8 @@ class NotificationsMasterViewController: UITableViewController {
 					noti.content = (item["content"].element?.text)!
 					noti.icono = "fa-question"
 				}
-				noti.summary = (item["summary"].element?.text)!
-				noti.location = (item["location"].element?.text)!
-				noti.userPhoto = (item["userPhoto"].element?.text)!
-				print(Int((item["status"].element?.text)!))
+				
+				
 				if Int((item["status"].element?.text)!) < 4{
 					noti.unread = true
 				} else {

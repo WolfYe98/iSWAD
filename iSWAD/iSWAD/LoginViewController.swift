@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SWXMLHash
+import ReachabilitySwift
 
 class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
 	
@@ -59,6 +60,24 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 	
 	
 	@IBAction func onTouchLogin(sender: AnyObject) {
+		
+		let reachability: Reachability
+		do {
+			reachability = try Reachability.reachabilityForInternetConnection()
+		} catch {
+			print("Unable to create Reachability")
+			return
+		}
+		
+		if !reachability.isReachable() {
+			let alertController = UIAlertController(title: "iSWAD", message:
+				"No se puede conectar a Internet", preferredStyle: UIAlertControllerStyle.Alert)
+			alertController.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default,handler: nil))
+			self.presentViewController(alertController, animated: true, completion: {})
+			return
+		}
+		
+		
 		defaults.setObject(userID.text, forKey: Constants.userIDKey)
 		defaults.setObject(userPassword.text, forKey: Constants.userPassworKey)
 		var serverString = pickerData[serverPicker.selectedRowInComponent(0)]
@@ -80,8 +99,8 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 		} else {
 			
 			let alertController = UIAlertController(title: "iSWAD", message:
-				"Login Incorrect!", preferredStyle: UIAlertControllerStyle.Alert)
-			alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+				"Login Incorrecto!", preferredStyle: UIAlertControllerStyle.Alert)
+			alertController.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default,handler: nil))
 			self.presentViewController(alertController, animated: true, completion: {})
 		}
 		

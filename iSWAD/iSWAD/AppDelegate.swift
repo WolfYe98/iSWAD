@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -16,7 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		
+		
 		let defaults = NSUserDefaults.standardUserDefaults()
+		
+		let reachability: Reachability
+		do {
+			reachability = try Reachability.reachabilityForInternetConnection()
+		} catch {
+			print("Unable to create Reachability")
+			return false
+		}
+		
+		if !reachability.isReachable() {
+			defaults.setObject(nil, forKey: Constants.wsKey)
+		}
+		
 		if (defaults.stringForKey(Constants.wsKey) == nil || defaults.stringForKey(Constants.wsKey) == "") {
 			self.window?.rootViewController?.performSegueWithIdentifier("showLogin", sender: self)
 		} else {
