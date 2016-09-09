@@ -3,7 +3,7 @@
 
 ### Description
 
-App for the conection to the Sistema Web de Apoyo a la Docencia http://swad.ugr.es 
+App for the connection to the Sistema Web de Apoyo a la Docencia http://swad.ugr.es 
 
 ### License
 
