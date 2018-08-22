@@ -1,0 +1,138 @@
+
+/* Class = "UIBarButtonItem"; title = "Config"; ObjectID = "2Nj-a4-KVg"; */
+"2Nj-a4-KVg.title" = "Config";
+
+/* Class = "UILabel"; text = "Usuario:"; ObjectID = "32x-0i-JuQ"; */
+"32x-0i-JuQ.text" = "Usuario:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "55j-yO-FPc"; */
+"55j-yO-FPc.text" = "Label";
+
+/* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Master";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Arm-wq-HPj"; */
+"Arm-wq-HPj.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Enviar"; ObjectID = "Cpa-gF-85k"; */
+"Cpa-gF-85k.normalTitle" = "Enviar";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "CxK-vq-hIf"; */
+"CxK-vq-hIf.text" = "Date";
+
+/* Class = "UILabel"; text = "From"; ObjectID = "D5e-x6-RCi"; */
+"D5e-x6-RCi.text" = "From";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "Ewa-vV-59x"; */
+"Ewa-vV-59x.text" = "Date";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "FOJ-Nl-acU"; */
+"FOJ-Nl-acU.placeholder" = "Contraseña";
+
+/* Class = "UITextField"; placeholder = "Destinatarios adicionales separados por comas"; ObjectID = "FwQ-3W-wvH"; */
+"FwQ-3W-wvH.placeholder" = "Destinatarios adicionales separados por comas";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "I9c-cE-9mY"; */
+"I9c-cE-9mY.title" = "Title";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Detail";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "JMa-jw-g29"; */
+"JMa-jw-g29.text" = "Type";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Ja1-OH-hsD"; */
+"Ja1-OH-hsD.title" = "Title";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Ksl-vM-s6l"; */
+"Ksl-vM-s6l.title" = "Title";
+
+/* Class = "UITextField"; placeholder = "Usuario"; ObjectID = "NQ8-eN-uGv"; */
+"NQ8-eN-uGv.placeholder" = "Usuario";
+
+/* Class = "UITextField"; placeholder = "https://openswad.org/"; ObjectID = "NVU-i7-gEU"; */
+"NVU-i7-gEU.placeholder" = "https://openswad.org/";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "NZh-J3-9mL"; */
+"NZh-J3-9mL.title" = "Detail";
+
+/* Class = "UINavigationController"; title = "Master"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "Master";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "SIB-gw-R07"; */
+"SIB-gw-R07.normalTitle" = "Logout";
+
+/* Class = "UILabel"; text = "CC:"; ObjectID = "UA6-yT-XTR"; */
+"UA6-yT-XTR.text" = "CC:";
+
+/* Class = "UIBarButtonItem"; title = "Asignaturas"; ObjectID = "VYH-nM-Dft"; */
+"VYH-nM-Dft.title" = "Asignaturas";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "WzY-fz-D1k"; */
+"WzY-fz-D1k.normalTitle" = "LOGIN";
+
+/* Class = "UITableViewController"; title = "Master"; ObjectID = "ZIV-Dj-vjg"; */
+"ZIV-Dj-vjg.title" = "Master";
+
+/* Class = "UILabel"; text = "Summary"; ObjectID = "baq-qa-lS4"; */
+"baq-qa-lS4.text" = "Summary";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "dJn-pF-VYN"; */
+"dJn-pF-VYN.title" = "Detail";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "gq4-8r-6cw"; */
+"gq4-8r-6cw.text" = "Subject";
+
+/* Class = "UIButton"; accessibilityLabel = "Notif"; ObjectID = "iR8-kK-jEG"; */
+"iR8-kK-jEG.accessibilityLabel" = "Notif";
+
+/* Class = "UIButton"; normalTitle = "Notif"; ObjectID = "iR8-kK-jEG"; */
+"iR8-kK-jEG.normalTitle" = "Notif";
+
+/* Class = "UILabel"; text = "Asunto:"; ObjectID = "inr-uX-kWa"; */
+"inr-uX-kWa.text" = "Asunto:";
+
+/* Class = "UILabel"; text = "Para:"; ObjectID = "kUL-s5-n9h"; */
+"kUL-s5-n9h.text" = "Para:";
+
+/* Class = "UILabel"; text = "Icon"; ObjectID = "lNr-tt-Qby"; */
+"lNr-tt-Qby.text" = "Icon";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "mOI-FS-AaM"; */
+"mOI-FS-AaM.title" = "Detail";
+
+/* Class = "UIButton"; normalTitle = "N"; ObjectID = "mok-EE-h46"; */
+"mok-EE-h46.normalTitle" = "N";
+
+/* Class = "UIViewController"; title = "Message View Controller"; ObjectID = "q6A-Yr-jq2"; */
+"q6A-Yr-jq2.title" = "Message View Controller";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "qkX-19-3ys"; */
+"qkX-19-3ys.title" = "Title";
+
+/* Class = "UINavigationItem"; title = "Notificaciones"; ObjectID = "rf0-Qf-SEz"; */
+"rf0-Qf-SEz.title" = "Notificaciones";
+
+/* Class = "UILabel"; text = "Summary"; ObjectID = "rv8-Zb-eUh"; */
+"rv8-Zb-eUh.text" = "Summary";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "t0g-wj-2M4"; */
+"t0g-wj-2M4.text" = "Label";
+
+/* Class = "UILabel"; text = "Contraseña:"; ObjectID = "tLe-PL-jux"; */
+"tLe-PL-jux.text" = "Contraseña:";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "vFh-Ix-G6U"; */
+"vFh-Ix-G6U.text" = "Subject";
+
+/* Class = "UILabel"; text = "From"; ObjectID = "vQH-cN-9fb"; */
+"vQH-cN-9fb.text" = "From";
+
+/* Class = "UILabel"; text = "Mensaje:"; ObjectID = "wtR-0F-KZU"; */
+"wtR-0F-KZU.text" = "Mensaje:";
+
+/* Class = "UIBarButtonItem"; title = "Asignaturas"; ObjectID = "yX7-nB-N7z"; */
+"yX7-nB-N7z.title" = "Asignaturas";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "zoK-BJ-ARy"; */
+"zoK-BJ-ARy.title" = "Title";

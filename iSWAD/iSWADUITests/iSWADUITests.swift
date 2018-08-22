@@ -2,8 +2,8 @@
 //  iSWADUITests.swift
 //  iSWADUITests
 //
-//  Created by Raul Alvarez on 16/05/16.
-//  Copyright © 2016 Raul Alvarez. All rights reserved.
+//  Created by Adrián Lara Roldán on 07/08/18.
+//  Copyright © 2018 Adrián Lara Roldán. All rights reserved.
 //
 
 import XCTest

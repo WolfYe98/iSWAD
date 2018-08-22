@@ -2,8 +2,8 @@
 //  iSWADTests.swift
 //  iSWADTests
 //
-//  Created by Raul Alvarez on 16/05/16.
-//  Copyright © 2016 Raul Alvarez. All rights reserved.
+//  Created by Adrián Lara Roldán on 07/08/18.
+//  Copyright © 2018 Adrián Lara Roldán. All rights reserved.
 //
 
 import XCTest
@@ -28,7 +28,7 @@ class iSWADTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
