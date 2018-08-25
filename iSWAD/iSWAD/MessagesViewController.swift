@@ -69,12 +69,16 @@ class MessagesViewController: UIViewController{
     func sendMessage() -> Void {
         let clientMessage = SyedAbsarClient()
         let requestMessage = SendMessage()
-        requestMessage.cpBody = "\(body.text) \n\nEnviado desde iSWAD"
+        if let message = body.text{
+            requestMessage.cpBody = "\(message) \n\nEnviado desde iSWAD"
+        }else{
+            requestMessage.cpBody = "!!SIN TEXTO¡¡ \n\nEnviado desde iSWAD"
+        }
         requestMessage.cpSubject = subject.text
         requestMessage.cpMessageCode = messageCode
         requestMessage.cpWsKey = defaults.string(forKey: Constants.wsKey)
         requestMessage.cpTo = to.text!
-
+        
         if (carbonCopy.text != "") {
             requestMessage.cpTo = "\(requestMessage.cpTo ?? ""),\(carbonCopy.text!)"
         }
