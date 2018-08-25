@@ -29,7 +29,7 @@ import SystemConfiguration
 import Foundation
 
 public enum ReachabilityError: Error {
-    case FailedToCreateWithAddress(sockaddr_in)
+    case FailedToCreateWithAddress(sockaddr_in6)
     case FailedToCreateWithHostname(String)
     case UnableToSetCallback
     case UnableToSetDispatchQueue
@@ -133,7 +133,7 @@ public class Reachability {
     fileprivate var previousFlags: SCNetworkReachabilityFlags?
     
     fileprivate var isRunningOnDevice: Bool = {
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
+        #if targetEnvironment(simulator)
             return false
         #else
             return true
@@ -153,17 +153,6 @@ public class Reachability {
     public convenience init?(hostname: String) {
         
         guard let ref = SCNetworkReachabilityCreateWithName(nil, hostname) else { return nil }
-        
-        self.init(reachabilityRef: ref)
-    }
-    
-    public convenience init?() {
-        
-        var zeroAddress = sockaddr()
-        zeroAddress.sa_len = UInt8(MemoryLayout<sockaddr>.size)
-        zeroAddress.sa_family = sa_family_t(AF_INET)
-
-        guard let ref = SCNetworkReachabilityCreateWithAddress(nil, &zeroAddress) else { return nil }
         
         self.init(reachabilityRef: ref)
     }

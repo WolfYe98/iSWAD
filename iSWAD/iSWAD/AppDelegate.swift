@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let defaults = UserDefaults.standard
-        let reachability = Reachability()
+        let reachability = Reachability(hostname: "www.google.es")
         
-        if reachability?.connection != .none {
+        if reachability?.connection != .none && reachability?.connection.description != "No Connection"{
             defaults.set(nil, forKey: Constants.wsKey)
         }
         

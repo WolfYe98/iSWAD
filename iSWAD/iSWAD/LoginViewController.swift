@@ -71,7 +71,16 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func onTouchLogin(_ sender: AnyObject) {
-        let reachability = Reachability()
+        var serverString = pickerData[serverPicker.selectedRow(inComponent: 0)]
+        
+        if serverString == "Otro..." {
+            serverString = customServer.text!
+            if serverString == ""{
+                serverString = "http://www.google.com"
+            }
+        }
+        
+        let reachability = Reachability(hostname:"www.google.com")
         
         if reachability?.connection == .none  || reachability?.connection.description == "No Connection"{
             let alertController = UIAlertController(title: "iSWAD", message:
@@ -85,11 +94,6 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         defaults.set(userID.text, forKey: Constants.userIDKey)
         defaults.set(userPassword.text, forKey: Constants.userPassworKey)
-        var serverString = pickerData[serverPicker.selectedRow(inComponent: 0)]
-        
-        if serverString == "Otro..." {
-            serverString = customServer.text!
-        }
         
         let url = URL(string: serverString)
         var request = URLRequest(url: url!)
@@ -101,17 +105,21 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let task1 = URLSession.shared.dataTask(with: request, completionHandler: {
             (data, response, error) in
             
-            serverString = (response?.url?.absoluteString)!
+            if(response != nil){
+                serverString = (response?.url?.absoluteString)!
+            }else{
+                serverString = "https://www.google.com"
+            }
         })
         
         task1.resume()
-        sleep(1)
+        sleep(2)
 
         defaults.set(serverString, forKey: Constants.serverURLKey)
         
         loginToServer()
-        sleep(1)
-        
+        sleep(2)
+
         if defaults.bool(forKey: Constants.logged) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "CoursesView") as! UISplitViewController
@@ -177,14 +185,14 @@ func loginToServer() -> Void {
     /// the SOAP request login is performed
     client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in
         let loginData = response!["loginByUserPasswordKeyOutput"]
-        if error == nil {
+
+        if loginData.element != nil {
             defaults.set(true, forKey: Constants.logged)
+            defaults.set(loginData[Constants.userFirstnameKey].element?.text, forKey: Constants.userFirstnameKey)
+            defaults.set(loginData[Constants.wsKey].element?.text, forKey: Constants.wsKey)
         } else {
             defaults.set(false, forKey: Constants.logged)
         }
-        
-        defaults.set(loginData[Constants.userFirstnameKey].element?.text, forKey: Constants.userFirstnameKey)
-        defaults.set(loginData[Constants.wsKey].element?.text, forKey: Constants.wsKey)
     }
 }
 
