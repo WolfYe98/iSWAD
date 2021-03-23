@@ -6,12 +6,40 @@
 //  Copyright © 2016 Raul Alvarez. All rights reserved.
 //
 //  Modified by Adrián Lara Roldán on 07/08/18.
-//
+//  Modified by Bate Ye on 23/03/2021
 
 
 import Foundation
 import SWXMLHash
 import CryptoSwift
+import UIKit
+
+
+//Show an alert to the user.
+public func showAlert(_ view: UIViewController,message: String, _ options:Int, handler: @escaping (_ accepted:Bool)->Void){
+    let alert = UIAlertController(title: "iSWAD", message: message, preferredStyle: .alert)
+    if options == 2{
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ _ in
+            handler(true)
+        } ))
+    }
+    if options >= 0{
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler:{ _ in
+            handler(false)
+        } ))
+    }
+    view.present(alert, animated: true, completion: nil)
+}
+
+//Return an UIAlertController with an indicator in to it.
+public func showLoading() -> UIAlertController{
+    let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
+    let indicador = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+    indicador.hidesWhenStopped = true
+    indicador.startAnimating()
+    alert.view.addSubview(indicador)
+    return alert
+}
 
 func encryptPassword(_ password: String) -> String {
     let bytesFromPassword = [UInt8](password.utf8);
