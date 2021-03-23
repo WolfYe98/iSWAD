@@ -7,44 +7,44 @@
 //
 //  Modified by Adrián Lara Roldán on 07/08/18.
 //
+//  Modified by Bate Ye on 18/03/2021
 
 import UIKit
 import Foundation
 import SWXMLHash
 import SQLite3
 
-class ConfigurationViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-    @IBOutlet var messagesPicker: UIPickerView!
-    let pickerData = ["1 dia", "1 semana", "1 mes", "1 año", "1 minuto"]
-    let defaults = UserDefaults.standard
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count;
-    }
+class ConfigurationViewController: UIViewController {
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
+    let defaults = UserDefaults.standard
+    var imagen : UIImage!
+    let pickerData = ["1 dia", "1 semana", "1 mes", "1 año", "1 minuto"]
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var durationPickerView: UIPickerView!
+    
+    @IBOutlet weak var okbton: UIButton!
+    
+    @IBOutlet weak var exitBton: UIButton!
+    
+    @IBOutlet weak var logoutbton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        messagesPicker.dataSource = self
-        messagesPicker.delegate = self
+        self.title = "Configuration"
+        // Do any additional setup after loading the view.
+        self.userIdLabel.adjustsFontSizeToFitWidth = true
+        self.durationPickerView.dataSource = self
+        self.durationPickerView.delegate = self
+        loadDatos()
+        okbton.layer.cornerRadius = 20
+        exitBton.layer.cornerRadius = 20
+        logoutbton.layer.cornerRadius = 20
     }
     
-    /**
-        This method that establishes from when the notifications are displayed in the notifications section of the app
-     
-        ### Important Notes ###
-        The time is established through the time selected in the PickerView enabled for it, after clicking on the OK button, the database is updated with the new selected time
-    */
-    @IBAction func setTime(_ sender: Any) {
-        /// Constant with the time provided by the PickerView
-        let timeSelected = pickerData[messagesPicker.selectedRow(inComponent: 0)]
+    
+    @IBAction func okButtonSetTime(_ sender: Any) {
+        let timeSelected = pickerData[durationPickerView.selectedRow(inComponent: 0)]
         
         /// Global variable of the database
         db = openDatabase()
@@ -70,17 +70,55 @@ class ConfigurationViewController: UITableViewController, UIPickerViewDelegate, 
         }
     }
     
-    /**
-        Method to close the session in the app
-     
-     ### Important notes ###
-     This method clears the session key in swad
-    */
-    @IBAction func onTouchLogout(_ sender: AnyObject) {
-        defaults.set("", forKey: Constants.wsKey)
+    // This take us to the loginViewController
+    @IBAction func logOutButton(_ sender: Any) {
+        defaults.removeObject(forKey: Constants.userPhotoKey)
+        defaults.set("",forKey: Constants.wsKey)
+        defaults.set(false,forKey: Constants.logged)
+        navigationController?.viewControllers.removeAll()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
+        navController.viewControllers.removeAll()
+        let vc = storyboard.instantiateViewController(withIdentifier: "Login")
+        let appDelegate  = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window!.rootViewController = vc
+    }
+    
+    //This action will get out of the app
+    @IBAction func salirButton(_ sender: Any) {
+        defaults.set("",forKey: Constants.wsKey)
         exit(1)
     }
     
+    
+    func loadDatos(){
+        // We try to load the image from the URL, if it doesn't have any value, we load a local image.
+        if defaults.string(forKey: Constants.userPhotoKey) != nil{
+            let photoURL = URL(string: defaults.string(forKey: Constants.userPhotoKey)!)
+            if photoURL != nil{
+                if let datos = try? Data(contentsOf: photoURL!){
+                    if let imagen = UIImage(data: datos){
+                        DispatchQueue.main.async {
+                            self.imageView.image = imagen
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            imagen = UIImage(named: "nouser")
+            if imagen != nil{
+                imageView.image = imagen
+            }
+        }
+        if defaults.string(forKey: Constants.userNickNameKey) != nil{
+            self.userIdLabel.text = "@" + defaults.string(forKey: Constants.userNickNameKey)!
+        }
+        else{
+            self.userIdLabel.text = defaults.string(forKey: Constants.userIDKey)
+        }
+        
+    }
     /**
         Method to open the connection to the database
     */
@@ -119,5 +157,23 @@ class ConfigurationViewController: UITableViewController, UIPickerViewDelegate, 
             print("UPDATE statement could not be prepared")
         }
         sqlite3_finalize(updateStatement)
+    }
+}
+
+
+
+// Extension of ConfigViewController to the UIPickerViewDataSource and to the UIPickerViewDelegate protocols for asign values to the pickerView
+
+extension ConfigurationViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
     }
 }
