@@ -4,7 +4,7 @@
 //
 //  Created by Adrián Lara Roldán on 07/08/18.
 //  Copyright © 2018 Adrián Lara Roldán. All rights reserved.
-//
+//  Modified by Bate Ye on 23/03/2021
 
 import Foundation
 import UIKit
@@ -38,7 +38,7 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
     var c = CollectionViewCell()
     var detailItem: AnyObject?
     var marks: Bool?
-    var webView: WKWebView!
+    var url : URL?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (actualNode != nil){
@@ -79,13 +79,13 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
         /// if it is a directory or a file ....
         if (object[indexPath.row] is Folder){
             let nodo = object[indexPath.row] as! Folder
-            cell.icon.text=String.fontAwesomeIcon(code: "fa-folder-open")
-            cell.label.text=nodo.name
+            cell.icon.text = String.fontAwesomeIcon(code: "fa-folder-open")
+            cell.label.text = nodo.name
             cell.type = "folder"
         }else{
             let nodo = object[indexPath.row] as! File
-            cell.icon.text=String.fontAwesomeIcon(code: "fa-file-text-o")
-            cell.label.text=nodo.name
+            cell.icon.text = String.fontAwesomeIcon(code: "fa-file-text-o")
+            cell.label.text = nodo.name
             cell.type = "file"
             cell.code = nodo.code
         }
@@ -129,21 +129,35 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
                             let urlResponse = response!["getFileOutput"]["URL"].element?.text
                             _ = response!["getFileOutput"]["fileName"].element?.text
                             
-                            if let url = URL(string: urlResponse!) {
-                                if #available(iOS 10.0, *) {
-                                    UIApplication.shared.open(url, options: [:])
+                            if let url1 = URL(string: urlResponse!) {
+                                if #available(iOS 11.0, *) {
+                                    self.url = url1
                                 } else {
-                                    UIApplication.shared.openURL(url)
+                                    self.url = nil
+                                    UIApplication.shared.openURL(url1)
                                 }
                             }
                         }
                         
                     }
                 }
+                if let auxUrl = url{
+                    let alert = showLoading()
+                    self.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                        alert.dismiss(animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "showPdf", sender: self)
+                    })
+                }
             }
         }
+        
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destino = segue.destination as? PDFViewController{
+            destino.url = self.url
+        }
+    }
     override func loadView() {
         super.loadView()
         
