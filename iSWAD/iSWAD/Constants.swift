@@ -20,6 +20,8 @@ struct Constants {
     static let userSurname1Key = "userSurname1"
     static let userSurname2Key = "userSurname2"
     static let serverURLKey = "serverURL"
+    static let userPhotoKey = "userPhoto"
+    static let userNickNameKey = "userNickname"
     
     enum notificationType : String {
         case documentFile = "documentFile"
