@@ -37,6 +37,7 @@ class CoursesDetailViewController: UITableViewController {
     var treeCode :Int = 0
     var iconSections:[String] = ["fa-list-ol","fa-check-square","fa-folder-open","fa-users"]
     var sectionTitles:[String] = ["Asignatura", "Evaluación", "Archivos","Usuarios"]
+    var optionsForSubject = [[Option]]()
     
     /// Class for string the options for each subject
     class Option: Any{
@@ -51,7 +52,7 @@ class CoursesDetailViewController: UITableViewController {
         }
     }
     
-    var optionsForSubject = [[Option]]()
+    
     var detailItem: AnyObject? {
         didSet(detailItem) {
             // Update the view.
@@ -146,7 +147,6 @@ class CoursesDetailViewController: UITableViewController {
     
     override func loadView() {
         super.loadView()
-        
         optionsForSubject.append([])
         optionsForSubject.append([])
         optionsForSubject.append([])
@@ -163,6 +163,7 @@ class CoursesDetailViewController: UITableViewController {
         optionsForSubject[1].append(Option(name: "Sistema de Evaluación" , image: "fa-info", segue: "assessment"))
         optionsForSubject[1].append(Option(name: "Calificaciones" , image: "fa-list-alt", segue: "marks"))
         optionsForSubject[3].append(Option(name: "Generar QR" , image: "fa-qrcode", segue: "qr"))
+        optionsForSubject[1].append(Option(name: "Juegos", image: "fa-trophy", segue: "toGames"))
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -253,6 +254,24 @@ class CoursesDetailViewController: UITableViewController {
         case "qr":
             let destinationVC = segue.destination as! QrViewController
             break;
+        case "toGames":
+            let defaults = UserDefaults.standard
+            let client = SyedAbsarClient()
+            let req = GetGames()
+            req.cpWsKey = defaults.string(forKey: Constants.wsKey)
+            req.cpCourseCode = self.courseCode
+            client.opGetGames(req){error,response in
+                if error == nil{
+                    print(response!)
+                    print(response!.children)
+                }
+                else{
+                    print("Hola error")
+                    print(error!)
+                    print("Esto de arriba es un error")
+                }
+            }
+            break
         default:
             let destinationVC = segue.destination as! InfoViewController
             destinationVC.info = courseInformation
@@ -382,7 +401,7 @@ class CoursesDetailViewController: UITableViewController {
         let sectionData = self.optionsForSubject[section] as NSArray
         self.expandedSectionHeaderNumber = -1;
         if (sectionData.count == 0) {
-            return;
+            return
         } else {
             UIView.animate(withDuration: 0.4, animations: {
                 imageView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(Double.pi)) / 180.0)
@@ -422,3 +441,5 @@ class CoursesDetailViewController: UITableViewController {
         }
     }
 }
+
+
