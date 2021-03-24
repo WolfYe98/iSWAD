@@ -190,7 +190,7 @@ func loginToServer() -> Void {
     client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in
         let loginData = response!["loginByUserPasswordKeyOutput"]
         
-        if loginData.element != nil {
+        if error == nil {
             defaults.set(true, forKey: Constants.logged)
             defaults.set(loginData[Constants.userFirstnameKey].element?.text, forKey: Constants.userFirstnameKey)
             defaults.set(loginData[Constants.wsKey].element?.text, forKey: Constants.wsKey)
