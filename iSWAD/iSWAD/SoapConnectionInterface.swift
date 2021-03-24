@@ -6,10 +6,36 @@
 //  Copyright © 2016 Raul Alvarez. All rights reserved.
 //
 //  Modified by Adrián Lara Roldán on 07/08/18.
-//
-
+//  Modified by Bate Ye on 24/03/2021
 import Foundation
 import SWXMLHash
+
+// Bate Ye: Las clases los dejo arriba porque pienso que es más legible.
+@objc(Game)
+open class Game:SyedAbsarObjectBase{
+    var gameCode : Int?
+    var userSurname1 : String?
+    var userSurname2 : String?
+    var userFirstName : String?
+    var userPhoto : String?
+    var startTime : Int32?
+    var endTime : Int32?
+    var title : String?
+    var text : String?
+    var numQuestions : Int?
+    var maxGrade : Float?
+    override static func cpKeys() -> Array<String> {
+        return ["GameCode","UserSurname1","UserSurname2","UserFirstName","UserPhoto","StartTime","EndTime","Title","Text","NumQuestions","MaxGrade"]
+    }
+}
+@objc(GetGames)
+open class GetGames:SyedAbsarObjectBase{
+    var cpWsKey : String?
+    var cpCourseCode : Int?
+    override static func cpKeys() -> Array<String> {
+        return ["WsKey","CourseCode"]
+    }
+}
 
 open class SyedAbsarClient {
     
@@ -21,6 +47,12 @@ open class SyedAbsarClient {
      
      - returns: Void.
      */
+    open func opGetGames(_ getGames: GetGames, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
+        if getGames.cpWsKey != nil && getGames.cpCourseCode != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getGames><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getGames></SOAP-ENV:Body></SOAP-ENV:Envelope>",getGames.cpWsKey!,getGames.cpCourseCode!)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
+        }
+    }
     open func opCreateAccount(_ createAccount : CreateAccount , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
         
         let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:createAccount><userNickname>%@</userNickname><userEmail>%@</userEmail><userPassword>%@</userPassword><appKey>%@</appKey></ns1:createAccount></SOAP-ENV:Body></SOAP-ENV:Envelope>",createAccount.cpUserNickname!,createAccount.cpUserEmail!,createAccount.cpUserPassword!,createAccount.cpAppKey!)
@@ -414,6 +446,7 @@ open class SyedAbsarClient {
         request.httpBody = data
         
         
+        
         let task2 = URLSession.shared.dataTask(with: request, completionHandler: {
             (data, response, error) in
             let datastring = String(decoding: data!, as: UTF8.self)
@@ -431,13 +464,11 @@ open class SyedAbsarClient {
             var error : NSError?
             
             let soapFault = xml["Envelope"]["Body"]["Fault"]
-            if  soapFault["faultstring"].element?.text == "Bad log in" {
-                
+            if  soapFault["faultstring"].element?.text != nil {
                 let val =  soapFault["faultstring"].element?.text
                 
                 error =  NSError(domain: "soapFault", code: 0, userInfo: NSDictionary(object: val!, forKey: NSLocalizedDescriptionKey as NSCopying) as! [AnyHashable : Any] as [AnyHashable: Any] as? [String : Any])
             }
-            
             xml =  xml["Envelope"]["Body"]
             completionHandler(error, xml)
         })
@@ -2033,7 +2064,7 @@ extension String {
     subscript (r: Range<Int>) -> String {
         let start = self.index(startIndex, offsetBy: r.lowerBound)
         let end = self.index(start, offsetBy: r.upperBound - r.lowerBound)
-        return String(self[Range(start ..< end)])
+        return String(self[start ..< end])
     }
 }
 
