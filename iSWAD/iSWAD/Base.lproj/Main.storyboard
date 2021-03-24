@@ -195,6 +195,22 @@
             </objects>
             <point key="canvasLocation" x="5373.8461538461534" y="731.51658767772506"/>
         </scene>
+        <!--Games View Controller-->
+        <scene sceneID="h7A-ic-yiH">
+            <objects>
+                <viewController id="9Xv-Rm-463" customClass="GamesViewController" customModule="iSWAD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fvH-Gp-5cn">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QIU-26-diL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="R9H-LW-7rx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YQB-O2-twa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2435" y="1420"/>
+        </scene>
         <!--Qr View Controller-->
         <scene sceneID="PcX-Gh-Baf">
             <objects>
@@ -305,6 +321,7 @@
                         <segue destination="ghh-Gk-Ppy" kind="show" identifier="shared" id="Wzz-ZC-gaT"/>
                         <segue destination="ghh-Gk-Ppy" kind="show" identifier="marks" id="e8h-CS-Fhg"/>
                         <segue destination="Si3-A4-vDo" kind="show" identifier="qr" id="V8G-HQ-rkj"/>
+                        <segue destination="9Xv-Rm-463" kind="show" identifier="toGames" id="WDh-gi-H6T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -683,7 +700,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="367" height="39"/>
+                                            <rect key="frame" x="20" y="0.0" width="362" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -955,7 +972,7 @@
                     <navigationItem key="navigationItem" title="Title" id="Wou-Kk-Yu1">
                         <barButtonItem key="rightBarButtonItem" id="9Tq-GR-r0b">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8mP-dt-MAL" userLabel="Send">
-                                <rect key="frame" x="311" y="7" width="83" height="30"/>
+                                <rect key="frame" x="291" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -994,7 +1011,7 @@
                 <navigationItem title="Title" id="I9c-cE-9mY"/>
                 <navigationItem title="Title" id="Ksl-vM-s6l"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="4347"/>
+            <point key="canvasLocation" x="1268" y="4346"/>
         </scene>
         <!--NotificationsMaster-->
         <scene sceneID="lSD-Qn-UXj">
