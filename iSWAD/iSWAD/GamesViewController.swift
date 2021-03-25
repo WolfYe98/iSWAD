@@ -58,7 +58,7 @@ class GamesViewController: UIViewController {
                     //add to games array
                     self.games.append(game)
                 }
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline:.now()+1) {
                     self.textoInformativo.removeFromSuperview()
                 }
             }
