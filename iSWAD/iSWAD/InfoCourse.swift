@@ -46,6 +46,8 @@ class InfoViewController:UIViewController, WKNavigationDelegate{
         view = webView
     }
 
+    @IBAction func unwind(_ seg: UIStoryboardSegue) {
+    }
     override func viewDidLoad() {
         if (self.info?.isEmpty)! {
             /// default text if there is no information

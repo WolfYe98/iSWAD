@@ -35,6 +35,7 @@ class CoursesMasterViewController: UITableViewController {
         configButton.setTitleTextAttributes(attributes, for: .normal)
         configButton.tintColor = UIColor.black
         configButton.title = String.fontAwesomeIcon(name: .cogs)
+        self.tableView.tableFooterView = UIView()
     }
     
     class  Course: Any {
@@ -54,7 +55,7 @@ class CoursesMasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = coursesList[indexPath.row].name
-        
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     

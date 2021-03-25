@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let defaults = UserDefaults.standard
         let reachability = Reachability(hostname: "www.google.es")
         
-        if reachability?.connection != .none && reachability?.connection.description != "No Connection"{
+        if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
             defaults.set(nil, forKey: Constants.wsKey)
         }
         

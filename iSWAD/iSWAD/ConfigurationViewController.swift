@@ -87,6 +87,9 @@ class ConfigurationViewController: UIViewController {
     //This action will get out of the app
     @IBAction func salirButton(_ sender: Any) {
         defaults.set("",forKey: Constants.wsKey)
+        defaults.removeObject(forKey: Constants.userPhotoKey)
+        defaults.set("",forKey: Constants.wsKey)
+        defaults.set(false,forKey: Constants.logged)
         exit(1)
     }
     
