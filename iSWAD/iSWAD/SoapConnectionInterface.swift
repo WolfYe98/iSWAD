@@ -464,9 +464,8 @@ open class SyedAbsarClient {
             var error : NSError?
             
             let soapFault = xml["Envelope"]["Body"]["Fault"]
-            if  soapFault["faultstring"].element?.text != nil {
-                let val =  soapFault["faultstring"].element?.text
-                
+            if  soapFault["detail"].element?.text != nil {
+                let val =  soapFault["detail"].element?.text
                 error =  NSError(domain: "soapFault", code: 0, userInfo: NSDictionary(object: val!, forKey: NSLocalizedDescriptionKey as NSCopying) as! [AnyHashable : Any] as [AnyHashable: Any] as? [String : Any])
             }
             xml =  xml["Envelope"]["Body"]
