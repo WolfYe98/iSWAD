@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// This class represent my custom cells, this type of cell have a title, a timeline and an icon.
 
 class IconTableViewCell: UITableViewCell {
     @IBOutlet weak var icon: UILabel!
