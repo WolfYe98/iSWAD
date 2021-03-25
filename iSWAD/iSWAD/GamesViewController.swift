@@ -68,7 +68,7 @@ class GamesViewController: UIViewController {
                 }
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
             self.tablaJuegos.reloadData()
             self.refresh.endRefreshing()
         }
