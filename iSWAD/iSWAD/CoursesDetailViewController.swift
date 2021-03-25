@@ -11,7 +11,7 @@
 import UIKit
 import SWXMLHash
 
-class cellOption: UITableViewCell{
+open class cellOption: UITableViewCell{
     @IBOutlet var option: UILabel!
     @IBOutlet var icon: UILabel!
 }
@@ -255,22 +255,8 @@ class CoursesDetailViewController: UITableViewController {
             let destinationVC = segue.destination as! QrViewController
             break;
         case "toGames":
-            let defaults = UserDefaults.standard
-            let client = SyedAbsarClient()
-            let req = GetGames()
-            req.cpWsKey = defaults.string(forKey: Constants.wsKey)
-            req.cpCourseCode = self.courseCode
-            client.opGetGames(req){error,response in
-                if error == nil{
-                    print(response!)
-                    print(response!.children)
-                }
-                else{
-                    print("Hola error")
-                    print(error!)
-                    print("Esto de arriba es un error")
-                }
-            }
+            let destino = segue.destination as! GamesViewController
+            destino.courseCode = self.courseCode
             break
         default:
             let destinationVC = segue.destination as! InfoViewController
