@@ -19,7 +19,6 @@
 		202D9CF1206D74FD00DC9300 /* SoapConnectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D9CF0206D74FD00DC9300 /* SoapConnectionInterface.swift */; };
 		202D9CF3206D754400DC9300 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D9CF2206D754400DC9300 /* Utils.swift */; };
 		20696153206D6D3A00BF3E64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20696152206D6D3A00BF3E64 /* AppDelegate.swift */; };
-		20696155206D6D3A00BF3E64 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20696154206D6D3A00BF3E64 /* ConfigurationViewController.swift */; };
 		20696158206D6D3A00BF3E64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20696156206D6D3A00BF3E64 /* Main.storyboard */; };
 		2069615A206D6D3A00BF3E64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20696159206D6D3A00BF3E64 /* Assets.xcassets */; };
 		2069615D206D6D3A00BF3E64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2069615B206D6D3A00BF3E64 /* LaunchScreen.storyboard */; };
@@ -32,6 +31,11 @@
 		20BDC601212B3EAC008AECEA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BDC600212B3EAC008AECEA /* Reachability.framework */; };
 		20BDC603212B3EAC008AECEA /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BDC602212B3EAC008AECEA /* SWXMLHash.framework */; };
 		20D73F1720FE59930011F26E /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D73F1620FE59930011F26E /* Tree.swift */; };
+		C62480452603C1CB00105945 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62480442603C1CB00105945 /* ConfigurationViewController.swift */; };
+		C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */; };
+		C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */; };
+		C66A89F5260A6EA30063603E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A89F4260A6EA30063603E /* PDFViewController.swift */; };
+		C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +69,6 @@
 		202D9CF2206D754400DC9300 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2069614F206D6D3A00BF3E64 /* iSWAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSWAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20696152206D6D3A00BF3E64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20696154206D6D3A00BF3E64 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		20696157206D6D3A00BF3E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20696159206D6D3A00BF3E64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2069615C206D6D3A00BF3E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,6 +88,11 @@
 		20BDC602212B3EAC008AECEA /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D73F1620FE59930011F26E /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		A387EBA700B90AFBDB6B5F9A /* Pods_iSWAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSWAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C62480442603C1CB00105945 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
+		C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
+		C66A89F4260A6EA30063603E /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		FD7BAAA9D61FF2AA882E5301 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				20696152206D6D3A00BF3E64 /* AppDelegate.swift */,
-				20696154206D6D3A00BF3E64 /* ConfigurationViewController.swift */,
 				20696156206D6D3A00BF3E64 /* Main.storyboard */,
 				20696159206D6D3A00BF3E64 /* Assets.xcassets */,
 				2069615B206D6D3A00BF3E64 /* LaunchScreen.storyboard */,
@@ -162,6 +169,11 @@
 				202346AE20E8224400C10BD7 /* Documents.swift */,
 				20D73F1620FE59930011F26E /* Tree.swift */,
 				20AF7288211A3D2700CBC3FF /* QrViewController.swift */,
+				C62480442603C1CB00105945 /* ConfigurationViewController.swift */,
+				C66A89F4260A6EA30063603E /* PDFViewController.swift */,
+				C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */,
+				C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */,
+				C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -320,6 +332,7 @@
 			files = (
 				2069615D206D6D3A00BF3E64 /* LaunchScreen.storyboard in Resources */,
 				2069615A206D6D3A00BF3E64 /* Assets.xcassets in Resources */,
+				C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */,
 				20696158206D6D3A00BF3E64 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,13 +407,16 @@
 				202D9CF1206D74FD00DC9300 /* SoapConnectionInterface.swift in Sources */,
 				202D9CE9206D744400DC9300 /* MasterViewController.swift in Sources */,
 				20AF7289211A3D2700CBC3FF /* QrViewController.swift in Sources */,
+				C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */,
 				202D9CE7206D740A00DC9300 /* LoginViewController.swift in Sources */,
 				202D9CE3206D739400DC9300 /* CoursesMasterViewController.swift in Sources */,
+				C62480452603C1CB00105945 /* ConfigurationViewController.swift in Sources */,
 				202D9CEF206D74C200DC9300 /* NotificationsMasterViewController.swift in Sources */,
 				202D9CF3206D754400DC9300 /* Utils.swift in Sources */,
+				C66A89F5260A6EA30063603E /* PDFViewController.swift in Sources */,
+				C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */,
 				202D9CEB206D747800DC9300 /* MessagesViewController.swift in Sources */,
 				20AF72812119167500CBC3FF /* CoursesDetailViewController.swift in Sources */,
-				20696155206D6D3A00BF3E64 /* ConfigurationViewController.swift in Sources */,
 				202346AF20E8224400C10BD7 /* Documents.swift in Sources */,
 				20696153206D6D3A00BF3E64 /* AppDelegate.swift in Sources */,
 				202D9CED206D749E00DC9300 /* NotificationsDetailViewController.swift in Sources */,
