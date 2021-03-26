@@ -233,7 +233,7 @@
                     <connections>
                         <outlet property="tablaJuegos" destination="19e-J5-nqU" id="6h2-TO-PJb"/>
                         <outlet property="textoInformativo" destination="MuZ-6K-CQz" id="WlT-sW-oh2"/>
-                        <segue destination="2Oc-OZ-o3k" kind="show" identifier="toMatch" id="f3S-aL-dwd"/>
+                        <segue destination="mqN-Uv-tga" kind="show" identifier="toMatch" id="ihT-Dd-bBY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQB-O2-twa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -241,35 +241,35 @@
             <point key="canvasLocation" x="3788" y="1614"/>
         </scene>
         <!--Matches View Controller-->
-        <scene sceneID="mfS-kJ-vP4">
+        <scene sceneID="uVN-If-TlC">
             <objects>
-                <viewController id="2Oc-OZ-o3k" customClass="MatchesViewController" customModule="iSWAD" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1yz-CV-2uF">
+                <viewController id="mqN-Uv-tga" customClass="MatchesViewController" customModule="iSWAD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="krk-Oh-GcM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdP-8r-BSD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7xL-en-BwM">
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="eiB-ar-bCW"/>
+                        <viewLayoutGuide key="safeArea" id="Ff6-G8-vfs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pdP-8r-BSD" firstAttribute="top" secondItem="eiB-ar-bCW" secondAttribute="top" id="H1c-48-u8u"/>
-                            <constraint firstItem="eiB-ar-bCW" firstAttribute="bottom" secondItem="pdP-8r-BSD" secondAttribute="bottom" id="Pst-uS-vOM"/>
-                            <constraint firstItem="pdP-8r-BSD" firstAttribute="leading" secondItem="eiB-ar-bCW" secondAttribute="leading" id="cqa-Gr-yem"/>
-                            <constraint firstItem="eiB-ar-bCW" firstAttribute="trailing" secondItem="pdP-8r-BSD" secondAttribute="trailing" id="rxg-Di-l1z"/>
+                            <constraint firstItem="7xL-en-BwM" firstAttribute="leading" secondItem="Ff6-G8-vfs" secondAttribute="leading" id="Fuy-pF-4si"/>
+                            <constraint firstItem="7xL-en-BwM" firstAttribute="top" secondItem="Ff6-G8-vfs" secondAttribute="top" id="Lzs-ik-a74"/>
+                            <constraint firstItem="Ff6-G8-vfs" firstAttribute="trailing" secondItem="7xL-en-BwM" secondAttribute="trailing" id="VeQ-zS-zLa"/>
+                            <constraint firstItem="Ff6-G8-vfs" firstAttribute="bottom" secondItem="7xL-en-BwM" secondAttribute="bottom" id="dr5-ZE-mr4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LaM-kj-oIQ"/>
+                    <navigationItem key="navigationItem" id="IQd-MU-ZYS"/>
                     <connections>
-                        <outlet property="tablaPartidas" destination="pdP-8r-BSD" id="f1M-Yq-eDj"/>
+                        <outlet property="tablaPartidas" destination="7xL-en-BwM" id="k2S-84-UvC"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YzI-Zj-W5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v1I-yI-hY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4852" y="1614"/>
+            <point key="canvasLocation" x="4851" y="1614"/>
         </scene>
         <!--Qr View Controller-->
         <scene sceneID="PcX-Gh-Baf">
@@ -1224,7 +1224,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="vy8-Bg-zca"/>
         <segue reference="J6K-Dx-zGC"/>
-        <segue reference="ICZ-Pr-RUa"/>
+        <segue reference="ziV-mN-thY"/>
         <segue reference="azK-nG-Ubo"/>
         <segue reference="m7u-ik-VzJ"/>
     </inferredMetricsTieBreakers>
