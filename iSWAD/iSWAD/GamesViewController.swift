@@ -13,8 +13,8 @@ class GamesViewController: UIViewController {
     var games : [Game] = []
     var refresh = UIRefreshControl()
     var courseCode : Int?
-    
-    
+    var gameCode :Int?
+    var matches : [Match] = []
     @IBOutlet weak var tablaJuegos: UITableView!
     @IBOutlet weak var textoInformativo: UILabel!
     override func viewDidLoad() {
@@ -28,6 +28,7 @@ class GamesViewController: UIViewController {
         self.tablaJuegos.addSubview(refresh)
         self.tablaJuegos.register(UINib(nibName: "IconTableViewCell", bundle: nil), forCellReuseIdentifier: "IconCell")
         self.tablaJuegos.dataSource = self
+        self.tablaJuegos.delegate = self
     }
     
     // Crea una petición SOAP al servidor, en caso de que no se devuelva ningún error, actualiza la tabla con los juegos, en caso contrario, muestra una alerta.
@@ -82,9 +83,16 @@ class GamesViewController: UIViewController {
             self.refresh.endRefreshing()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destino = (segue.destination as! MatchesViewController)
+        destino.courseCode = self.courseCode
+        destino.gameCode = self.gameCode
+        destino.matches = self.matches
+    }
 }
 
-extension GamesViewController:UITableViewDataSource{
+extension GamesViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.games.count
     }
@@ -95,7 +103,7 @@ extension GamesViewController:UITableViewDataSource{
             cell.title.text = games[indexPath.row].title
             
             cell.icon.font = UIFont.fontAwesome(ofSize: 28)
-            cell.icon.text = String.fontAwesomeIcon(name: .checkSquareO)
+            cell.icon.text = String.fontAwesomeIcon(name: .gamepad)
             
             cell.notaMaxima.text = cell.notaMaxima.text!+String(games[indexPath.row].maxGrade!)
             
@@ -105,6 +113,52 @@ extension GamesViewController:UITableViewDataSource{
         }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let defaults = UserDefaults.standard
+        let client = SyedAbsarClient()
+        let request = GetMatches()
+        let alert = showLoading(message: "Cargando Partidas...")
+        request.cpWsKey = defaults.string(forKey: Constants.wsKey)
+        request.cpCourseCode = self.courseCode
+        request.cpGameCode = self.games[indexPath.row].gameCode!
+        self.gameCode = self.games[indexPath.row].gameCode!
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        client.opGetMatches(request){ (error,response) in
+            if error != nil{
+                DispatchQueue.main.sync {
+                    alert.dismiss(animated: true, completion: nil)
+                    showAlert(self, message: error!.localizedDescription, 1, handler: {boleano in})
+                }
+                return
+            }
+            else{
+                self.matches = []
+                let numMatches = Int((response!["getMatchesOutput"]["numMatches"].element?.text)!)
+                if numMatches == 0{
+                    DispatchQueue.main.sync {showAlert(self, message: "No hay ningún partido para el juego seleccionado!", 1, handler: {boleano in})}
+                    return
+                }
+                let matchArray = response!["getMatchesOutput"]["matchesArray"].children
+                for item in matchArray{
+                    let match = Match()
+                    match.matchCode = Int((item["matchCode"].element?.text)!)
+                    match.startTime = Int32((item["startTime"].element?.text)!)
+                    match.endTime = Int32((item["endTime"].element?.text)!)
+                    match.title = (item["title"].element?.text)!
+                    match.questionIndex = Int((item["questionIndex"].element?.text)!)
+
+                    self.matches.append(match)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    alert.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "toMatch", sender: self)
+                }
+            }
+        }
+    }
     
 }
