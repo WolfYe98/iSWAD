@@ -94,6 +94,7 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var object = [Any]()
+        let alert = showLoading(message: "Cargando PDF...")
         if self.actualNode?.childs != nil{
             for nodo in (self.actualNode?.childs)!{
                 object.append(nodo)
@@ -106,7 +107,7 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
             }
         }
         
-        let cell = documens.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        _ = documens.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
         /// if it is a directory the children are listed, in case of being a file a browser is opened if possible to show it
         if (actualNode is Folder){
@@ -131,23 +132,29 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
                             
                             if let url1 = URL(string: urlResponse!) {
                                 if #available(iOS 11.0, *) {
+                                    DispatchQueue.main.sync {
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
                                     self.url = url1
+                                    DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+                                        alert.dismiss(animated: true, completion: nil)
+                                        if self.url != nil{
+                                            self.performSegue(withIdentifier: "showPdf", sender: self)
+                                        }
+                                        else{
+                                            showAlert(self, message: "Bad URL", 1, handler: {booleano in})
+                                        }
+                                    })
                                 } else {
                                     self.url = nil
                                     UIApplication.shared.openURL(url1)
                                 }
                             }
                         }
-                        
+                        else{
+                            showAlert(self, message: error!.localizedDescription, 1, handler: {boleano in})
+                        }
                     }
-                }
-                if let auxUrl = url{
-                    let alert = showLoading()
-                    self.present(alert, animated: true, completion: nil)
-                    DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-                        alert.dismiss(animated: true, completion: nil)
-                        self.performSegue(withIdentifier: "showPdf", sender: self)
-                    })
                 }
             }
         }
