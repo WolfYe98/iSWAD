@@ -461,9 +461,9 @@ open class SyedAbsarClient {
      
      - returns: Void.
      */
-    open func opGetMatches(_ getGames: GetGames, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
-        if getGames.cpWsKey != nil && getGames.cpCourseCode != nil{
-            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getGames><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getGames></SOAP-ENV:Body></SOAP-ENV:Envelope>",getGames.cpWsKey!,getGames.cpCourseCode!)
+    open func opGetMatches(_ getMatches: GetMatches, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
+        if getMatches.cpWsKey != nil && getMatches.cpCourseCode != nil && getMatches.cpGameCode != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getMatches><wsKey>%@</wsKey><courseCode>%d</courseCode><gameCode>%d</gameCode></ns1:getMatches></SOAP-ENV:Body></SOAP-ENV:Envelope>",getMatches.cpWsKey!,getMatches.cpCourseCode!,getMatches.cpGameCode!)
             self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
         }
     }
