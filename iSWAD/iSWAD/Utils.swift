@@ -32,13 +32,22 @@ public func showAlert(_ view: UIViewController,message: String, _ options:Int, h
 }
 
 //Return an UIAlertController with an indicator in to it.
-public func showLoading() -> UIAlertController{
-    let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
+public func showLoading(message: String) -> UIAlertController{
+    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     let indicador = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
     indicador.hidesWhenStopped = true
     indicador.startAnimating()
     alert.view.addSubview(indicador)
     return alert
+}
+// Receive an UNIX TIMESTAMP and return a string representing the date in "YYYY-MM-DD HH:MM:SS" format
+func unixTimeToString(unixTimeStamp: Int32) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(unixTimeStamp))
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(abbreviation: "GMT+1")
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    return dateFormatter.string(from: date)
 }
 
 func encryptPassword(_ password: String) -> String {
