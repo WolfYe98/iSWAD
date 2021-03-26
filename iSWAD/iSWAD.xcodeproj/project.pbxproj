@@ -31,6 +31,7 @@
 		20BDC601212B3EAC008AECEA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BDC600212B3EAC008AECEA /* Reachability.framework */; };
 		20BDC603212B3EAC008AECEA /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BDC602212B3EAC008AECEA /* SWXMLHash.framework */; };
 		20D73F1720FE59930011F26E /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D73F1620FE59930011F26E /* Tree.swift */; };
+		C60295FC260E697300A3CD83 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60295FB260E697300A3CD83 /* MatchesViewController.swift */; };
 		C62480452603C1CB00105945 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62480442603C1CB00105945 /* ConfigurationViewController.swift */; };
 		C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */; };
 		C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */; };
@@ -88,6 +89,7 @@
 		20BDC602212B3EAC008AECEA /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D73F1620FE59930011F26E /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		A387EBA700B90AFBDB6B5F9A /* Pods_iSWAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSWAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60295FB260E697300A3CD83 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		C62480442603C1CB00105945 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
 		C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */,
 				C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */,
 				C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */,
+				C60295FB260E697300A3CD83 /* MatchesViewController.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 			files = (
 				20D73F1720FE59930011F26E /* Tree.swift in Sources */,
 				202D9CF1206D74FD00DC9300 /* SoapConnectionInterface.swift in Sources */,
+				C60295FC260E697300A3CD83 /* MatchesViewController.swift in Sources */,
 				202D9CE9206D744400DC9300 /* MasterViewController.swift in Sources */,
 				20AF7289211A3D2700CBC3FF /* QrViewController.swift in Sources */,
 				C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */,
@@ -526,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -580,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
