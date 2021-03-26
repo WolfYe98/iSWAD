@@ -49,9 +49,9 @@ open class Match:SyedAbsarObjectBase{
     var endTime:Int32?
     var title:String?
     var questionIndex:Int?
-    var groups:String?
+    
     override static func cpKeys() -> Array<String> {
-        return ["MatchCode","StartTime","EndTime","Title","QuestionIndex","Groups"]
+        return ["MatchCode","StartTime","EndTime","Title","QuestionIndex"]
     }
 }
 @objc(GetMatches)
