@@ -11,6 +11,8 @@ import Foundation
 import SWXMLHash
 
 // Bate Ye: Las clases los dejo arriba porque pienso que es más legible.
+
+// Bate Ye: This classes is for get and store games from SWAD Server
 @objc(Game)
 open class Game:SyedAbsarObjectBase{
     var gameCode : Int?
@@ -37,6 +39,31 @@ open class GetGames:SyedAbsarObjectBase{
     }
 }
 
+
+// Bate Ye: This classes is for get and store matches of a game
+// This class doesn't store user informations because the app will pass first to the Game class which store those datas.
+@objc(Match)
+open class Match:SyedAbsarObjectBase{
+    var matchCode : Int?
+    var startTime:Int32?
+    var endTime:Int32?
+    var title:String?
+    var questionIndex:Int?
+    var groups:String?
+    override static func cpKeys() -> Array<String> {
+        return ["MatchCode","StartTime","EndTime","Title","QuestionIndex","Groups"]
+    }
+}
+@objc(GetMatches)
+open class GetMatches:SyedAbsarObjectBase{
+    var cpWsKey:String?
+    var cpCourseCode:Int?
+    var cpGameCode:Int?
+    
+    override static func cpKeys() -> Array<String> {
+        return ["WsKey","CourseCode","GameCode"]
+    }
+}
 open class SyedAbsarClient {
     
     /**
@@ -47,12 +74,6 @@ open class SyedAbsarClient {
      
      - returns: Void.
      */
-    open func opGetGames(_ getGames: GetGames, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
-        if getGames.cpWsKey != nil && getGames.cpCourseCode != nil{
-            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getGames><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getGames></SOAP-ENV:Body></SOAP-ENV:Envelope>",getGames.cpWsKey!,getGames.cpCourseCode!)
-            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
-        }
-    }
     open func opCreateAccount(_ createAccount : CreateAccount , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
         
         let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:createAccount><userNickname>%@</userNickname><userEmail>%@</userEmail><userPassword>%@</userPassword><appKey>%@</appKey></ns1:createAccount></SOAP-ENV:Body></SOAP-ENV:Envelope>",createAccount.cpUserNickname!,createAccount.cpUserEmail!,createAccount.cpUserPassword!,createAccount.cpAppKey!)
@@ -417,8 +438,35 @@ open class SyedAbsarClient {
         self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"SendMessageOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
     }
     
+    /**
+     Calls the SOAP Operation: GetGames with Message based on GetGames Object
+     
+     - parameter getGames:  GetGames Object.
+     - parameter completionHandler:  The Callback Handler.
+     
+     - returns: Void.
+     */
+    open func opGetGames(_ getGames: GetGames, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
+        if getGames.cpWsKey != nil && getGames.cpCourseCode != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getGames><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getGames></SOAP-ENV:Body></SOAP-ENV:Envelope>",getGames.cpWsKey!,getGames.cpCourseCode!)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
+        }
+    }
     
-    
+    /**
+     Calls the SOAP Operation: GetMatches with Message based on GetGames Object
+     
+     - parameter getGames:  GetMatches Object.
+     - parameter completionHandler:  The Callback Handler.
+     
+     - returns: Void.
+     */
+    open func opGetMatches(_ getGames: GetGames, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
+        if getGames.cpWsKey != nil && getGames.cpCourseCode != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getGames><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getGames></SOAP-ENV:Body></SOAP-ENV:Envelope>",getGames.cpWsKey!,getGames.cpCourseCode!)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
+        }
+    }
     /**
      Private Method: Make Soap Connection.
      
