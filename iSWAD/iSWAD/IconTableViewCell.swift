@@ -13,6 +13,7 @@ class IconTableViewCell: UITableViewCell {
     @IBOutlet weak var icon: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var notaMaxima: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

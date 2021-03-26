@@ -40,9 +40,18 @@ class GamesViewController: UIViewController {
         request.cpCourseCode = self.courseCode!
         client.opGetGames(request){ (error,response) in
             if error == nil{
+                if Int((response!["getGamesOutput"]["numGames"].element?.text)!) == 0{
+                    DispatchQueue.main.sync {
+                        showAlert(self, message: "No hay juegos disponibles para este curso", 1, handler: {booleano in
+                            self.refresh.endRefreshing()
+                        })
+                    }
+                    return
+                }
                 let gamesArray = response!["getGamesOutput"]["gamesArray"].children
-                let game = Game()
+                
                 for item in gamesArray{
+                    let game = Game()
                     game.gameCode = Int((item["gameCode"].element?.text)!)
                     game.userSurname1 = (item["userSurname1"].element?.text)!
                     game.userSurname2 = (item["userSurname2"].element?.text)!
@@ -58,7 +67,7 @@ class GamesViewController: UIViewController {
                     //add to games array
                     self.games.append(game)
                 }
-                DispatchQueue.main.asyncAfter(deadline:.now()+1) {
+                DispatchQueue.main.asyncAfter(deadline:.now()+2) {
                     self.textoInformativo.removeFromSuperview()
                 }
             }
@@ -68,7 +77,7 @@ class GamesViewController: UIViewController {
                 }
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             self.tablaJuegos.reloadData()
             self.refresh.endRefreshing()
         }
@@ -84,9 +93,15 @@ extension GamesViewController:UITableViewDataSource{
         let cell = tablaJuegos.dequeueReusableCell(withIdentifier: "IconCell") as! IconTableViewCell
         if games.count > 0{
             cell.title.text = games[indexPath.row].title
+            
             cell.icon.font = UIFont.fontAwesome(ofSize: 28)
             cell.icon.text = String.fontAwesomeIcon(name: .checkSquareO)
-            cell.time.text = "\(games[indexPath.row].startTime) - \(games[indexPath.row].endTime)"
+            
+            cell.notaMaxima.text = cell.notaMaxima.text!+String(games[indexPath.row].maxGrade!)
+            
+            let startDate = unixTimeToString(unixTimeStamp: games[indexPath.row].startTime!)
+            let endDate = unixTimeToString(unixTimeStamp: games[indexPath.row].endTime!)
+            cell.time.text = "\(startDate) - \(endDate)"
         }
         return cell
     }

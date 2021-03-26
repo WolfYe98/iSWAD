@@ -114,7 +114,7 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         task1.resume()
         
         
-        let alert = showLoading()
+        let alert = showLoading(message: "Cargando...")
         self.present(alert, animated: true, completion: nil)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {

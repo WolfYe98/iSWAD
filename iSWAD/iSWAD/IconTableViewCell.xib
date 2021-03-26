@@ -19,8 +19,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dea-Dr-A8E">
-                        <rect key="frame" x="59.5" y="0.0" width="250.5" height="52"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                        <rect key="frame" x="59.5" y="0.0" width="250.5" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -31,29 +31,39 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-z1-tVl">
-                        <rect key="frame" x="61.5" y="57" width="232.5" height="54"/>
+                        <rect key="frame" x="61.5" y="76" width="232.5" height="35"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" systemColor="systemRedColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Nota máxima: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-eh-osd">
+                        <rect key="frame" x="61.5" y="34" width="258.5" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0095591635024446942" green="0.55709162446641436" blue="0.01484492208495097" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ic4-z1-tVl" firstAttribute="leading" secondItem="3bx-WJ-DiS" secondAttribute="trailing" constant="10" id="CmV-f7-tFI"/>
                     <constraint firstAttribute="bottom" secondItem="3bx-WJ-DiS" secondAttribute="bottom" constant="20" id="Eu4-t1-nzM"/>
-                    <constraint firstItem="Ic4-z1-tVl" firstAttribute="top" secondItem="Dea-Dr-A8E" secondAttribute="bottom" constant="5" id="G5k-IN-bh6"/>
                     <constraint firstItem="Dea-Dr-A8E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Iyf-Ol-zhs"/>
                     <constraint firstItem="Dea-Dr-A8E" firstAttribute="leading" secondItem="3bx-WJ-DiS" secondAttribute="trailing" constant="8" symbolic="YES" id="JR1-yy-h6h"/>
                     <constraint firstAttribute="trailing" secondItem="Dea-Dr-A8E" secondAttribute="trailing" constant="10" id="Zf4-JH-x0e"/>
+                    <constraint firstItem="Vgb-eh-osd" firstAttribute="centerY" secondItem="3bx-WJ-DiS" secondAttribute="centerY" id="cRF-tu-Uek"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Ic4-z1-tVl" secondAttribute="bottom" id="hmQ-y6-076"/>
+                    <constraint firstItem="Vgb-eh-osd" firstAttribute="top" secondItem="Dea-Dr-A8E" secondAttribute="bottom" constant="10" id="iHy-rR-O6u"/>
                     <constraint firstItem="3bx-WJ-DiS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jOd-iB-EeV"/>
-                    <constraint firstAttribute="bottom" secondItem="Dea-Dr-A8E" secondAttribute="bottom" constant="70" id="lFF-HB-T9P"/>
+                    <constraint firstItem="Ic4-z1-tVl" firstAttribute="top" secondItem="Vgb-eh-osd" secondAttribute="bottom" constant="8" symbolic="YES" id="jmJ-2O-lav"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Ic4-z1-tVl" secondAttribute="trailing" constant="10" id="mjU-ii-5Ny"/>
+                    <constraint firstAttribute="trailing" secondItem="Vgb-eh-osd" secondAttribute="trailing" id="o5o-zw-Djg"/>
                     <constraint firstItem="3bx-WJ-DiS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qFh-AC-s40"/>
+                    <constraint firstItem="Vgb-eh-osd" firstAttribute="leading" secondItem="3bx-WJ-DiS" secondAttribute="trailing" constant="10" id="zeC-3h-V5F"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="icon" destination="3bx-WJ-DiS" id="I1j-FB-KL2"/>
+                <outlet property="notaMaxima" destination="Vgb-eh-osd" id="YMn-Ri-VTE"/>
                 <outlet property="time" destination="Ic4-z1-tVl" id="gpz-HB-599"/>
                 <outlet property="title" destination="Dea-Dr-A8E" id="8Nw-t6-RDP"/>
             </connections>
