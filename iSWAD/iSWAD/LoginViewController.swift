@@ -81,16 +81,17 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let reachability = Reachability(hostname:"www.google.com")
         
-        if reachability?.connection == .none  || reachability?.connection.description == "No Connection"{
-            let alertController = UIAlertController(title: "iSWAD", message:
+        if reachability != nil{
+            if reachability!.connection == .none  || reachability!.connection.description == "No Connection"{
+                let alertController = UIAlertController(title: "iSWAD", message:
                 "No se puede conectar a Internet", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default,handler: nil))
          
-            self.present(alertController, animated: true, completion: {})
-
-            return
+                self.present(alertController, animated: true, completion: {})
+                
+                return
+            }
         }
-        
         defaults.set(userID.text, forKey: Constants.userIDKey)
         defaults.set(userPassword.text, forKey: Constants.userPassworKey)
         
@@ -197,8 +198,6 @@ func loginToServer() -> Void {
             if loginData[Constants.userPhotoKey].element?.text != nil{
                 defaults.set(loginData[Constants.userPhotoKey].element?.text, forKey: Constants.userPhotoKey)
             }
-            defaults.set(loginData[Constants.userIDKey].element?.text, forKey: Constants.userIDKey)
-            defaults.set(loginData[Constants.userNickNameKey].element?.text,forKey: Constants.userNickNameKey)
         } else {
             defaults.set(false, forKey: Constants.logged)
         }
