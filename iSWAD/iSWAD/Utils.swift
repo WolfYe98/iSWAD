@@ -28,7 +28,9 @@ public func showAlert(_ view: UIViewController,message: String, _ options:Int, h
             handler(false)
         } ))
     }
-    view.present(alert, animated: true, completion: nil)
+    DispatchQueue.main.sync {
+        view.present(alert, animated: true, completion: nil)
+    }
 }
 
 //Return an UIAlertController with an indicator in to it.
@@ -49,6 +51,8 @@ func unixTimeToString(unixTimeStamp: Int32) -> String {
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return dateFormatter.string(from: date)
 }
+
+
 
 func encryptPassword(_ password: String) -> String {
     let bytesFromPassword = [UInt8](password.utf8);
@@ -116,3 +120,17 @@ func resizeImage(_ image:UIImage, toTheSize size:CGSize)->UIImage{
     return newImage!
 }
 
+
+
+// Generate random color for UIColor
+extension CGFloat{
+    static func random() -> CGFloat{
+        return CGFloat(arc4random())/CGFloat(UInt32.max)
+    }
+}
+
+extension UIColor{
+    static func random() -> UIColor{
+        return UIColor(red: .random(), green: .random(), blue: .random(), alpha: 1.0)
+    }
+}
