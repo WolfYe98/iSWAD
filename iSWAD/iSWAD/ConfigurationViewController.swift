@@ -29,6 +29,7 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet weak var exitBton: UIButton!
     
     @IBOutlet weak var logoutbton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Configuration"
@@ -114,12 +115,7 @@ class ConfigurationViewController: UIViewController {
                 imageView.image = imagen
             }
         }
-        if defaults.string(forKey: Constants.userNickNameKey) != nil{
-            self.userIdLabel.text = "@" + defaults.string(forKey: Constants.userNickNameKey)!
-        }
-        else{
-            self.userIdLabel.text = defaults.string(forKey: Constants.userIDKey)
-        }
+        self.userIdLabel.text = defaults.string(forKey: Constants.userIDKey)
         
     }
     /**
