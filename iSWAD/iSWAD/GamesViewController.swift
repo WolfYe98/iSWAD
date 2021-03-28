@@ -21,6 +21,7 @@ class GamesViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.title = "Juegos"
         textoInformativo.numberOfLines = 10
         textoInformativo.text = "Desliza hacia abajo\npara traer los juegos"
         refresh.attributedTitle = NSAttributedString(string: "Cargando")
