@@ -64,6 +64,31 @@ open class GetMatches:SyedAbsarObjectBase{
         return ["WsKey","CourseCode","GameCode"]
     }
 }
+
+// Bate Ye: This classes is for get the match status and answer a question
+@objc(GetMatchStatus)
+open class GetMatchStatus:SyedAbsarObjectBase{
+    var cpWsKey:String?
+    var cpCourseCode:Int?
+    var cpGameCode:Int?
+    var cpMatchCode : Int?
+    override static func cpKeys() -> Array<String> {
+        return ["WsKey","CourseCode","GameCode","MatchCode"]
+    }
+}
+@objc(AnswerMatchQuestion)
+open class AnswerMatchQuestion : SyedAbsarObjectBase{
+    var cpWsKey : String?
+    var cpCourseCode:Int?
+    var cpGameCode:Int?
+    var cpMatchCode : Int?
+    var cpQuestionIndex:Int?
+    var answerIndex:Int?
+    
+    override static func cpKeys() -> Array<String> {
+        return ["WsKey","CourseCode","GameCode","MatchCode","QuestionIndex","AnswerIndex"]
+    }
+}
 open class SyedAbsarClient {
     
     /**
@@ -456,7 +481,7 @@ open class SyedAbsarClient {
     /**
      Calls the SOAP Operation: GetMatches with Message based on GetGames Object
      
-     - parameter getGames:  GetMatches Object.
+     - parameter getMatches:  GetMatches Object.
      - parameter completionHandler:  The Callback Handler.
      
      - returns: Void.
@@ -464,7 +489,36 @@ open class SyedAbsarClient {
     open func opGetMatches(_ getMatches: GetMatches, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
         if getMatches.cpWsKey != nil && getMatches.cpCourseCode != nil && getMatches.cpGameCode != nil{
             let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getMatches><wsKey>%@</wsKey><courseCode>%d</courseCode><gameCode>%d</gameCode></ns1:getMatches></SOAP-ENV:Body></SOAP-ENV:Envelope>",getMatches.cpWsKey!,getMatches.cpCourseCode!,getMatches.cpGameCode!)
-            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetGames", completionHandler: completionHandler)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetMatches", completionHandler: completionHandler)
+        }
+    }
+    /**
+     Calls the SOAP Operation: GetMatchStatus with Message based on GetMatchStatus Object
+     
+     - parameter getMatchStatus:  GetMatchStatus Object.
+     - parameter completionHandler:  The Callback Handler.
+     
+     - returns: Void.
+     */
+    open func opGetMatchStatus(_ getMatchStatus: GetMatchStatus, completionHandler: @escaping (NSError?, XMLIndexer?)->Void){
+        if getMatchStatus.cpWsKey != nil && getMatchStatus.cpCourseCode != nil && getMatchStatus.cpGameCode != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getMatchStatus><wsKey>%@</wsKey><courseCode>%d</courseCode><gameCode>%d</gameCode><matchCode>%d</matchCode></ns1:getMatchStatus></SOAP-ENV:Body></SOAP-ENV:Envelope>",getMatchStatus.cpWsKey!,getMatchStatus.cpCourseCode!,getMatchStatus.cpGameCode!,getMatchStatus.cpMatchCode!)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "GetMatchStatus", completionHandler: completionHandler)
+        }
+    }
+    /**
+     Calls the SOAP Operation: AnswerMatchQuestion with Message based on AnswerMatchQuestion Object
+     
+     - parameter answer:  AnswerMatchQuestion Object.
+     - parameter completionHandler:  The Callback Handler.
+     
+     - returns: Void.
+     */
+    open func opAswerMatchQuestion(_ answer:AnswerMatchQuestion,completionHandler: @escaping (NSError?,XMLIndexer?)->Void){
+        let condition = answer.cpWsKey != nil && answer.cpCourseCode != nil && answer.cpCourseCode != nil && answer.cpGameCode != nil && answer.cpMatchCode != nil && answer.cpQuestionIndex != nil
+        if condition{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:answerMatchQuestion><wsKey>%@</wsKey><courseCode>%d</courseCode><gameCode>%d</gameCode><matchCode>%d</matchCode><questionIndex>%d</questionIndex><answerIndex>%d</answerIndex></ns1:answerMatchQuestion></SOAP-ENV:Body></SOAP-ENV:Envelope>",answer.cpWsKey!,answer.cpCourseCode!,answer.cpGameCode!,answer.cpMatchCode!,answer.cpQuestionIndex!,answer.answerIndex!)
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className: "AnswerMatchQuestion", completionHandler: completionHandler)
         }
     }
     /**
