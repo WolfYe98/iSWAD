@@ -44,11 +44,10 @@ class AnswersViewController: UIViewController {
         }
     }
     
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         self.timer?.invalidate()
     }
+    
     
     //Function that configure the answer view with a message or with the buttons.
     func configureView(){
@@ -131,6 +130,8 @@ class AnswersViewController: UIViewController {
             }
         }
     }
+    
+    
     // This function make a SOAP request to SWAD server and receive the status of the match
     func getStatus(){
         let defaults = UserDefaults.standard
