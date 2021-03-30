@@ -37,8 +37,6 @@ class MatchesViewController: UIViewController {
         destino.questionIndex = self.firstQuestionIndex
         destino.answerIndex = self.firstAnswerIndex
         destino.statusCode = self.firstStatusCode
-        
-        
     }
 }
 
