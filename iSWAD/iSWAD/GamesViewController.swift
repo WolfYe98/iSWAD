@@ -15,18 +15,25 @@ class GamesViewController: UIViewController {
     var courseCode : Int?
     var gameCode :Int?
     var matches : [Match] = []
+    var dic_game : [String:Bool] = [String:Bool]()
     @IBOutlet weak var tablaJuegos: UITableView!
-    @IBOutlet weak var textoInformativo: UILabel!
+    
+    var textoInformativo: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.title = "Juegos"
-        textoInformativo.numberOfLines = 10
-        textoInformativo.text = "Desliza hacia abajo\npara traer los juegos"
+        self.tablaJuegos.tableFooterView = UIView()
+        
+        // Put a first label in the middle of the table view
+        self.textoInformativo = createInfoLabel(self.tablaJuegos, message: "Desliza hacia abajo para traer los juegos", textSize: 23)
+        self.tablaJuegos.addSubview(self.textoInformativo)
+        
         refresh.attributedTitle = NSAttributedString(string: "Cargando")
         refresh.addTarget(self, action: #selector(self.getData(_:)), for: .valueChanged)
         self.tablaJuegos.addSubview(refresh)
+
         self.tablaJuegos.register(UINib(nibName: "IconTableViewCell", bundle: nil), forCellReuseIdentifier: "IconCell")
         self.tablaJuegos.dataSource = self
         self.tablaJuegos.delegate = self
@@ -67,16 +74,28 @@ class GamesViewController: UIViewController {
                     game.maxGrade = Float((item["maxGrade"].element?.text)!)
                     
                     //add to games array
-                    self.games.append(game)
-                }
-                DispatchQueue.main.asyncAfter(deadline:.now()+2) {
-                    self.textoInformativo.removeFromSuperview()
+                    let key = String(game.gameCode!) + game.title! + game.text!
+                    if self.dic_game.keys.contains(key) == false{
+                        self.games.append(game)
+                        self.dic_game[key] = true
+                    }
+                    else{
+                        for ga in self.games{
+                            if String(ga.gameCode!)+ga.title!+ga.text! != key{continue}
+                            ga.startTime = game.startTime
+                            ga.endTime = game.endTime
+                            ga.maxGrade = game.maxGrade
+                            ga.numQuestions = game.numQuestions
+                        }
+                    }
                 }
             }
+            
             else{
-                DispatchQueue.main.sync {
+                DispatchQueue.main.asyncAfter(deadline:.now()) {
                     showAlert(self, message: error!.localizedDescription, 1){boleano in}
                 }
+                return
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
@@ -106,11 +125,12 @@ extension GamesViewController:UITableViewDataSource,UITableViewDelegate{
             cell.icon.font = UIFont.fontAwesome(ofSize: 28)
             cell.icon.text = String.fontAwesomeIcon(name: .gamepad)
             
-            cell.notaMaxima.text = cell.notaMaxima.text!+String(games[indexPath.row].maxGrade!)
+            cell.notaMaxima.text = "Nota máxima: "+String(games[indexPath.row].maxGrade!)
             
             let startDate = unixTimeToString(unixTimeStamp: games[indexPath.row].startTime!)
             let endDate = unixTimeToString(unixTimeStamp: games[indexPath.row].endTime!)
             cell.time.text = "\(startDate) - \(endDate)"
+            self.textoInformativo.removeFromSuperview()
         }
         return cell
     }
