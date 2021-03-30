@@ -38,6 +38,7 @@ class CoursesDetailViewController: UITableViewController {
     var iconSections:[String] = ["fa-list-ol","fa-check-square","fa-folder-open","fa-users"]
     var sectionTitles:[String] = ["Asignatura", "Evaluación", "Archivos","Usuarios"]
     var optionsForSubject = [[Option]]()
+    var userRol : Int?
     
     /// Class for string the options for each subject
     class Option: Any{
@@ -76,6 +77,7 @@ class CoursesDetailViewController: UITableViewController {
             getCourseDocument(self.courseCode, treeCode: 1)
             getCourseDocument(self.courseCode, treeCode: 2)
             getCourseDocument(self.courseCode, treeCode: 3)
+            
         }
     }
     
@@ -164,6 +166,11 @@ class CoursesDetailViewController: UITableViewController {
         optionsForSubject[1].append(Option(name: "Calificaciones" , image: "fa-list-alt", segue: "marks"))
         optionsForSubject[3].append(Option(name: "Generar QR" , image: "fa-qrcode", segue: "qr"))
         optionsForSubject[1].append(Option(name: "Juegos", image: "fa-trophy", segue: "toGames"))
+        if let rol = self.userRol{
+            if rol == 3{
+                optionsForSubject[3].append(Option(name: "Pasar Lista", image: "fa-list-ul", segue: "toLists"))
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -252,12 +259,15 @@ class CoursesDetailViewController: UITableViewController {
             }
             break;
         case "qr":
-            let destinationVC = segue.destination as! QrViewController
+           
             break;
         case "toGames":
             let destino = segue.destination as! GamesViewController
             destino.courseCode = self.courseCode
             break
+        case "toLists":
+            let destino = segue.destination as! EventsViewController
+            destino.courseCode = self.courseCode
         default:
             let destinationVC = segue.destination as! InfoViewController
             destinationVC.info = courseInformation

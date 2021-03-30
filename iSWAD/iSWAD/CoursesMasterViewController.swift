@@ -41,6 +41,7 @@ class CoursesMasterViewController: UITableViewController {
     class  Course: Any {
         var name: String = ""
         var code: Int = 0
+        var rol : Int?
     }
     
     //MARK: Table View Data Source and Delegate
@@ -71,6 +72,7 @@ class CoursesMasterViewController: UITableViewController {
                 let object = coursesList[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! CoursesDetailViewController
                 controller.detailItem = object
+                controller.userRol = object.rol
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -91,8 +93,10 @@ class CoursesMasterViewController: UITableViewController {
             let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
             for item in coursesArray{
                 let course = Course()
+                
                 course.name = (item["courseShortName"].element?.text)!
                 course.code = Int((item["courseCode"].element?.text)!)!
+                course.rol = Int((item["userRole"].element?.text)!)!
                 self.coursesList.append(course)
             }
             // We have to send the reloadData to the UIThread otherwise won't be instant
