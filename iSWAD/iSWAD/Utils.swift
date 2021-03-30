@@ -15,6 +15,17 @@ import CryptoSwift
 import UIKit
 
 
+// Create a label with is located in the middle of a view
+public func createInfoLabel(_ view:UIView,message:String,textSize:Int)->UILabel{
+    let textInformation = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+    textInformation.numberOfLines = 20
+    textInformation.text = message
+    textInformation.textAlignment = .center
+    textInformation.font = UIFont.boldSystemFont(ofSize: CGFloat(textSize))
+    
+    return textInformation
+}
+
 //Show an alert to the user.
 public func showAlert(_ view: UIViewController,message: String, _ options:Int, handler: @escaping (_ accepted:Bool)->Void){
     let alert = UIAlertController(title: "iSWAD", message: message, preferredStyle: .alert)
@@ -28,7 +39,7 @@ public func showAlert(_ view: UIViewController,message: String, _ options:Int, h
             handler(false)
         } ))
     }
-    DispatchQueue.main.sync {
+    DispatchQueue.main.asyncAfter(deadline:.now()) {
         view.present(alert, animated: true, completion: nil)
     }
 }
