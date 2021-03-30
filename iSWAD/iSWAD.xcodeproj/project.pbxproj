@@ -32,10 +32,16 @@
 		20BDC603212B3EAC008AECEA /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BDC602212B3EAC008AECEA /* SWXMLHash.framework */; };
 		20D73F1720FE59930011F26E /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D73F1620FE59930011F26E /* Tree.swift */; };
 		C60295FC260E697300A3CD83 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60295FB260E697300A3CD83 /* MatchesViewController.swift */; };
+		C61C7978260F5464001E1D3B /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C7977260F5464001E1D3B /* AnswersViewController.swift */; };
 		C62480452603C1CB00105945 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62480442603C1CB00105945 /* ConfigurationViewController.swift */; };
 		C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */; };
 		C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */; };
 		C66A89F5260A6EA30063603E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A89F4260A6EA30063603E /* PDFViewController.swift */; };
+		C6AC117526137A5A000B6E9F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC117426137A5A000B6E9F /* EventsViewController.swift */; };
+		C6AC117D2613B08B000B6E9F /* UserListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC117C2613B08B000B6E9F /* UserListsViewController.swift */; };
+		C6AC118B2613B8FC000B6E9F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */; };
+		C6AC118C2613B8FC000B6E9F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */; };
+		C6AC11912613BE0B000B6E9F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC11902613BE0B000B6E9F /* CheckBox.swift */; };
 		C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,10 +96,16 @@
 		20D73F1620FE59930011F26E /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		A387EBA700B90AFBDB6B5F9A /* Pods_iSWAD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSWAD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60295FB260E697300A3CD83 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		C61C7977260F5464001E1D3B /* AnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersViewController.swift; sourceTree = "<group>"; };
 		C62480442603C1CB00105945 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
 		C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
 		C66A89F4260A6EA30063603E /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		C6AC117426137A5A000B6E9F /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		C6AC117C2613B08B000B6E9F /* UserListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListsViewController.swift; sourceTree = "<group>"; };
+		C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		C6AC11902613BE0B000B6E9F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		FD7BAAA9D61FF2AA882E5301 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +189,12 @@
 				C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */,
 				C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */,
 				C60295FB260E697300A3CD83 /* MatchesViewController.swift */,
+				C61C7977260F5464001E1D3B /* AnswersViewController.swift */,
+				C6AC117426137A5A000B6E9F /* EventsViewController.swift */,
+				C6AC117C2613B08B000B6E9F /* UserListsViewController.swift */,
+				C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */,
+				C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */,
+				C6AC11902613BE0B000B6E9F /* CheckBox.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -337,6 +355,7 @@
 				2069615A206D6D3A00BF3E64 /* Assets.xcassets in Resources */,
 				C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */,
 				20696158206D6D3A00BF3E64 /* Main.storyboard in Resources */,
+				C6AC118C2613B8FC000B6E9F /* UserTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +426,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				20D73F1720FE59930011F26E /* Tree.swift in Sources */,
+				C6AC117526137A5A000B6E9F /* EventsViewController.swift in Sources */,
 				202D9CF1206D74FD00DC9300 /* SoapConnectionInterface.swift in Sources */,
 				C60295FC260E697300A3CD83 /* MatchesViewController.swift in Sources */,
+				C6AC11912613BE0B000B6E9F /* CheckBox.swift in Sources */,
+				C6AC118B2613B8FC000B6E9F /* UserTableViewCell.swift in Sources */,
 				202D9CE9206D744400DC9300 /* MasterViewController.swift in Sources */,
 				20AF7289211A3D2700CBC3FF /* QrViewController.swift in Sources */,
 				C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */,
@@ -418,6 +440,7 @@
 				202D9CEF206D74C200DC9300 /* NotificationsMasterViewController.swift in Sources */,
 				202D9CF3206D754400DC9300 /* Utils.swift in Sources */,
 				C66A89F5260A6EA30063603E /* PDFViewController.swift in Sources */,
+				C61C7978260F5464001E1D3B /* AnswersViewController.swift in Sources */,
 				C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */,
 				202D9CEB206D747800DC9300 /* MessagesViewController.swift in Sources */,
 				20AF72812119167500CBC3FF /* CoursesDetailViewController.swift in Sources */,
@@ -425,6 +448,7 @@
 				20696153206D6D3A00BF3E64 /* AppDelegate.swift in Sources */,
 				202D9CED206D749E00DC9300 /* NotificationsDetailViewController.swift in Sources */,
 				202D9CE5206D73D400DC9300 /* InfoCourse.swift in Sources */,
+				C6AC117D2613B08B000B6E9F /* UserListsViewController.swift in Sources */,
 				202D9CDF206D731600DC9300 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,7 +554,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -584,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -601,9 +625,9 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y37NZM89J;
+				DEVELOPMENT_TEAM = 6TU429L996;
 				INFOPLIST_FILE = iSWAD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitomono-gmail.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -620,9 +644,9 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Y37NZM89J;
+				DEVELOPMENT_TEAM = 6TU429L996;
 				INFOPLIST_FILE = iSWAD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitomono-gmail.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
