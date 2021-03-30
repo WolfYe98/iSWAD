@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController {
+class EventsViewController: UIViewController {
     var courseCode : Int?
     var dic_events = [String:Bool]()
     var refresh:UIRefreshControl = UIRefreshControl()
@@ -37,6 +37,12 @@ class UserListViewController: UIViewController {
         self.tablaEventos.addSubview(self.refresh)
     }
     
+    
+    //overrides
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destino = segue.destination as! UserListsViewController
+        destino.attendanceCode = self.selectedEvent
+    }
     
     //Selectors:
     @objc func getData(_ sender : AnyObject){
@@ -91,9 +97,12 @@ class UserListViewController: UIViewController {
             self.tablaEventos.reloadData()
         }
     }
+    
+    
+    
 }
 
-extension UserListViewController:UITableViewDataSource,UITableViewDelegate{
+extension EventsViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events.count
     }
@@ -106,6 +115,13 @@ extension UserListViewController:UITableViewDataSource,UITableViewDelegate{
             cell.icon.font = UIFont.fontAwesome(ofSize: 28)
             cell.icon.text = String.fontAwesomeIcon(name: .checkSquareO)
             
+            cell.notaMaxima.textColor = .green
+            cell.notaMaxima.text = "Visible para los estudiantes"
+            
+            if events[indexPath.row].cpHidden! == 0{
+                cell.notaMaxima.textColor = .red
+                cell.notaMaxima.text = "No es visible para los estudiantes"
+            }
             
             let startDate = unixTimeToString(unixTimeStamp: events[indexPath.row].cpStartTime!)
             let endDate = unixTimeToString(unixTimeStamp: events[indexPath.row].cpEndTime!)
