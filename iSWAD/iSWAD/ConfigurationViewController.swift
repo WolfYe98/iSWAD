@@ -110,7 +110,7 @@ class ConfigurationViewController: UIViewController {
             }
         }
         else{
-            imagen = UIImage(named: "nouser")
+            imagen = UIImage(named: "nouserswad")
             if imagen != nil{
                 imageView.image = imagen
             }
