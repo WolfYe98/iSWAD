@@ -342,7 +342,7 @@ open class SyedAbsarClient {
      */
     open func opGetAttendanceEvents(_ getAttendanceEvents : GetAttendanceEvents , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
         
-        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getAttendanceEvents><wsKey>%@</wsKey><courseCode>0</courseCode></ns1:getAttendanceEvents></SOAP-ENV:Body></SOAP-ENV:Envelope>",getAttendanceEvents.cpWsKey!,getAttendanceEvents.cpCourseCode)
+        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getAttendanceEvents><wsKey>%@</wsKey><courseCode>%d</courseCode></ns1:getAttendanceEvents></SOAP-ENV:Body></SOAP-ENV:Envelope>",getAttendanceEvents.cpWsKey!,getAttendanceEvents.cpCourseCode)
         
         self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetAttendanceEventsOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
     }
@@ -382,7 +382,7 @@ open class SyedAbsarClient {
      */
     open func opGetAttendanceUsers(_ getAttendanceUsers : GetAttendanceUsers , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
         
-        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getAttendanceUsers><wsKey>%@</wsKey><attendanceEventCode>0</attendanceEventCode></ns1:getAttendanceUsers></SOAP-ENV:Body></SOAP-ENV:Envelope>",getAttendanceUsers.cpWsKey!,getAttendanceUsers.cpAttendanceEventCode)
+        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getAttendanceUsers><wsKey>%@</wsKey><attendanceEventCode>%d</attendanceEventCode></ns1:getAttendanceUsers></SOAP-ENV:Body></SOAP-ENV:Envelope>",getAttendanceUsers.cpWsKey!,getAttendanceUsers.cpAttendanceEventCode)
         
         self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetAttendanceUsersOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
     }
@@ -1001,10 +1001,10 @@ open class AttendanceEvent : SyedAbsarObjectBase {
     
     
     /// Attendance Event Code
-    var cpAttendanceEventCode: Int = 0
+    var cpAttendanceEventCode: Int?
     
     /// Hidden
-    var cpHidden: Int = 0
+    var cpHidden: Int?
     
     /// User Surname1
     var cpUserSurname1: String?
@@ -1019,13 +1019,13 @@ open class AttendanceEvent : SyedAbsarObjectBase {
     var cpUserPhoto: String?
     
     /// Start Time
-    var cpStartTime: Int = 0
+    var cpStartTime: Int32?
     
     /// End Time
-    var cpEndTime: Int = 0
+    var cpEndTime: Int32?
     
     /// Comments Teachers Visible
-    var cpCommentsTeachersVisible: Int = 0
+    var cpCommentsTeachersVisible: Int?
     
     /// Title
     var cpTitle: String?
@@ -1064,7 +1064,7 @@ open class AttendanceUser : SyedAbsarObjectBase {
     
     
     /// User Code
-    var cpUserCode: Int = 0
+    var cpUserCode: Int?
     
     /// User Nickname
     var cpUserNickname: String?
@@ -1085,7 +1085,7 @@ open class AttendanceUser : SyedAbsarObjectBase {
     var cpUserPhoto: String?
     
     /// Present
-    var cpPresent: Int = 0
+    var cpPresent: Int?
     
     override static func cpKeys() -> Array<String> {
         return ["UserCode","UserNickname","UserID","UserSurname1","UserSurname2","UserFirstname","UserPhoto","Present"]
