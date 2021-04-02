@@ -27,7 +27,7 @@ class GamesViewController: UIViewController {
         self.tablaJuegos.tableFooterView = UIView()
         
         // Put a first label in the middle of the table view
-        self.textoInformativo = createInfoLabel(self.tablaJuegos, message: "Desliza hacia abajo para traer los juegos", textSize: 23)
+        self.textoInformativo = createInfoLabel(self.view, message: "Desliza hacia abajo para traer los juegos", textSize: 23)
         self.tablaJuegos.addSubview(self.textoInformativo)
         
         refresh.attributedTitle = NSAttributedString(string: "Cargando")
@@ -89,19 +89,22 @@ class GamesViewController: UIViewController {
                         }
                     }
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.tablaJuegos.reloadData()
+                    self.refresh.endRefreshing()
+                }
             }
             
             else{
                 DispatchQueue.main.asyncAfter(deadline:.now()) {
-                    showAlert(self, message: error!.localizedDescription, 1){boleano in}
+                    showAlert(self, message: error!.localizedDescription, 1){boleano in
+                        self.refresh.endRefreshing()
+                    }
                 }
                 return
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            self.tablaJuegos.reloadData()
-            self.refresh.endRefreshing()
-        }
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

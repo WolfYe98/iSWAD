@@ -22,7 +22,7 @@ class EventsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "Eventos"
-        self.textInformation = createInfoLabel(self.tablaEventos, message: "Desliza hacia abajo para traer los eventos", textSize: 23)
+        self.textInformation = createInfoLabel(self.view, message: "Desliza hacia abajo para traer los eventos", textSize: 23)
         self.tablaEventos.addSubview(self.textInformation)
         
         
@@ -91,10 +91,10 @@ class EventsViewController: UIViewController {
                 
                 self.events.append(event)
             }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now()+2){
-            self.refresh.endRefreshing()
-            self.tablaEventos.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now()+1){
+                self.refresh.endRefreshing()
+                self.tablaEventos.reloadData()
+            }
         }
     }
     
