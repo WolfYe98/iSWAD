@@ -33,7 +33,7 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         serverPicker.dataSource = self
         serverPicker.delegate = self
-        
+        self.title = "Log In" 
         userID.text = defaults.string(forKey: Constants.userIDKey)
         userPassword.text = defaults.string(forKey: Constants.userPassworKey)
         defaults.set(pickerData[0], forKey: Constants.serverURLKey)

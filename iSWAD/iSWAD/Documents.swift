@@ -132,7 +132,7 @@ class DocumentsViewController:UIViewController,UICollectionViewDelegate,UICollec
                             
                             if let url1 = URL(string: urlResponse!) {
                                 if #available(iOS 11.0, *) {
-                                    DispatchQueue.main.sync {
+                                    DispatchQueue.main.asyncAfter(deadline:.now()) {
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                     self.url = url1
