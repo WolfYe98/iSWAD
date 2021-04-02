@@ -21,7 +21,6 @@
                         <rect key="frame" x="5" y="10" width="112" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="112" id="AaC-ka-8Qa"/>
-                            <constraint firstAttribute="height" constant="120" id="q7L-7d-2pY"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA4-vS-ktg">

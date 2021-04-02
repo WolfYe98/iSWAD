@@ -10,7 +10,6 @@ import UIKit
 
 
 class UserTableViewCell: UITableViewCell {
-    var userSelected = false
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var id: UILabel!
@@ -29,9 +28,9 @@ class UserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     @IBAction func checked(_ sender: Any) {
-        self.userSelected = !self.userSelected
-        self.checkBox.isChecked = self.userSelected
+        
     }
     
 }

@@ -7,14 +7,16 @@
 //
 
 import UIKit
-
 class UserListsViewController: UIViewController {
     var attendanceCode:Int?
     var textInformation : UILabel!
     var refresh = UIRefreshControl()
     var students:[AttendanceUser] = [AttendanceUser]()
-    
+    var attendancedStudentCodes : [Int] = [Int]()
     var dic_users = [Int:Bool]()
+    
+    weak var qrDelegate : QrReaderViewControllerDelegate?
+    
     @IBOutlet weak var qrReader: UIBarButtonItem!
     @IBOutlet weak var sendUsers: UIBarButtonItem!
     @IBOutlet weak var tablaEstudiantes: UITableView!
@@ -31,14 +33,14 @@ class UserListsViewController: UIViewController {
         
         self.qrReader.setTitleTextAttributes(fontAttributes, for: .normal)
         self.qrReader.tintColor = .black
-        self.qrReader.title = String.fontAwesomeIcon(name: .camera)
+        self.qrReader.title = String.fontAwesomeIcon(name: .qrcode)
         
         self.sendUsers.setTitleTextAttributes(fontAttributes, for: .normal)
         self.sendUsers.tintColor = .black
         self.sendUsers.title = String.fontAwesomeIcon(name: .send)
         
         
-        self.textInformation = createInfoLabel(self.tablaEstudiantes, message: "Desliza hacia abajo para cargar la lista de estudiantes", textSize: 23)
+        self.textInformation = createInfoLabel(self.view, message: "Desliza hacia abajo para cargar la lista de estudiantes", textSize: 23)
         self.tablaEstudiantes.addSubview(self.textInformation)
         
         
@@ -52,6 +54,8 @@ class UserListsViewController: UIViewController {
         self.tablaEstudiantes.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
     }
     
+    
+    //Selectors
     @objc func getData(_ sender: AnyObject){
         let defaults = UserDefaults.standard
         let client = SyedAbsarClient()
@@ -94,16 +98,105 @@ class UserListsViewController: UIViewController {
                 
                 self.students.append(user)
             }
+            DispatchQueue.main.asyncAfter(deadline: .now()+1){
+                self.refresh.endRefreshing()
+                self.tablaEstudiantes.reloadData()
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+2){
-            self.refresh.endRefreshing()
-            self.tablaEstudiantes.reloadData()
+    }
+    
+    //Actions
+    @IBAction func sendList(_ sender: Any) {
+        var users = " "
+        var men = "¿Quieres marcar todos los demás como NO asistidos (Incluyendo los alumnos que estaban ya marcados)?"
+        let client = SyedAbsarClient()
+        let request = SendAttendanceUsers()
+        let defaults = UserDefaults.standard
+        var setOtherAsAbsent = 0
+        for st in self.attendancedStudentCodes{
+            users = users + String(st) + ","
         }
+        if self.tablaEstudiantes.visibleCells.count > 0{
+            if self.attendancedStudentCodes.count > 0{
+                users.remove(at: users.lastIndex(of: ",")!)
+                users.remove(at: users.index(of: " ")!)
+            }
+            else{
+                men = "¿Marcar a todos como NO asistidos?"
+            }
+            showAlert(self, message:men , 2,"Sí","No", handler: {boleano in
+                if boleano{
+                    setOtherAsAbsent = 1
+                }
+                request.cpWsKey = defaults.string(forKey: Constants.wsKey)
+                request.cpUsers = users
+                request.cpAttendanceEventCode = self.attendanceCode!
+                request.cpSetOthersAsAbsent = setOtherAsAbsent
+                
+                client.opSendAttendanceUsers(request){error,response in
+                    if error != nil{
+                        showAlert(self, message: error!.localizedDescription, 1, handler:{boleano in})
+                        return
+                    }
+                    if Int((response!["sendAttendanceUsersOutput"]["success"].element?.text)!) == 0{
+                        showAlert(self, message: "Ha ocurrido un error!", 1,"Entendido", handler: {booleano in})
+                    }
+                }
+                self.students.removeAll()
+                self.attendancedStudentCodes.removeAll()
+                self.dic_users.removeAll()
+                self.textInformation = createInfoLabel(self.tablaEstudiantes, message: "Desliza hacia abajo para cargar la lista de estudiantes", textSize: 23)
+                DispatchQueue.main.asyncAfter(deadline: .now()){
+                    self.tablaEstudiantes.addSubview(self.textInformation)
+                    self.tablaEstudiantes.reloadData()
+                }
+            })
+        }
+    }
+    
+    @IBAction func qrReaderAction(_ sender: Any) {
+        if self.students.count == 0{
+            showAlert(self, message: "No has cargado aún la lista de estudiantes!", 1, "OK",handler: {boleano in})
+            return
+        }
+        self.performSegue(withIdentifier: "toReader", sender: self)
+    }
+    
+    
+    //Overrides
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destino = segue.destination as! QrReaderViewController
+        var codes = [String]()
+        for st in self.students{
+            codes.append("@"+st.cpUserNickname!)
+        }
+        destino.codes = codes
+        destino.delegate = self
     }
 }
 
 
-extension UserListsViewController:UITableViewDataSource,UITableViewDelegate{
+extension UserListsViewController:UITableViewDataSource,UITableViewDelegate,QrReaderViewControllerDelegate,CheckBoxDelegate{
+    func addCode(_ code: Int) {
+        if !self.attendancedStudentCodes.contains(code){
+            self.attendancedStudentCodes.append(code)
+        }
+    }
+    func removeCode(_ code: Int) {
+        if self.attendancedStudentCodes.contains(code){
+            self.attendancedStudentCodes.remove(at: self.attendancedStudentCodes.index(of: code)!)
+        }
+    }
+    func codeReaded(_ codes: [String]) {
+        for st in self.students{
+            if !codes.contains("@" + st.cpUserNickname!){continue}
+            st.cpPresent = 1
+        }
+        DispatchQueue.main.asyncAfter(deadline:.now()){
+            self.tablaEstudiantes.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.students.count
     }
@@ -129,14 +222,21 @@ extension UserListsViewController:UITableViewDataSource,UITableViewDelegate{
             cell.name.text = self.students[indexPath.row].cpUserSurname2! + " " + self.students[indexPath.row].cpUserSurname1! + ",\n" + self.students[indexPath.row].cpUserFirstname!
             cell.nickname.text = "@" + self.students[indexPath.row].cpUserNickname!
             cell.id.text = self.students[indexPath.row].cpUserID
-            cell.userSelected = true
+            
+            cell.checkBox.code = self.students[indexPath.row].cpUserCode!
             cell.checkBox.isChecked = true
             if self.students[indexPath.row].cpPresent! == 0{
-                cell.userSelected = false
                 cell.checkBox.isChecked = false
             }
+            cell.checkBox.delegate = self
             self.textInformation.removeFromSuperview()
         }
         return cell
     }
+   
+    // Make rows not selectable
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
 }
