@@ -397,7 +397,7 @@ open class SyedAbsarClient {
      */
     open func opSendAttendanceUsers(_ sendAttendanceUsers : SendAttendanceUsers , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
         
-        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:sendAttendanceUsers><wsKey>%@</wsKey><attendanceEventCode>0</attendanceEventCode><users>%@</users><setOthersAsAbsent>0</setOthersAsAbsent></ns1:sendAttendanceUsers></SOAP-ENV:Body></SOAP-ENV:Envelope>",sendAttendanceUsers.cpWsKey!,sendAttendanceUsers.cpAttendanceEventCode,sendAttendanceUsers.cpUsers!,sendAttendanceUsers.cpSetOthersAsAbsent)
+        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:sendAttendanceUsers><wsKey>%@</wsKey><attendanceEventCode>%d</attendanceEventCode><users>%@</users><setOthersAsAbsent>%d</setOthersAsAbsent></ns1:sendAttendanceUsers></SOAP-ENV:Body></SOAP-ENV:Envelope>",sendAttendanceUsers.cpWsKey!,sendAttendanceUsers.cpAttendanceEventCode,sendAttendanceUsers.cpUsers!,sendAttendanceUsers.cpSetOthersAsAbsent!)
         
         self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"SendAttendanceUsersOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
     }
@@ -1955,7 +1955,7 @@ open class SendAttendanceUsers : SyedAbsarObjectBase {
     var cpUsers: String?
     
     /// Set Others As Absent
-    var cpSetOthersAsAbsent: Int = 0
+    var cpSetOthersAsAbsent: Int?
     
     override static func cpKeys() -> Array<String> {
         return ["WsKey","AttendanceEventCode","Users","SetOthersAsAbsent"]
