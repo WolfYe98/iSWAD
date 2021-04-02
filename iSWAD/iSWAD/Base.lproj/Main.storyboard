@@ -817,7 +817,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="391" height="39"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1089,7 +1089,7 @@
                     <navigationItem key="navigationItem" title="Title" id="Wou-Kk-Yu1">
                         <barButtonItem key="rightBarButtonItem" id="9Tq-GR-r0b">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8mP-dt-MAL" userLabel="Send">
-                                <rect key="frame" x="291" y="7" width="83" height="30"/>
+                                <rect key="frame" x="311" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -1338,19 +1338,61 @@
                     </view>
                     <navigationItem key="navigationItem" id="SQC-SK-La4">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" id="kxM-rg-gLQ"/>
-                            <barButtonItem title="Item" id="gOT-bE-WnB"/>
+                            <barButtonItem title="Item" id="kxM-rg-gLQ">
+                                <connections>
+                                    <action selector="sendList:" destination="ry3-TM-AfS" id="uzA-d1-tkp"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="gOT-bE-WnB">
+                                <connections>
+                                    <action selector="qrReaderAction:" destination="ry3-TM-AfS" id="rfe-C9-qwm"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="qrReader" destination="gOT-bE-WnB" id="30H-ce-CEd"/>
                         <outlet property="sendUsers" destination="kxM-rg-gLQ" id="w8P-31-Z31"/>
                         <outlet property="tablaEstudiantes" destination="cdh-5H-5zA" id="8ht-Fq-cTT"/>
+                        <segue destination="HQb-FO-XbR" kind="show" identifier="toReader" id="NTH-Eb-NQo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="543-UF-LFz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5888" y="599"/>
+        </scene>
+        <!--Qr Reader View Controller-->
+        <scene sceneID="80b-aw-lf9">
+            <objects>
+                <viewController id="HQb-FO-XbR" customClass="QrReaderViewController" customModule="iSWAD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yac-TS-PeV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOz-e6-Q2c">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="PJn-fA-yEc"/>
+                                    <constraint firstAttribute="width" constant="300" id="YJ0-YI-tzd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3qK-6i-PvD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JOz-e6-Q2c" firstAttribute="centerY" secondItem="yac-TS-PeV" secondAttribute="centerY" id="97z-zc-88R"/>
+                            <constraint firstItem="JOz-e6-Q2c" firstAttribute="centerX" secondItem="yac-TS-PeV" secondAttribute="centerX" id="Dy6-ri-ieQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YX0-fg-abn"/>
+                    <connections>
+                        <outlet property="QrviewBounds" destination="JOz-e6-Q2c" id="v9n-5c-E8D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dA5-Nq-kGQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6741" y="599"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
