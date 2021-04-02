@@ -18,24 +18,26 @@ import UIKit
 // Create a label with is located in the middle of a view
 public func createInfoLabel(_ view:UIView,message:String,textSize:Int)->UILabel{
     let textInformation = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+    textInformation.center = CGPoint(x:view.frame.width/2,y:view.frame.height/2)
     textInformation.numberOfLines = 20
     textInformation.text = message
     textInformation.textAlignment = .center
     textInformation.font = UIFont.boldSystemFont(ofSize: CGFloat(textSize))
-    
+    textInformation.adjustsFontSizeToFitWidth = true
+    textInformation.lineBreakMode = .byWordWrapping
     return textInformation
 }
 
 //Show an alert to the user.
-public func showAlert(_ view: UIViewController,message: String, _ options:Int, handler: @escaping (_ accepted:Bool)->Void){
+public func showAlert(_ view: UIViewController,message: String, _ options:Int,_ yesValue:String = "OK",_ noValue:String = "Cancel", handler: @escaping (_ accepted:Bool)->Void){
     let alert = UIAlertController(title: "iSWAD", message: message, preferredStyle: .alert)
     if options == 2{
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ _ in
+        alert.addAction(UIAlertAction(title: yesValue, style: .default, handler:{ _ in
             handler(true)
         } ))
     }
-    if options >= 0{
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler:{ _ in
+    if options >= 1{
+        alert.addAction(UIAlertAction(title: noValue, style: .default, handler:{ _ in
             handler(false)
         } ))
     }
