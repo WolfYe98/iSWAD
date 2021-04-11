@@ -93,19 +93,23 @@ class AnswersViewController: UIViewController {
                 DispatchQueue.main.sync {
                     showAlert(self, message: error!.localizedDescription, 1, handler:{boleano in})
                 }
+                return
             }
             let num = Int((response!["answerMatchQuestionOutput"]["matchCode"].element?.text)!)!
             if  num < 0 {
                 showAlert(self, message: "Error vuelve a pulsar la respuesta", 1, handler: {boleano in})
             }
             else{
-                DispatchQueue.main.sync {
+                DispatchQueue.main.asyncAfter(deadline:.now()) {
                     for view in self.stackRespuestas.subviews{
                         if view == sender{continue}
                         view.layer.borderWidth = 0
                     }
-                    sender.layer.borderWidth = 10
+                    sender.layer.borderWidth = 8
                     sender.layer.borderColor = UIColor.white.cgColor
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+1){
+                    sender.layer.borderWidth = 0
                 }
             }
             self.getStatus()
