@@ -9,22 +9,44 @@
 import UIKit
 
 class InformationAlertViewController: UIViewController {
-
+    
+    var imagen : UIImage!
+    var error : Bool!
+    var url:URL?
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tickView: UILabel!
+    @IBOutlet weak var imageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageLeftConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var imageBotConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        imagen = UIImage(named: "error")
+        self.backView.layer.cornerRadius = 20
+        if error{
+            self.tickView.removeFromSuperview()
+            imageTopConstraint.constant = 10
+            imageLeftConstraint.constant = 10
+            imageRightConstraint.constant = 10
+            imageBotConstraint.constant = 10
+            self.backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        }
+        else{
+            imagen = UIImage(named: "nouserswad")
+            if url != nil{
+                if let datos = try? Data(contentsOf: url!){
+                    if let im = UIImage(data: datos){
+                        imagen = im
+                    }
+                }
+            }
+            self.tickView.font = UIFont.fontAwesome(ofSize: 30)
+            self.tickView.text = String.fontAwesomeIcon(name: .check)
+            self.backView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        }
+        self.imageView.image = imagen
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
