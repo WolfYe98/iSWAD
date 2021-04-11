@@ -97,23 +97,19 @@ class ConfigurationViewController: UIViewController {
     
     func loadDatos(){
         // We try to load the image from the URL, if it doesn't have any value, we load a local image.
+        imagen = UIImage(named: "nouserswad")
         if defaults.string(forKey: Constants.userPhotoKey) != nil{
             let photoURL = URL(string: defaults.string(forKey: Constants.userPhotoKey)!)
             if photoURL != nil{
                 if let datos = try? Data(contentsOf: photoURL!){
-                    if let imagen = UIImage(data: datos){
-                        DispatchQueue.main.async {
-                            self.imageView.image = imagen
-                        }
+                    if let im = UIImage(data: datos){
+                        imagen = im
                     }
                 }
             }
         }
-        else{
-            imagen = UIImage(named: "nouserswad")
-            if imagen != nil{
-                imageView.image = imagen
-            }
+        DispatchQueue.main.async {
+            self.imageView.image = self.imagen
         }
         self.userIdLabel.text = defaults.string(forKey: Constants.userIDKey)
         
