@@ -114,57 +114,58 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         task1.resume()
         
-        
         let alert = showLoading(message: "Cargando...")
         self.present(alert, animated: true, completion: nil)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.defaults.set(serverString, forKey: Constants.serverURLKey)
-            loginToServer()
-        })
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
-            alert.dismiss(animated: true, completion: nil)
-            if self.defaults.bool(forKey: Constants.logged) {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "CoursesView") as! UISplitViewController
-                let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
-                navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem
-                let appDelegate  = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window!.rootViewController = vc
-                
-                ///////////////////////////////////////////////////////////////////////////////
-                // notifications
-                ///////////////////////////////////////////////////
-                    if #available(iOS 10.0, *) {
-                        let notifications = getNotifications()
-                        if notifications > 0{
-                    
-                        // 1. We created the Notification Trigger
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
-                    
-                        // 2. We create the content of the Notification
-                        let content = UNMutableNotificationContent()
-                        content.title = "Nuevo aviso desde SWAD"
-                        content.subtitle = ""
-                        content.body = "Tiene \(notifications) notificaciones nuevas en SWAD"
-                        content.sound = UNNotificationSound.default()
-                        content.setValue(true, forKey: "shouldAlwaysAlertWhileAppIsForeground")
-                    
-                        // 3. We create the Request
-                        let request = UNNotificationRequest(identifier: "SWADNotification", content: content, trigger: trigger)
-                    
-                        // 4. We add the Request to the Notifications Center
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                        UNUserNotificationCenter.current().add(request) {(error) in
-                            if let error = error {
-                                print("Se ha producido un error: \(error)")
+            loginToServer(){
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    alert.dismiss(animated: true, completion: nil)
+                    if self.defaults.bool(forKey: Constants.logged) {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "CoursesView") as! UISplitViewController
+                        let navigationController = vc.viewControllers[vc.viewControllers.count-1] as! UINavigationController
+                        navigationController.topViewController!.navigationItem.leftBarButtonItem = vc.displayModeButtonItem
+                        let appDelegate  = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window!.rootViewController = vc
+                        
+                        ///////////////////////////////////////////////////////////////////////////////
+                        // notifications
+                        ///////////////////////////////////////////////////
+                        UNUserNotificationCenter.current().delegate = self
+                            if #available(iOS 10.0, *) {
+                                let notifications = getNotifications()
+                                if notifications > 0{
+                            
+                                // 1. We created the Notification Trigger
+                                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+                            
+                                // 2. We create the content of the Notification
+                                let content = UNMutableNotificationContent()
+                                content.title = "Nuevo aviso desde SWAD"
+                                content.subtitle = ""
+                                content.body = "Tiene \(notifications) notificaciones nuevas en SWAD"
+                                content.sound = UNNotificationSound.default()
+                            
+                                // 3. We create the Request
+                                let request = UNNotificationRequest(identifier: "SWADNotification", content: content, trigger: trigger)
+                            
+                                // 4. We add the Request to the Notifications Center
+                                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                                UNUserNotificationCenter.current().add(request) {(error) in
+                                    if let error = error {
+                                        print("Se ha producido un error: \(error)")
+                                    }
+                                }
                             }
                         }
+                        /////////////////////////////////////////////////////
+                    } else {
+                        showAlert(self, message: "Login Incorrecto", 1, handler: { res in })
                     }
-                }
-                /////////////////////////////////////////////////////
-            } else {
-                showAlert(self, message: "Login Incorrecto", 1, handler: { res in })
+                })
+                
             }
         })
         
@@ -174,11 +175,10 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         self.view.endEditing(true)
     }
     
-    // This one is for going back to here
-    @IBAction func unwind(_ seg: UIStoryboard){}
 }
 
-func loginToServer() -> Void {
+
+func loginToServer(handler:@escaping ()->Void) -> Void {
     let client = SyedAbsarClient()
     let request = LoginByUserPasswordKey()
     let defaults = UserDefaults.standard
@@ -202,6 +202,7 @@ func loginToServer() -> Void {
             defaults.set(false, forKey: Constants.logged)
         }
     }
+    handler()
 }
 
 /**
