@@ -20,7 +20,8 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.name.numberOfLines = 4
+        self.name.numberOfLines = 2
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

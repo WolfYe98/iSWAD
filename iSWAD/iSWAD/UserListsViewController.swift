@@ -148,6 +148,7 @@ class UserListsViewController: UIViewController {
                 self.textInformation = createInfoLabel(self.tablaEstudiantes, message: "Desliza hacia abajo para cargar la lista de estudiantes", textSize: 23)
                 DispatchQueue.main.asyncAfter(deadline: .now()){
                     self.tablaEstudiantes.addSubview(self.textInformation)
+                    self.tablaEstudiantes.addSubview(self.refresh)
                     self.tablaEstudiantes.reloadData()
                 }
             })
@@ -167,11 +168,15 @@ class UserListsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destino = segue.destination as! QrReaderViewController
         var codes = [String]()
+        var codeUrl = [String:String]()
+        
         for st in self.students{
             codes.append("@"+st.cpUserNickname!)
+            codeUrl["@"+st.cpUserNickname!] = st.cpUserPhoto!
         }
         destino.codes = codes
         destino.delegate = self
+        destino.codeUrls = codeUrl
     }
 }
 
@@ -230,6 +235,7 @@ extension UserListsViewController:UITableViewDataSource,UITableViewDelegate,QrRe
             }
             cell.checkBox.delegate = self
             self.textInformation.removeFromSuperview()
+            self.refresh.removeFromSuperview()
         }
         return cell
     }
