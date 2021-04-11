@@ -19,10 +19,14 @@ class QrReaderViewController: UIViewController {
     var qrView :UIView!
     var codes = [String]()
     var readedCodes = [String]()
+    var informationVC : InformationAlertViewController!
+    var codeUrls = [String:String]()
+    var presentado = false
+    var lastCode : String!
     
     weak var delegate : QrReaderViewControllerDelegate?
-    
     @IBOutlet weak var QrviewBounds: UIView!
+    
     // Overrides functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,17 +102,29 @@ class QrReaderViewController: UIViewController {
     
     // Class functions
     func found(code: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now()){
-            if !self.codes.contains(code) && self.qrView.layer.borderColor != UIColor.red.cgColor{
-                AudioServicesPlayAlertSound(1053)
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                self.qrView.layer.borderColor = UIColor.red.cgColor
-            }
-            else if self.codes.contains(code) && self.qrView.layer.borderColor != UIColor.green.cgColor{
-                // Here goes the code for mark the student
-                AudioServicesPlayAlertSound(1114)
-                self.qrView.layer.borderColor = UIColor.green.cgColor
-                self.readedCodes.append(code)
+        if #available(iOS 13.0, *) {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            self.informationVC = storyBoard.instantiateViewController(identifier: "informationVC")
+            self.informationVC!.modalPresentationStyle = .overCurrentContext
+            self.informationVC!.modalTransitionStyle = .crossDissolve
+        } else {
+            showAlert(self, message: "ATENCIÓN: con su versión actual de iOS no se va a mostrar la imagen del estudiante", 1, handler: {boleano in})
+            return
+        }
+        if !self.codes.contains(code) && self.qrView.layer.borderColor != UIColor.red.cgColor{
+            AudioServicesPlayAlertSound(1053)
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            self.qrView.layer.borderColor = UIColor.red.cgColor
+            self.informationVC!.error = true
+        }
+        else if self.codes.contains(code) && self.qrView.layer.borderColor != UIColor.green.cgColor{
+            // Here goes the code for mark the student
+            AudioServicesPlayAlertSound(1114)
+            self.qrView.layer.borderColor = UIColor.green.cgColor
+            self.readedCodes.append(code)
+            self.informationVC!.error = false
+            if let url = URL(string: codeUrls[code]!){
+                self.informationVC!.url = url
             }
         }
     }
@@ -140,13 +156,28 @@ extension QrReaderViewController:AVCaptureMetadataOutputObjectsDelegate{
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            if stringValue != lastCode{
+                self.presentado = false
+                self.dismiss(animated: true, completion: {})
+            }
+
             found(code: stringValue)
+            lastCode = stringValue
+            
+            if !self.presentado{
+                self.present(self.informationVC!, animated: true, completion: {})
+                self.presentado = true
+            }
         }
         else{
+            if self.presentado{
+                self.presentado = false
+                self.dismiss(animated: true, completion: {})
+            }
             if self.qrView.layer.borderColor != UIColor.gray.cgColor{
                 self.qrView.layer.borderColor = UIColor.gray.cgColor
             }
         }
-        dismiss(animated: true)
     }
 }
