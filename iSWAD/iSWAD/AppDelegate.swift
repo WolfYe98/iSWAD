@@ -20,16 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let defaults = UserDefaults.standard
         let reachability = Reachability(hostname: "www.google.es")
-        
-        if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
-            defaults.set(nil, forKey: Constants.wsKey)
-        }
         UIApplication.shared.windows.forEach{window in
             if #available(iOS 13.0, *) {
                 window.overrideUserInterfaceStyle = .light
             } else {
                 // Fallback on earlier versions
             }
+        }
+        if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
+            defaults.set(nil, forKey: Constants.wsKey)
         }
         if (defaults.string(forKey: Constants.wsKey) == nil || defaults.string(forKey: Constants.wsKey) == "") {
             self.window?.rootViewController?.performSegue(withIdentifier: "showLogin", sender: self)
@@ -116,6 +115,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert,.sound])
+        if #available(iOS 10.0, *){
+            completionHandler([.banner,.list,.sound])
+        }
+        else{
+            completionHandler([.alert,.sound])
+        }
     }
 }
