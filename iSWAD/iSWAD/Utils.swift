@@ -15,6 +15,51 @@ import CryptoSwift
 import UIKit
 
 
+public func getSwadNotifications(){
+    var numNotis = 0
+    let defaults = UserDefaults.standard
+    let client = SyedAbsarClient()
+    let request = GetNotifications()
+    if defaults.bool(forKey: Constants.logged) == false{
+        return
+    }
+    request.cpWsKey = defaults.string(forKey: Constants.wsKey)
+    request.cpBeginTime = defaults.integer(forKey: Constants.time)
+    client.opGetNotifications(request){error,response in
+        if error != nil{
+            print(error!.localizedDescription)
+            return
+        }
+        let notificationsArray = response!["getNotificationsOutput"]["notificationsArray"].children
+        for item in notificationsArray{
+            let status :Int=Int((item["status"].element?.text)!)!
+            if status < 4{
+                numNotis += 1
+            }
+        }
+        defaults.set(numNotis, forKey: Constants.numNotifications)
+    }
+    defaults.set(Int32(CLong(NSDate().timeIntervalSince1970)), forKey: Constants.time)
+}
+
+// Throw a new notification
+public func throwNotification(_ notificationNumber:Int){
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
+    let content = UNMutableNotificationContent()
+    content.title = "NOTIFICACIÓN DE SWAD"
+    content.body = "Tienes \(notificationNumber) nuevas notificaciones"
+    content.sound = UNNotificationSound.default()
+    let req = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+    let current = UNUserNotificationCenter.current()
+    current.removeAllPendingNotificationRequests()
+    
+    current.add(req){error in
+        if let err = error{
+            print(err)
+        }
+    }
+}
+
 // Create a label with is located in the middle of a view
 public func createInfoLabel(_ view:UIView,message:String,textSize:Int)->UILabel{
     let textInformation = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
