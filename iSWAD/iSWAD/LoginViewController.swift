@@ -130,11 +130,10 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                         let appDelegate  = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.window!.rootViewController = vc
                         
-                        ///////////////////////////////////////////////////////////////////////////////
-                        // notifications
-                        ///////////////////////////////////////////////////
-                        
-                        /////////////////////////////////////////////////////
+                        let num = getNotifications()
+                        if num > 0{
+                            throwNotification(num)
+                        }
                     } else {
                         showAlert(self, message: "Login Incorrecto", 1, handler: { res in })
                     }

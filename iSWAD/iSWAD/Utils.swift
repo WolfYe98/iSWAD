@@ -15,32 +15,7 @@ import CryptoSwift
 import UIKit
 
 
-public func getSwadNotifications(){
-    var numNotis = 0
-    let defaults = UserDefaults.standard
-    let client = SyedAbsarClient()
-    let request = GetNotifications()
-    if defaults.bool(forKey: Constants.logged) == false{
-        return
-    }
-    request.cpWsKey = defaults.string(forKey: Constants.wsKey)
-    request.cpBeginTime = defaults.integer(forKey: Constants.time)
-    client.opGetNotifications(request){error,response in
-        if error != nil{
-            print(error!.localizedDescription)
-            return
-        }
-        let notificationsArray = response!["getNotificationsOutput"]["notificationsArray"].children
-        for item in notificationsArray{
-            let status :Int=Int((item["status"].element?.text)!)!
-            if status < 4{
-                numNotis += 1
-            }
-        }
-        defaults.set(numNotis, forKey: Constants.numNotifications)
-    }
-    defaults.set(Int32(CLong(NSDate().timeIntervalSince1970)), forKey: Constants.time)
-}
+
 
 // Throw a new notification
 public func throwNotification(_ notificationNumber:Int){

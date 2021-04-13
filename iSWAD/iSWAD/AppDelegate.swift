@@ -32,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 // Fallback on earlier versions
             }
         }
-        defaults.set(Int32(CLong(NSDate().timeIntervalSince1970)), forKey: Constants.time)
-        defaults.set(0, forKey: Constants.numNotifications)
         
         
         if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
@@ -85,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 if numNotis > 0{
                     throwNotification(numNotis)
                 }
-                defaults.set(0, forKey: Constants.numNotifications)
             }
         })
         
