@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     let defaults = UserDefaults.standard
     var bgTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
-    
+    var timer : Timer!
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         return true
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             
         let defaults = UserDefaults.standard
             
-        let _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {timer in
             if defaults.string(forKey: Constants.wsKey) != nil && defaults.bool(forKey: Constants.logged) == true{
                 let numNotis = getNotifications()
                 if numNotis > 0{
@@ -98,6 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     func applicationWillEnterForeground(_ application: UIApplication) {
         self.endBackground()
+        timer.invalidate()
     }
     // MARK: - Split view
     
