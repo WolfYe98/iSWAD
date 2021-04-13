@@ -133,33 +133,7 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                         ///////////////////////////////////////////////////////////////////////////////
                         // notifications
                         ///////////////////////////////////////////////////
-                        UNUserNotificationCenter.current().delegate = self
-                            if #available(iOS 10.0, *) {
-                                let notifications = getNotifications()
-                                if notifications > 0{
-                            
-                                // 1. We created the Notification Trigger
-                                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
-                            
-                                // 2. We create the content of the Notification
-                                let content = UNMutableNotificationContent()
-                                content.title = "Nuevo aviso desde SWAD"
-                                content.subtitle = ""
-                                content.body = "Tiene \(notifications) notificaciones nuevas en SWAD"
-                                content.sound = UNNotificationSound.default()
-                            
-                                // 3. We create the Request
-                                let request = UNNotificationRequest(identifier: "SWADNotification", content: content, trigger: trigger)
-                            
-                                // 4. We add the Request to the Notifications Center
-                                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                                UNUserNotificationCenter.current().add(request) {(error) in
-                                    if let error = error {
-                                        print("Se ha producido un error: \(error)")
-                                    }
-                                }
-                            }
-                        }
+                        
                         /////////////////////////////////////////////////////
                     } else {
                         showAlert(self, message: "Login Incorrecto", 1, handler: { res in })
@@ -208,7 +182,7 @@ func loginToServer(handler:@escaping ()->Void) -> Void {
 /**
     function that performs the verification of notifications. It checks if there are new notifications not read in the last month
  */
-func getNotifications() ->Int{
+func getNotifications()->Int{
     //opening the database
     db = openDatabase()
     createTable()
@@ -227,12 +201,10 @@ func getNotifications() ->Int{
     requestNotifications.cpWsKey = defaults.string(forKey: Constants.wsKey)
     requestNotifications.cpBeginTime = time
     client.opGetNotifications(requestNotifications){ (error, response: XMLIndexer?) in
-        numberOfNotifications = 0
-        
         let notificationsArray = response!["getNotificationsOutput"]["notificationsArray"].children
-        
         for item in notificationsArray{
-            if Int((item["status"].element?.text)!)! < 4{
+            let status :Int=Int((item["status"].element?.text)!)!
+            if status < 4{
                 numberOfNotifications += 1
             }
         }
