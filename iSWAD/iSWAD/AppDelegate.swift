@@ -16,7 +16,12 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     var window: UIWindow?
     let defaults = UserDefaults.standard
+    var bgTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        return true
+    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let defaults = UserDefaults.standard
         let reachability = Reachability(hostname: "www.google.es")
@@ -27,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 // Fallback on earlier versions
             }
         }
+        defaults.set(Int32(CLong(NSDate().timeIntervalSince1970)), forKey: Constants.time)
+        defaults.set(0, forKey: Constants.numNotifications)
+        
+        
         if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
             defaults.set(nil, forKey: Constants.wsKey)
         }
@@ -50,54 +59,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             detailViewController.detailItem = firstCourse
             detailViewController.configureView()
         }
-        
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
                 if !accepted {
                     print("Permiso denegado por el usuario")
                 }
-                UNUserNotificationCenter.current().delegate = self
             }
         }
         return true
     }
     
     
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        if #available(iOS 10.0, *) {
-            let notifications = getNotifications()
-            if notifications > 0{
-                
-                // 1. Creamos el Trigger de la Notificación
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
-                
-                // 2. Creamos el contenido de la Notificación
-                let content = UNMutableNotificationContent()
-                content.title = "Nuevo aviso desde SWAD"
-                content.subtitle = ""
-                content.body = "Tiene \(notifications) notificaciones nuevas en SWAD"
-                content.sound = UNNotificationSound.default()
-                // 3. Creamos la Request
-                let request = UNNotificationRequest(identifier: "SWADNotification", content: content, trigger: trigger)
-                
-                // 4. Añadimos la Request al Centro de Notificaciones
-                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                UNUserNotificationCenter.current().add(request) {(error) in
-                    if let error = error {
-                        print("Se ha producido un error: \(error)")
-                    }
-                }
-            }
-        }
-    }
-    
-    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         defaults.set(false, forKey: Constants.logged)
+        defaults.set("",forKey: Constants.wsKey)
     }
-    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+            
+        let defaults = UserDefaults.standard
+            
+        let _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {timer in
+            if defaults.string(forKey: Constants.wsKey) != nil && defaults.bool(forKey: Constants.logged) == true{
+                let numNotis = getNotifications()
+                if numNotis > 0{
+                    throwNotification(numNotis)
+                }
+                defaults.set(0, forKey: Constants.numNotifications)
+            }
+        })
+        
+        bgTask = application.beginBackgroundTask(expirationHandler: {
+            // this is the code that fires when iOS ends your background task.
+            self.endBackground()
+        })
+    }
+    func endBackground() {
+        UIApplication.shared.endBackgroundTask(bgTask)
+        bgTask = UIBackgroundTaskInvalid
+        print("endBackgroud Callback Method Fired!")
+    }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        self.endBackground()
+    }
     // MARK: - Split view
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
@@ -115,11 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if #available(iOS 10.0, *){
-            completionHandler([.banner,.list,.sound])
-        }
-        else{
-            completionHandler([.alert,.sound])
-        }
+        var options : UNNotificationPresentationOptions = [.alert,.sound]
+        if #available(iOS 14.0, *){options = [.list,.banner,.sound]}
+        completionHandler(options)
     }
 }
