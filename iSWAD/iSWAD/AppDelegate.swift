@@ -18,10 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     let defaults = UserDefaults.standard
     var bgTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var timer : Timer!
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        UNUserNotificationCenter.current().delegate = self
-        return true
-    }
+    var foreGroundTimer : Timer!
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let defaults = UserDefaults.standard
         let reachability = Reachability(hostname: "www.google.es")
@@ -32,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 // Fallback on earlier versions
             }
         }
-        
+        UNUserNotificationCenter.current().delegate = self
         
         if reachability?.connection != Optional.none && reachability?.connection.description != "No Connection"{
             defaults.set(nil, forKey: Constants.wsKey)
@@ -57,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             detailViewController.detailItem = firstCourse
             detailViewController.configureView()
         }
+        //startForeGroundTimer()// Foreground notifications not working
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
                 if !accepted {
@@ -66,7 +65,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return true
     }
-    
+    func startForeGroundTimer(){
+        foreGroundTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {_ in
+            let defaults = UserDefaults.standard
+            if defaults.string(forKey: Constants.wsKey) != nil && defaults.bool(forKey: Constants.logged) == true{
+                let numNotis = getNotifications()
+                if numNotis > 0{
+                    throwNotification(numNotis)
+                }
+            }
+        })
+    }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -76,7 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationDidEnterBackground(_ application: UIApplication) {
             
         let defaults = UserDefaults.standard
-            
+        
+        //foreGroundTimer.invalidate()
+        
         timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {timer in
             if defaults.string(forKey: Constants.wsKey) != nil && defaults.bool(forKey: Constants.logged) == true{
                 let numNotis = getNotifications()
@@ -99,7 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillEnterForeground(_ application: UIApplication) {
         self.endBackground()
         timer.invalidate()
+        //startForeGroundTimer()
     }
+    
     // MARK: - Split view
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
@@ -118,6 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         var options : UNNotificationPresentationOptions = [.alert,.sound]
+        print("received")
         if #available(iOS 14.0, *){options = [.list,.banner,.sound]}
         completionHandler(options)
     }

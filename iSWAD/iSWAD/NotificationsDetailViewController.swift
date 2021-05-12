@@ -39,11 +39,17 @@ class NotificationsDetailViewController: UIViewController {
                 self.date.text = not.date
                 self.summary.text = not.summary
                 let url = URL(string: not.userPhoto)
-                
+                var img : UIImage!
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-                    let data = try? Data(contentsOf: url!)
+                    img = UIImage(named: "nouserswad")
+                    if let ur = url{
+                        let data = try? Data(contentsOf: ur)
+                        if data != nil{
+                            img = UIImage(data:data!)
+                        }
+                    }
                     DispatchQueue.main.async(execute: {
-                        self.personImage.image = UIImage(data: data!)
+                        self.personImage.image = img
                     });
                 }
                 

@@ -13,6 +13,7 @@ import Foundation
 import SWXMLHash
 import CryptoSwift
 import UIKit
+import UserNotifications
 
 
 
@@ -21,18 +22,23 @@ import UIKit
 public func throwNotification(_ notificationNumber:Int){
     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: false)
     let content = UNMutableNotificationContent()
-    content.title = "NOTIFICACIÓN DE SWAD"
+    content.title = "iSWAD"
     content.body = "Tienes \(notificationNumber) nuevas notificaciones"
+    if notificationNumber == 1{content.body = "Tienes \(notificationNumber) nueva notificación"}
     content.sound = UNNotificationSound.default()
     let req = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     let current = UNUserNotificationCenter.current()
+    
     current.removeAllPendingNotificationRequests()
     
     current.add(req){error in
         if let err = error{
             print(err)
+            return
         }
+        print("Notification Added!")
     }
+    
 }
 
 // Create a label with is located in the middle of a view

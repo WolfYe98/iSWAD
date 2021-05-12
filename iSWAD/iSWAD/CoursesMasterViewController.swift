@@ -115,5 +115,6 @@ class CoursesMasterViewController: UITableViewController {
         vc.preferredDisplayMode = UISplitViewControllerDisplayMode.primaryOverlay
         let appDelegate  = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window!.rootViewController = vc
+        
     }
 }
