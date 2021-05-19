@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1807BD59DA8759ECDF283B1C /* Pods_iSWAD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A387EBA700B90AFBDB6B5F9A /* Pods_iSWAD.framework */; };
 		202346AF20E8224400C10BD7 /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202346AE20E8224400C10BD7 /* Documents.swift */; };
 		202D9CDF206D731600DC9300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D9CDE206D731600DC9300 /* Constants.swift */; };
 		202D9CE3206D739400DC9300 /* CoursesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D9CE2206D739400DC9300 /* CoursesMasterViewController.swift */; };
@@ -37,11 +38,13 @@
 		C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */; };
 		C6296B01260D04AB00559A67 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */; };
 		C66A89F5260A6EA30063603E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A89F4260A6EA30063603E /* PDFViewController.swift */; };
+		C6830D1D26178195000300FA /* QrReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6830D1C26178195000300FA /* QrReaderViewController.swift */; };
 		C6AC117526137A5A000B6E9F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC117426137A5A000B6E9F /* EventsViewController.swift */; };
 		C6AC117D2613B08B000B6E9F /* UserListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC117C2613B08B000B6E9F /* UserListsViewController.swift */; };
 		C6AC118B2613B8FC000B6E9F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */; };
 		C6AC118C2613B8FC000B6E9F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */; };
 		C6AC11912613BE0B000B6E9F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC11902613BE0B000B6E9F /* CheckBox.swift */; };
+		C6F347112620B5070074D634 /* InformationAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F347102620B5070074D634 /* InformationAlertViewController.swift */; };
 		C6F95AC4260BBBEC0029C8DE /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,11 +104,13 @@
 		C6296AFE260D04AB00559A67 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
 		C6296AFF260D04AB00559A67 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
 		C66A89F4260A6EA30063603E /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		C6830D1C26178195000300FA /* QrReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrReaderViewController.swift; sourceTree = "<group>"; };
 		C6AC117426137A5A000B6E9F /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		C6AC117C2613B08B000B6E9F /* UserListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListsViewController.swift; sourceTree = "<group>"; };
 		C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		C6AC11902613BE0B000B6E9F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		C6F347102620B5070074D634 /* InformationAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertViewController.swift; sourceTree = "<group>"; };
 		C6F95AC3260BBBEC0029C8DE /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		FD7BAAA9D61FF2AA882E5301 /* Pods-iSWAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSWAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +124,7 @@
 				20BDC5FF212B3EAC008AECEA /* FontAwesome_swift.framework in Frameworks */,
 				20BDC601212B3EAC008AECEA /* Reachability.framework in Frameworks */,
 				20BDC603212B3EAC008AECEA /* SWXMLHash.framework in Frameworks */,
+				1807BD59DA8759ECDF283B1C /* Pods_iSWAD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +201,8 @@
 				C6AC11892613B8FC000B6E9F /* UserTableViewCell.swift */,
 				C6AC118A2613B8FC000B6E9F /* UserTableViewCell.xib */,
 				C6AC11902613BE0B000B6E9F /* CheckBox.swift */,
+				C6830D1C26178195000300FA /* QrReaderViewController.swift */,
+				C6F347102620B5070074D634 /* InformationAlertViewController.swift */,
 			);
 			path = iSWAD;
 			sourceTree = "<group>";
@@ -256,6 +264,8 @@
 			dependencies = (
 			);
 			name = iSWAD;
+			packageProductDependencies = (
+			);
 			productName = iSWAD;
 			productReference = 2069614F206D6D3A00BF3E64 /* iSWAD.app */;
 			productType = "com.apple.product-type.application";
@@ -302,10 +312,6 @@
 		20696147206D6D3A00BF3E64 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				KnownAssetTags = (
-					1,
-					courses,
-				);
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Adrián Lara Roldán";
@@ -335,6 +341,8 @@
 				Base,
 			);
 			mainGroup = 20696146206D6D3A00BF3E64;
+			packageReferences = (
+			);
 			productRefGroup = 20696150206D6D3A00BF3E64 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -382,7 +390,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-iSWAD/Pods-iSWAD-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -397,7 +405,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iSWAD/Pods-iSWAD-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iSWAD/Pods-iSWAD-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2F3184BD3C8E19834642995 /* [CP] Check Pods Manifest.lock */ = {
@@ -430,6 +438,7 @@
 				202D9CF1206D74FD00DC9300 /* SoapConnectionInterface.swift in Sources */,
 				C60295FC260E697300A3CD83 /* MatchesViewController.swift in Sources */,
 				C6AC11912613BE0B000B6E9F /* CheckBox.swift in Sources */,
+				C6F347112620B5070074D634 /* InformationAlertViewController.swift in Sources */,
 				C6AC118B2613B8FC000B6E9F /* UserTableViewCell.swift in Sources */,
 				202D9CE9206D744400DC9300 /* MasterViewController.swift in Sources */,
 				20AF7289211A3D2700CBC3FF /* QrViewController.swift in Sources */,
@@ -443,6 +452,7 @@
 				C61C7978260F5464001E1D3B /* AnswersViewController.swift in Sources */,
 				C6296B00260D04AB00559A67 /* IconTableViewCell.swift in Sources */,
 				202D9CEB206D747800DC9300 /* MessagesViewController.swift in Sources */,
+				C6830D1D26178195000300FA /* QrReaderViewController.swift in Sources */,
 				20AF72812119167500CBC3FF /* CoursesDetailViewController.swift in Sources */,
 				202346AF20E8224400C10BD7 /* Documents.swift in Sources */,
 				20696153206D6D3A00BF3E64 /* AppDelegate.swift in Sources */,
@@ -627,9 +637,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TU429L996;
 				INFOPLIST_FILE = iSWAD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mitomono-gmail.com";
+				PRODUCT_BUNDLE_IDENTIFIER = "mingye-hotmail.es";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -646,9 +656,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TU429L996;
 				INFOPLIST_FILE = iSWAD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mitomono-gmail.com";
+				PRODUCT_BUNDLE_IDENTIFIER = "mingye-hotmail.es";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
