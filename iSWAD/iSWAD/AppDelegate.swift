@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var timer : Timer!
     var foreGroundTimer : Timer!
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let defaults = UserDefaults.standard
         let reachability = Reachability(hostname: "www.google.es")
@@ -65,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return true
     }
+    //This function should make a request to the server every 10 seconds and then if the user has new notifications it should throw a local notification but it doesn't work and I (Bate Ye) couldn't find the error.
     func startForeGroundTimer(){
         foreGroundTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: {_ in
             let defaults = UserDefaults.standard

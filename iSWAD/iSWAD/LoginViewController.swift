@@ -117,11 +117,15 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let alert = showLoading(message: "Cargando...")
         self.present(alert, animated: true, completion: nil)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
             self.defaults.set(serverString, forKey: Constants.serverURLKey)
-            loginToServer(){
-                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+            loginToServer(){ err in
+                DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
                     alert.dismiss(animated: true, completion: nil)
+                    if self.defaults.string(forKey: Constants.wsKey) == nil{
+                        showAlert(self, message: err ?? "Esta red puede que este baneada, intente cambiar de red", 1, handler: {boleano in})
+                        return
+                    }
                     if self.defaults.bool(forKey: Constants.logged) {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "CoursesView") as! UISplitViewController
@@ -151,7 +155,7 @@ class LoginViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 }
 
 
-func loginToServer(handler:@escaping ()->Void) -> Void {
+func loginToServer(handler:@escaping (String?)->Void) -> Void {
     let client = SyedAbsarClient()
     let request = LoginByUserPasswordKey()
     let defaults = UserDefaults.standard
@@ -161,9 +165,13 @@ func loginToServer(handler:@escaping ()->Void) -> Void {
     request.cpUserPassword = encryptPassword(defaults.string(forKey: Constants.userPassworKey)!)
     
     /// the SOAP request login is performed
+    
     client.opLoginByUserPasswordKey(request) { (error: NSError?, response: XMLIndexer?) in
         let loginData = response!["loginByUserPasswordKeyOutput"]
         
+        if loginData.element?.text == nil{
+            handler(nil)
+        }
         if error == nil {
             defaults.set(true, forKey: Constants.logged)
             defaults.set(loginData[Constants.userFirstnameKey].element?.text, forKey: Constants.userFirstnameKey)
@@ -175,7 +183,7 @@ func loginToServer(handler:@escaping ()->Void) -> Void {
             defaults.set(false, forKey: Constants.logged)
         }
     }
-    handler()
+    handler(nil)
 }
 
 /**

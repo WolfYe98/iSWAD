@@ -88,7 +88,7 @@ class CoursesMasterViewController: UITableViewController {
         
         let requestCourses = GetCourses()
         requestCourses.cpWsKey = defaults.string(forKey: Constants.wsKey)
-        
+
         client.opGetCourses(requestCourses){ (error, response2: XMLIndexer?) in
             let coursesArray = response2!["getCoursesOutput"]["coursesArray"].children
             for item in coursesArray{

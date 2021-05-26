@@ -160,10 +160,11 @@ open class SyedAbsarClient {
      - returns: Void.
      */
     open func opGetCourses(_ getCourses : GetCourses , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
-        
         let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getCourses><wsKey>%@</wsKey></ns1:getCourses></SOAP-ENV:Body></SOAP-ENV:Envelope>",getCourses.cpWsKey!)
-        
+            
         self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetCoursesOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
+        
+        
     }
     
     /**
@@ -411,10 +412,11 @@ open class SyedAbsarClient {
      - returns: Void.
      */
     open func opGetNotifications(_ getNotifications : GetNotifications , completionHandler: @escaping (NSError?, XMLIndexer?) -> Void) {
+        if getNotifications.cpWsKey != nil && getNotifications.cpBeginTime != nil{
+            let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getNotifications><wsKey>%@</wsKey><beginTime>%d</beginTime></ns1:getNotifications></SOAP-ENV:Body></SOAP-ENV:Envelope>",getNotifications.cpWsKey!,getNotifications.cpBeginTime!)
         
-        let soapMessage = String(format:"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"urn:swad\"><SOAP-ENV:Body><ns1:getNotifications><wsKey>%@</wsKey><beginTime>%d</beginTime></ns1:getNotifications></SOAP-ENV:Body></SOAP-ENV:Envelope>",getNotifications.cpWsKey!,getNotifications.cpBeginTime!)
-        
-        self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetNotificationsOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
+            self.makeSoapConnection(getServerURL(), soapAction: "", soapMessage: soapMessage, soapVersion: "1", className:"GetNotificationsOutput", completionHandler: { (error: NSError?, response:XMLIndexer? )->Void in completionHandler(error,response) })
+        }
     }
     
     /**
@@ -549,14 +551,14 @@ open class SyedAbsarClient {
         
         
         
-        let task2 = URLSession.shared.dataTask(with: request, completionHandler: {
-            (data, response, error) in
+        let task2 = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             let datastring = String(decoding: data!, as: UTF8.self)
             let aClass = NSClassFromString(className) as! SyedAbsarObjectBase.Type
             
-            var xml = SWXMLHash.config { conf in
+            let xml = SWXMLHash.config { conf in
                 conf.shouldProcessNamespaces = true
                 }.parse(datastring)
+            
             
             let obj = aClass
             
@@ -570,8 +572,8 @@ open class SyedAbsarClient {
                 let val =  soapFault["detail"].element?.text
                 error =  NSError(domain: "soapFault", code: 0, userInfo: NSDictionary(object: val!, forKey: NSLocalizedDescriptionKey as NSCopying) as! [AnyHashable : Any] as [AnyHashable: Any] as? [String : Any])
             }
-            xml =  xml["Envelope"]["Body"]
-            completionHandler(error, xml)
+            
+            completionHandler(error, xml["Envelope"]["Body"])
         })
         task2.resume()
     }

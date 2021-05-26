@@ -41,7 +41,7 @@ class AnswersViewController: UIViewController {
         configureView()
         if #available(iOS 10.0, *) {
             //timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.reload), userInfo: nil, repeats: true)
-            timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true){timer in
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){timer in
                 self.reload()
             }
         } else {
